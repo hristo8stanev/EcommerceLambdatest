@@ -2,9 +2,9 @@ package urls;
 
 public class Urls {
     public static final String BASE_URL = "https://ecommerce-playground.lambdatest.io/";
-    private static final String ROUTE_PREFIX = "index.php?route=";
+    public static final String ROUTE_PREFIX = "index.php?route=";
 
-    private static String routeUrl(String route) {
+    public static String routeUrl(String route) {
         return BASE_URL + ROUTE_PREFIX + route;
     }
 
