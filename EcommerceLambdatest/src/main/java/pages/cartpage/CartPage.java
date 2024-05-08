@@ -6,8 +6,9 @@ import pages.basepage.WebPage;
 import static urls.Urls.CART_PAGE;
 
 public class CartPage extends WebPage {
-    public CartPage(WebDriver webDriver) {
-        super(webDriver, CART_PAGE);
+
+    public CartPage(WebDriver driver) {
+        super(driver, CART_PAGE);
     }
 
     @Override

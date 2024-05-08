@@ -10,6 +10,7 @@ public class LoginPage extends WebPage  {
         super(webDriver, LOGIN_PAGE);
     }
 
+
     @Override
     protected String Url() {
         return LOGIN_PAGE;

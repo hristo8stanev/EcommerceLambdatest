@@ -1,13 +1,14 @@
 package ecommercetests;
 
 import core.BaseTest;
-import enums.BrowserType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RegisterPageTests extends BaseTest {
 
     @Test
-    public void Test() {
-        registerPage.navigate();
+    public void registerWithValidCredentialsTest() {
+        webSite.registerPage.navigate();
+        webSite.registerPage.assertUrlPage();
+
     }
 }

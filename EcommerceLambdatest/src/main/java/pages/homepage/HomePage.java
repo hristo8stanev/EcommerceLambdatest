@@ -10,6 +10,7 @@ public class HomePage extends WebPage {
         super(webDriver, HOME_PAGE);
     }
 
+
     @Override
     protected String Url() {
         return HOME_PAGE;

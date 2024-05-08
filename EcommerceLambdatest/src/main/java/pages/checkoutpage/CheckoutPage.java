@@ -10,6 +10,7 @@ public class CheckoutPage extends WebPage {
         super(webDriver, CHECKOUT_PAGE);
     }
 
+
     @Override
     protected String Url() {
         return CHECKOUT_PAGE;

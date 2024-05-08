@@ -16,29 +16,27 @@ public enum BrowserType {
     FIREFOX_HEADLESS,
     EDGE_HEADLESS;
 
-    public static WebDriver setupBrowser(BrowserType browserType) {
 
+    public static WebDriver setupBrowser(BrowserType browserType) {
         switch (browserType) {
-            case CHROME -> new ChromeDriver();
-            case FIREFOX -> new FirefoxDriver();
-            case EDGE -> new EdgeDriver();
-            case CHROME_HEADLESS -> {
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--headless=new");
-                return new ChromeDriver(chromeOptions);
-            }
-            case FIREFOX_HEADLESS -> {
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addArguments("--headless=new");
-                return new FirefoxDriver(firefoxOptions);
-            }
-            case EDGE_HEADLESS -> {
+            case CHROME:
+                return new ChromeDriver();
+            case FIREFOX:
+                return new FirefoxDriver();
+            case CHROME_HEADLESS:
+                ChromeOptions optionChrome = new ChromeOptions();
+                optionChrome.addArguments("--headless=new");
+                return new ChromeDriver(optionChrome);
+            case FIREFOX_HEADLESS:
+                FirefoxOptions optionFirefox = new FirefoxOptions();
+                optionFirefox.addArguments("--headless=new");
+                return new FirefoxDriver(optionFirefox);
+            case EDGE:
+                return new EdgeDriver();
+            case EDGE_HEADLESS:
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--headless=new");
-            }
-            default -> throw new IllegalArgumentException("Unsupported browser type: " + browserType);
         }
-
         return null;
     }
 }

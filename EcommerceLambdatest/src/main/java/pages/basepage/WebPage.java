@@ -4,30 +4,53 @@ import org.junit.jupiter.api.Assertions;
 
 import static constants.Constants.*;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 public abstract class WebPage {
-    public static final int TIME_FOR_TIMEOUT = 30;
-    public String url;
-    private WebDriver webDriver;
-    private WebDriverWait webDriverWait;
 
-    public WebPage(WebDriver webDriver, String url) {
+    public static final int TIME_FOR_SECOND_TIMEOUT = 25;
+    public String url;
+    protected WebDriver driver;
+    private static WebDriverWait wait;
+
+    public WebPage(WebDriver driver, String url) {
+        this.driver = driver;
         this.url = url;
-        this.webDriver = webDriver;
-        webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(TIME_FOR_TIMEOUT));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_FOR_SECOND_TIMEOUT));
     }
 
     protected abstract String Url();
 
     public void navigate() {
-        webDriver.get(url);
+        driver.get(url);
+    }
+
+    public void deleteAllCookies() {
+        driver.manage().deleteAllCookies();
+    }
+
+    public Object executeScript(String script, Object... args) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return js.executeScript(script, args);
+    }
+
+    public void waitForAjax() {
+        String script = "return window.jQuery != undefined && jQuery.active == 0";
+        wait.until(ExpectedConditions.jsReturnsValue(script));
+    }
+
+    public void refresh() {
+        driver.navigate().refresh();
     }
 
     public void assertUrlPage() {
-        Assertions.assertEquals(Url(), webDriver.getCurrentUrl(), ErrorMessageUrl);
+        Assertions.assertEquals(Url(), driver.getCurrentUrl(), ErrorMessageUrl);
+        waitForAjax();
     }
+
 }
