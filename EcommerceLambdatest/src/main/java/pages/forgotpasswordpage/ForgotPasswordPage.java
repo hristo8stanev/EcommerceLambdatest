@@ -13,7 +13,6 @@ public class ForgotPasswordPage extends WebPage {
 
     @Override
     protected String Url() {
-        return FORGOTTEN_PASSWORD_PAGE
-                ;
+        return FORGOTTEN_PASSWORD_PAGE;
     }
 }

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 
-
 import static enums.BrowserType.*;
 
 public class BaseTest {
@@ -16,7 +15,6 @@ public class BaseTest {
     @BeforeAll
     public static void setUp() {
         driver = BrowserType.setupBrowser(CHROME);
-        driver.manage().window().maximize();
         webSite = new WebSite(driver);
     }
 

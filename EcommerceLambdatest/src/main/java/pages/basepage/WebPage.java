@@ -52,5 +52,4 @@ public abstract class WebPage {
         Assertions.assertEquals(Url(), driver.getCurrentUrl(), ErrorMessageUrl);
         waitForAjax();
     }
-
 }
