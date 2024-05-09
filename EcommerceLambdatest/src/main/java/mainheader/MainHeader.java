@@ -2,6 +2,7 @@ package mainheader;
 
 import org.openqa.selenium.WebDriver;
 import pages.basepage.WebPage;
+import pages.productpage.ProductDetails;
 
 import static urls.Urls.HOME_PAGE;
 
@@ -14,5 +15,14 @@ public class MainHeader extends WebPage {
     @Override
     protected String Url() {
         return HOME_PAGE;
+    }
+
+    public void AddProductToCardt(ProductDetails product){
+
+    }
+
+    public void searchProductByName(ProductDetails productDetails){
+        waitForAjax();
+
     }
 }

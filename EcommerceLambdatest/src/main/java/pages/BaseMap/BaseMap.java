@@ -9,11 +9,11 @@ import java.time.Duration;
 
 public class BaseMap {
 
-    private static final int WAIT_FOR_ELEMENT_TIMEOUT = 25;
-    private static WebDriver driver;
-    private static WebDriverWait webDriverWait;
-    private static WebElement element;
-    private Actions actions;
+    protected static final int WAIT_FOR_ELEMENT_TIMEOUT = 25;
+    protected static WebDriver driver;
+    protected static WebDriverWait webDriverWait;
+    protected static WebElement element;
+    protected Actions actions;
 
     public BaseMap(WebDriver driver) {
         this.webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(WAIT_FOR_ELEMENT_TIMEOUT));
@@ -39,5 +39,4 @@ public class BaseMap {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         webDriverWait.until(wd -> js.executeScript("return document.readyState").toString().equals("comeplete"));
     }
-
 }
