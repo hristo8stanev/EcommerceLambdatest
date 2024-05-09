@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Assertions;
 
 import static constants.Constants.*;
 
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -34,18 +36,20 @@ public abstract class WebPage {
         driver.manage().deleteAllCookies();
     }
 
-    public Object executeScript(String script, Object... args) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        return js.executeScript(script, args);
-    }
-
     public void waitForAjax() {
-        String script = "return window.jQuery != undefined && jQuery.active == 0";
+        var script = "return window.jQuery != undefined && jQuery.active == 0";
         wait.until(ExpectedConditions.jsReturnsValue(script));
     }
 
     public void refresh() {
         driver.navigate().refresh();
+    }
+
+    public void scrolltoVisible(WebElement element) {
+        try {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        } catch (ElementNotInteractableException ex) {
+        }
     }
 
     public void assertUrlPage() {
