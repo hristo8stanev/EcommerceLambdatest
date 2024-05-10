@@ -1,17 +1,13 @@
 package pages.checkoutpage;
 
+import core.basemap.BaseMap;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BaseMap.BaseMap;
 
 import java.util.function.Supplier;
 
 public class CheckoutPageMap extends BaseMap {
 
-    public CheckoutPageMap(WebDriver driver) {
-        super(driver);
-    }
     public Supplier<WebElement> applyCoupon = () -> waitAndFindElement(By.xpath("//div[@id='content']//button[@id='button-coupon']"));
     public Supplier<WebElement> loginInput = () -> waitAndFindElement(By.xpath("//*[@for='input-account-login']"));
     public Supplier<WebElement> emailInput = () -> waitAndFindElement(By.id("input-login-email"));

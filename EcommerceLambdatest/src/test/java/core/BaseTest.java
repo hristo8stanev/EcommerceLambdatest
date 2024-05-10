@@ -1,5 +1,6 @@
 package core;
 
+import core.driver.Driver;
 import enums.BrowserType;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,7 +15,7 @@ public class BaseTest {
 
     @BeforeAll
     public static void setUp() {
-        driver = BrowserType.setupBrowser(CHROME);
+        driver = Driver.startBrowser(BrowserType.CHROME);
         webSite = new WebSite(driver);
     }
 

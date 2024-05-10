@@ -1,11 +1,8 @@
 package pages.logoutpage;
 
 import org.openqa.selenium.WebDriver;
-import pages.BaseMap.BaseMap;
+import pages.baseelements.BaseMap;
 
 public class LogoutPageMap extends BaseMap {
 
-    public LogoutPageMap(WebDriver driver) {
-        super(driver);
-    }
-}
+   }

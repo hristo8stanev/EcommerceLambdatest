@@ -1,7 +1,7 @@
 package pages.checkoutpage;
 
 import org.openqa.selenium.WebDriver;
-import pages.basepage.WebPage;
+import core.basepage.WebPage;
 
 import static urls.Urls.CHECKOUT_PAGE;
 

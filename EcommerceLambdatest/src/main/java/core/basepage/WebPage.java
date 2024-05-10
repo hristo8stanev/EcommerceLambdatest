@@ -1,9 +1,10 @@
-package pages.basepage;
+package core.basepage;
 
+import core.baseassertions.BaseAssertions;
+import core.basemap.BaseMap;
+import core.driver.Driver;
+import core.newistance.NewInstance;
 import org.junit.jupiter.api.Assertions;
-
-import static constants.Constants.*;
-
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,25 +12,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+import static constants.Constants.ErrorMessageUrl;
 
-public abstract class WebPage {
+public abstract class WebPage <ElementsT extends BaseMap, AssertionsT extends BaseAssertions<ElementsT>> {
 
-    public static final int TIME_FOR_SECOND_TIMEOUT = 25;
-    public String url;
-    protected WebDriver driver;
-    private static WebDriverWait wait;
-
-    public WebPage(WebDriver driver, String url) {
-        this.driver = driver;
-        this.url = url;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_FOR_SECOND_TIMEOUT));
-    }
+     public String url;
+     protected WebDriver driver;
+     private static WebDriverWait wait;
 
     protected abstract String Url();
 
     public void navigate() {
-        driver.get(url);
+        Driver.getBrowser().navigate().to(Url());
+    }
+
+    protected ElementsT elements() {
+        return NewInstance.createByTypeParameter(getClass(), 0);
+    }
+
+    public AssertionsT assertions() {
+        return NewInstance.createByTypeParameter(getClass(), 1);
     }
 
     public void deleteAllCookies() {

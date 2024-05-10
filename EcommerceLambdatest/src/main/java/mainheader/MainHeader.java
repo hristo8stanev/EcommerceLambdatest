@@ -1,7 +1,7 @@
 package mainheader;
 
 import org.openqa.selenium.WebDriver;
-import pages.basepage.WebPage;
+import core.basepage.WebPage;
 import pages.productpage.ProductDetails;
 
 import static urls.Urls.HOME_PAGE;

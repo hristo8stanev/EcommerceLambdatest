@@ -1,4 +1,6 @@
 package pages.productpage;
 
-public class ProductPageAssertions {
+import core.baseassertions.BaseAssertions;
+
+public class ProductPageAssertions extends BaseAssertions<ProductPageMap> {
 }

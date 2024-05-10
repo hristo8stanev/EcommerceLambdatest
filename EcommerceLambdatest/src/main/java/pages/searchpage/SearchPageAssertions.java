@@ -1,4 +1,6 @@
 package pages.searchpage;
 
-public class SearchPageAssertions {
+import core.baseassertions.BaseAssertions;
+
+public class SearchPageAssertions extends BaseAssertions<SearchPageMap> {
 }
