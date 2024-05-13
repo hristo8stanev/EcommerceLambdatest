@@ -1,17 +1,14 @@
 package pages.myaccountpage;
 
+import core.basemap.BaseMap;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.baseelements.BaseMap;
 
 import java.util.function.Supplier;
 
 public class MyAccountPageMap extends BaseMap {
 
-    public MyAccountPageMap(WebDriver driver) {
-        super(driver);
-    }
+
 
     public Supplier<WebElement> editMyAccountButton = () -> waitAndFindElement(By.xpath("//aside[@id='column-right']//a[contains(normalize-space(@href),'account/edit')]"));
     public Supplier<WebElement> changeMyPasswordButton = () -> waitAndFindElement(By.xpath("//div[@id='content']//a[contains(normalize-space(@href),'account/password')]"));
@@ -39,11 +36,11 @@ public class MyAccountPageMap extends BaseMap {
     }
 
     public Supplier<WebElement> country(String country) {
-        return () -> driver.findElement(By.id("input-country")).findElement(By.xpath(".//option[contains(text(), '" + country + "')]"));
+        return () -> browser.findElement(By.id("input-country")).findElement(By.xpath(".//option[contains(text(), '" + country + "')]"));
     }
 
     public Supplier<WebElement> findRegionOption(String region) {
-        return () -> driver.findElement(By.id("input-zone")).findElement(By.xpath(".//option[contains(text(), '" + region + "')]")
+        return () -> browser.findElement(By.id("input-zone")).findElement(By.xpath(".//option[contains(text(), '" + region + "')]")
         );
     }
 
@@ -86,12 +83,12 @@ public class MyAccountPageMap extends BaseMap {
     }
 
     public Supplier<WebElement> myAccountMenuSection() {
-        return () -> driver.findElement(By.xpath("//ul[@class='navbar-nav horizontal']//li[.//a[contains(@href, 'account/account')]]")
+        return () -> browser.findElement(By.xpath("//ul[@class='navbar-nav horizontal']//li[.//a[contains(@href, 'account/account')]]")
         );
     }
 
     public Supplier<WebElement> myOrderHistoryButton() {
-        return () -> driver.findElement(By.xpath("//aside[@id='column-right']//a[contains(normalize-space(@href),'account/order')]")
+        return () -> browser.findElement(By.xpath("//aside[@id='column-right']//a[contains(normalize-space(@href),'account/order')]")
         );
     }
 

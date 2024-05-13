@@ -10,6 +10,7 @@ import core.driver.Driver;
 public abstract class BaseMap {
     protected WebDriver browser;
     protected WebDriverWait browserWait;
+    protected static WebDriver _driver;
 
     public BaseMap() {
         browser = Driver.getBrowser();
@@ -25,7 +26,7 @@ public abstract class BaseMap {
 
 
   // protected static final int WAIT_FOR_ELEMENT_TIMEOUT = 25;
-  // protected static WebDriver driver;
+  //
   // protected static WebDriverWait webDriverWait;
   // protected static WebElement element;
   // protected Actions actions;

@@ -12,7 +12,8 @@ public class ProductPage extends WebPage<ProductPageMap, ProductPageAssertions> 
     }
 
     public void method() {
-        elements().compareButton();
+        elements().compareButton().click();
+        elements().proceedToCompare().sendKeys("asdada");
     }
 
 }

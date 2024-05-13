@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ProductPageMap extends BaseMap {
+
     public WebElement searchField() {
         return waitAndFindElement(By.name("search"));
     }

@@ -14,5 +14,6 @@ public class RegisterPage extends WebPage<RegisterPageMap, RegisterPageAssertion
 
     public void method() {
         elements().firstNameInput().click();
+        elements().firstNameInput().sendKeys("asdadadad");
     }
 }

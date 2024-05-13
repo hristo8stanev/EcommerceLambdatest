@@ -1,4 +1,6 @@
 package pages.myaccountpage;
 
-public class MyAccountPageAssertions {
+import core.baseassertions.BaseAssertions;
+
+public class MyAccountPageAssertions extends BaseAssertions<MyAccountPageMap> {
 }

@@ -14,5 +14,7 @@ public class SearchPage extends WebPage<SearchPageMap, SearchPageAssertions> {
 
     public void method() {
         elements().searchButton().sendKeys();
+        elements().maxPriceField().sendKeys("100");
+        elements().searchInput().click();
     }
 }
