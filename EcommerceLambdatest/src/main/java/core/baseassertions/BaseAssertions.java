@@ -14,4 +14,5 @@ public abstract class BaseAssertions<ElementsT extends BaseMap> {
             return null;
         }
     }
+
 }

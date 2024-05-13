@@ -15,23 +15,23 @@ public class ProductDetails {
     public String unitPrice;
     @Getter
     @Setter
-    public String Model;
+    public String model;
     @Getter
     @Setter
-    public String Brand;
+    public String brand;
     @Getter
     @Setter
-    public String Availability;
+    public String availability;
     @Getter
     @Setter
-    public String Weight;
+    public String weight;
     @Getter
     @Setter
-    public String Quantity;
+    public String quantity;
     @Getter
     @Setter
-    public String Size;
+    public String size;
     @Getter
     @Setter
-    public double Total;
+    public double total;
 }

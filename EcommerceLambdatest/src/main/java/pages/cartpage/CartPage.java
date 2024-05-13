@@ -4,7 +4,7 @@ import core.basepage.WebPage;
 
 import static urls.Urls.CART_PAGE;
 
-public class CartPage extends WebPage {
+public class CartPage extends WebPage<CartPageMap, CartPageAssertions> {
 
     @Override
     protected String Url() {

@@ -1,4 +1,6 @@
 package pages.cartpage;
 
-public class CartPageAssertions {
+import core.baseassertions.BaseAssertions;
+
+public class CartPageAssertions extends BaseAssertions<CartPageMap> {
 }

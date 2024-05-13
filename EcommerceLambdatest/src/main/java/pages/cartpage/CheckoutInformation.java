@@ -1,45 +1,78 @@
 package pages.cartpage;
 
+import lombok.Getter;
+import lombok.Setter;
 import pages.productpage.ProductDetails;
 
 import java.util.List;
 
 public class CheckoutInformation {
 
-    public List<ProductDetails> Products;
-    public double FlatShippingRate; // { get { return 5.00; } }
-    public double SubTotal; //{ get { return Products.Select(p => p.Total).Sum(); } }
-    public double EcoTax;
+    @Getter
+    @Setter
+    public List<ProductDetails> products;
+    @Getter
+    @Setter
+    public double flatShippingRate = 5.00;
 
+    @Setter
+    private double subTotal;
 
-//   {
-//       get
-//       {
-//           int totalQuantity = 0;
+    public double getSubTotal() {
+        double total = 0.0;
+        if (products != null) {
+            for (ProductDetails product : products) {
+                total += product.getTotal();
+            }
+        }
+        return total;
+    }
 
-//           foreach (var product in Products)
-//           {
-//               int.TryParse(product.Quantity, out int quantity);
+    @Setter
+    private double ecoTax;
 
-//               totalQuantity += quantity;
-//           }
+    public double getEcoTax() {
+        int totalQuantity = 0;
+        for (ProductDetails product : products) {
+            int quantity = 0;
+            try {
+                quantity = Integer.parseInt(product.getQuantity());
+            } catch (NumberFormatException ignored) {
+            }
+            totalQuantity += quantity;
+        }
 
-//           var ecoTax = 4.00;
-//           var remainingQuantity = totalQuantity - 1;
+        double ecoTax = 4.00;
+        int remainingQuantity = totalQuantity - 1;
 
-//           while (remainingQuantity > 0)
-//           {
-//               ecoTax += 2.00;
-//               remainingQuantity--;
-//           }
+        while (remainingQuantity > 0) {
+            ecoTax += 2.00;
+            remainingQuantity--;
+        }
 
-//           return ecoTax;
-//       }
-//   }
+        return ecoTax;
+    }
 
-    public double VatTax; //{ get { return Math.Ceiling(SubTotal * 0.20 + 1); } }
-    public double Total; //{ get { return FlatShippingRate + SubTotal + VatTax + EcoTax; } }
-    public String Coupon;
-    public String GiftCertificate;
+    @Setter
+    private double vatTax;
+
+    public double getVatTax() {
+        return Math.ceil(getSubTotal() * 0.20 + 1);
+    }
+
+    @Setter
+    private double total;
+
+    public double getTotal() {
+        return (flatShippingRate + getSubTotal() + getVatTax() + getEcoTax());
+    }
+    @Getter
+    @Setter
+    public String coupon;
+    @Getter
+    @Setter
+    public String giftCertificate;
+    @Getter
+    @Setter
     public boolean isVatApplied;
 }

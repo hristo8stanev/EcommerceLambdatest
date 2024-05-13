@@ -6,30 +6,29 @@ import lombok.Setter;
 public class BillingInformation {
     @Getter
     @Setter
-    public String FirstName;
+    public String firstName;
     @Getter
     @Setter
-    public String LastName;
+    public String lastName;
     @Getter
     @Setter
-    public String Company;
+    public String company;
     @Getter
     @Setter
-    public String Address1;
+    public String address1;
     @Getter
     @Setter
-    public String Address2;
+    public String address2;
     @Getter
     @Setter
-    public String City;
+    public String city;
     @Getter
     @Setter
-    public String PostCode;
+    public String postCode;
     @Getter
     @Setter
-    public String Country;
+    public String country;
     @Getter
     @Setter
-    public String Region;
+    public String region;
 }
-

@@ -7,20 +7,20 @@ public class PurchaseGiftCertificate {
 
     @Getter
     @Setter
-    public String RecipientName;
+    public String recipientName;
     @Getter
     @Setter
-    public String RecipientEmail;
+    public String recipientEmail;
     @Getter
     @Setter
-    public String YourName;
+    public String yourName;
     @Getter
     @Setter
-    public String YourEmail;
+    public String yourEmail;
     @Getter
     @Setter
-    public PurchaseGiftCertificate GiftCertificateType;
+    public PurchaseGiftCertificate giftCertificateType;
     @Getter
     @Setter
-    public String Amount;
+    public String amount;
 }

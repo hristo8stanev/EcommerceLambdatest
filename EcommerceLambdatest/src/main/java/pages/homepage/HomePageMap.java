@@ -1,10 +1,12 @@
-package mainheader;
+package pages.homepage;
 
 import core.basemap.BaseMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class MainHeaderMap extends BaseMap {
+import java.util.function.Supplier;
+
+public class HomePageMap extends BaseMap {
 
     public WebElement myAccount() {
         return waitAndFindElement(By.xpath("//ul[@class='navbar-nav horizontal']//a[contains(@href, 'account/account')]"));
@@ -20,18 +22,6 @@ public class MainHeaderMap extends BaseMap {
 
     public WebElement searchField() {
         return waitAndFindElement(By.name("search"));
-    }
-
-    public WebElement findProduct() {
-        return waitAndFindElement(By.xpath("//h4/a"));
-    }
-
-    public WebElement quantityInput() {
-        return waitAndFindElement(By.xpath("//div[@id='product-product']//input[contains(normalize-space(@name), 'quantity')]"));
-    }
-
-    public WebElement addToCartButton() {
-        return waitAndFindElement(By.xpath("//div[@class='content']//button[contains(text(),'Add to Cart')]"));
     }
 
     public WebElement searchButton() {

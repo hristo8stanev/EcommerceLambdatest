@@ -12,13 +12,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 import static constants.Constants.ErrorMessageUrl;
 
-public abstract class WebPage <ElementsT extends BaseMap, AssertionsT extends BaseAssertions<ElementsT>> {
+public abstract class WebPage<ElementsT extends BaseMap, AssertionsT extends BaseAssertions<ElementsT>> {
 
-     public String url;
-     protected WebDriver driver;
-     private static WebDriverWait wait;
+    public String url;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
 
     protected abstract String Url();
 
@@ -38,24 +40,8 @@ public abstract class WebPage <ElementsT extends BaseMap, AssertionsT extends Ba
         driver.manage().deleteAllCookies();
     }
 
-    public void waitForAjax() {
-        var script = "return window.jQuery != undefined && jQuery.active == 0";
-        wait.until(ExpectedConditions.jsReturnsValue(script));
-    }
-
-    public void refresh() {
-        driver.navigate().refresh();
-    }
-
-    public void scrolltoVisible(WebElement element) {
-        try {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-        } catch (ElementNotInteractableException ex) {
-        }
-    }
-
     public void assertUrlPage() {
-        Assertions.assertEquals(Url(), driver.getCurrentUrl(), ErrorMessageUrl);
-        waitForAjax();
+        Assertions.assertEquals(Url(), Driver.getCurrentUrl(), ErrorMessageUrl);
+        elements().waitForAjax();
     }
 }

@@ -1,4 +1,6 @@
 package pages.checkoutpage;
 
-public class CheckoutPageAssertions {
+import core.baseassertions.BaseAssertions;
+
+public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
 }

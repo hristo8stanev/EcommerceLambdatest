@@ -1,4 +1,8 @@
 package pages.loginpage;
 
-public class LoginPageAssertions {
+import core.baseassertions.BaseAssertions;
+import pages.logoutpage.LogoutPageMap;
+
+public class LoginPageAssertions extends BaseAssertions<LoginPageMap> {
+
 }

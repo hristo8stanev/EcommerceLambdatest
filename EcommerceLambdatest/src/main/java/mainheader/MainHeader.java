@@ -6,23 +6,23 @@ import pages.productpage.ProductDetails;
 
 import static urls.Urls.HOME_PAGE;
 
-public class MainHeader extends WebPage {
-
-    public MainHeader(WebDriver webDriver) {
-        super(webDriver, HOME_PAGE);
-    }
+public class MainHeader extends WebPage<MainHeaderMap,MainHeaderAssertions> {
 
     @Override
     protected String Url() {
         return HOME_PAGE;
     }
 
-    public void AddProductToCardt(ProductDetails product){
-
+    public void AddProductToCard(ProductDetails product){
+        searchProductByName(product);
+        elements().findProduct().click();
+        elements().quantityInput().sendKeys(product.quantity);
+        elements().addToCartButton().click();
     }
 
     public void searchProductByName(ProductDetails productDetails){
-        waitForAjax();
-
+        elements().searchField().sendKeys(productDetails.name);
+        //waitForAjax();
+        elements().searchButton().click();
     }
 }

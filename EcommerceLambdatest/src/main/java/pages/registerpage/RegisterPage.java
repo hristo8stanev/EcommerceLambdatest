@@ -11,9 +11,15 @@ public class RegisterPage extends WebPage<RegisterPageMap, RegisterPageAssertion
         return REGISTER_PAGE;
     }
 
-
-    public void method() {
-        elements().firstNameInput().click();
-        elements().firstNameInput().sendKeys("asdadadad");
+    public void CreateUser(PersonalInformation user)
+    {
+        elements().firstNameInput().sendKeys(user.firstName);
+        elements().lastNameInput().sendKeys(user.lastName);
+        elements().emailAddressInput().sendKeys(user.email);
+        elements().telephoneInput().sendKeys(user.telephone);
+        elements().passwordInput().sendKeys(user.password);
+        elements().confirmPasswordInput().sendKeys(user.password);
+        elements().agreePrivacy().click();
+        elements().continueButton().click();
     }
 }

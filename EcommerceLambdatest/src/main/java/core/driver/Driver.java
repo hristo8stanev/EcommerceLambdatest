@@ -30,6 +30,14 @@ public class Driver {
         Driver.browser = browser;
     }
 
+    public static String getCurrentUrl() {
+        if (browser == null) {
+            throw new NullPointerException("The WebDriver browser instance was not initialized. You should first call the startBrowser() method.");
+        }
+
+        return browser.getCurrentUrl();
+    }
+
     public static WebDriverWait getBrowserWait() {
         if (browserWait == null || browser == null) {
             throw new NullPointerException("The WebDriver browser wait instance was not initialized. You should first call the start() method.");
@@ -75,6 +83,5 @@ public class Driver {
 
         return browser;
     }
-
 }
 

@@ -1,5 +1,6 @@
 package core;
 
+import mainheader.MainHeader;
 import org.openqa.selenium.WebDriver;
 
 import pages.cartpage.CartPage;
@@ -18,6 +19,7 @@ import pages.returnproductpage.ReturnProductPage;
 import pages.searchpage.SearchPage;
 import pages.searchproductpricerange.SearchProductPriceRange;
 import pages.successfulorderpage.SuccessfulOrderPage;
+import pages.successfulregisterpage.SuccessfulRegisterPage;
 import pages.successfulreturnproductpage.SuccessfulReturnProductPage;
 import pages.successfulvoucherpage.SuccessfulVoucherPage;
 import pages.wishlistpage.WishlistPage;
@@ -33,6 +35,7 @@ public class WebSite {
     public SearchPage searchPage;
     public MyAccountPage myAccountPage;
     public ProductPage productPage;
+    public SuccessfulRegisterPage successfulRegisterPage;
     public RegisterPage registerPage;
     public ComparisonPage comparisonPage;
     public ForgotPasswordPage forgotPasswordPage;
@@ -44,27 +47,30 @@ public class WebSite {
     public SuccessfulReturnProductPage successfulReturnProductPage;
     public SuccessfulVoucherPage successfulVoucherPage;
     public WishlistPage wishlistPage;
+    public MainHeader mainHeader;
 
     public WebSite(WebDriver driver) {
         this._driver = driver;
-        this.homePage = new HomePage(driver);
-        this.cartPage = new CartPage(driver);
-        this.loginPage = new LoginPage(driver);
-        this.checkoutPage = new CheckoutPage(driver);
-        this.logoutPage = new LogoutPage(driver);
-        this.searchPage = new SearchPage(driver);
-        this.registerPage = new RegisterPage(driver);
-        this.myAccountPage = new MyAccountPage(driver);
-        this.productPage = new ProductPage(driver);
-        this.comparisonPage = new ComparisonPage(driver);
-        this.forgotPasswordPage = new ForgotPasswordPage(driver);
-        this.newAddressBookPage = new NewAddressBookPage(driver);
-        this.newAddressPage = new NewAddressPage(driver);
-        this.returnProductPage = new ReturnProductPage(driver);
-        this.searchProductPriceRange = new SearchProductPriceRange(driver);
-        this.successfulOrderPage = new SuccessfulOrderPage(driver);
-        this.successfulReturnProductPage = new SuccessfulReturnProductPage(driver);
-        this.successfulVoucherPage = new SuccessfulVoucherPage(driver);
-        this.wishlistPage = new WishlistPage(driver);
+        this.mainHeader = new MainHeader();
+        this.homePage = new HomePage();
+        this.cartPage = new CartPage();
+        this.loginPage = new LoginPage();
+        this.checkoutPage = new CheckoutPage();
+        this.logoutPage = new LogoutPage();
+        this.searchPage = new SearchPage();
+        this.registerPage = new RegisterPage();
+        this.myAccountPage = new MyAccountPage();
+        this.productPage = new ProductPage();
+        this.comparisonPage = new ComparisonPage();
+        this.forgotPasswordPage = new ForgotPasswordPage();
+        this.newAddressBookPage = new NewAddressBookPage();
+        this.newAddressPage = new NewAddressPage();
+        this.returnProductPage = new ReturnProductPage();
+        this.searchProductPriceRange = new SearchProductPriceRange();
+        this.successfulOrderPage = new SuccessfulOrderPage();
+        this.successfulReturnProductPage = new SuccessfulReturnProductPage();
+        this.successfulVoucherPage = new SuccessfulVoucherPage();
+        this.wishlistPage = new WishlistPage();
+        this.successfulRegisterPage = new SuccessfulRegisterPage();
     }
 }

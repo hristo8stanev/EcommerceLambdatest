@@ -13,6 +13,7 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
 
 
     public void method(){
-        elements().
+    elements().editMyAccountButton().click();
+    elements().addressInput1().click();
     }
 }
