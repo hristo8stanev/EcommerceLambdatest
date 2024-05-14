@@ -15,17 +15,11 @@ public class CheckoutInformation {
     @Setter
     public double flatShippingRate = 5.00;
 
-    @Setter
-    private double subTotal;
-
     public double getSubTotal() {
-        double total = 0.0;
-        if (products != null) {
-            for (ProductDetails product : products) {
-                total += product.getTotal();
-            }
+        if (products == null) {
+            return 0.0;
         }
-        return total;
+        return products.stream().mapToDouble(ProductDetails::getTotal).sum();
     }
 
     @Setter

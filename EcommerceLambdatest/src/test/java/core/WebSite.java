@@ -72,5 +72,6 @@ public class WebSite {
         this.successfulVoucherPage = new SuccessfulVoucherPage();
         this.wishlistPage = new WishlistPage();
         this.successfulRegisterPage = new SuccessfulRegisterPage();
+        this.forgotPasswordPage = new ForgotPasswordPage();
     }
 }

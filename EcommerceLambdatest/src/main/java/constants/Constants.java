@@ -12,6 +12,7 @@ public class Constants {
     public static String ErrorMessageQuantity = "The expected and actual quantity of the product is not equal!";
     public static String ErrorMessageOrder = "Your order hasn't been placed successfully";
     public static String ErrorMessageLogoutButton = "Logout button is not displayed";
+    public static String subtotalPriceMessage = "The subtotal price does not match.";
     public static String ExpectedMessageForConfirmationEmail = " An email with a confirmation link has been sent your email address.";
     public static String ExpectedMessageForInvalidEmail = " Warning: The E-Mail Address was not found in our records, please try again!";
     public static String ErrorMessageConfirmationEmail = "Your email address is not correct";

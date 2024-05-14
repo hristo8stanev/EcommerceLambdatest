@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 public class CheckoutPageMap extends BaseMap {
     public WebElement applyCoupon() {
-        return waitAndFindElement(By.xpath("//div[@id='content']//button[@id='button-coupon']"));
+        return moveToElement(By.xpath("//div[@id='content']//button[@id='button-coupon']"));
     }
 
     public WebElement loginInput() {
@@ -44,7 +44,7 @@ public class CheckoutPageMap extends BaseMap {
     }
 
     public WebElement confirmOrderButton() {
-        return waitAndFindElement(By.id("button-confirm"));
+        return moveToElement(By.id("button-confirm"));
     }
 
     public WebElement successfullyConfirmOrderText() {
@@ -96,7 +96,7 @@ public class CheckoutPageMap extends BaseMap {
     }
 
     public WebElement searchButton() {
-        return waitAndFindElement(By.xpath("//div[@id='search']//button[contains(normalize-space(@type),'submit')]"));
+        return moveToElement(By.xpath("//div[@id='search']//button[contains(normalize-space(@type),'submit')]"));
     }
 
     public WebElement quantityField() {
@@ -124,11 +124,13 @@ public class CheckoutPageMap extends BaseMap {
     }
 
     public WebElement country(String country) {
-        return waitAndFindElement(By.id("input-payment-country")).findElement(By.xpath(".//option[contains(text(), '" + country + "]"));
+        WebElement countryDropdown = waitAndFindElement(By.id("input-payment-country"));
+        return countryDropdown.findElement(By.xpath(".//option[contains(text(), '" + country + "')]"));
     }
 
     public WebElement region(String region) {
-        return waitAndFindElement(By.id("input-payment-zone")).findElement(By.xpath(".//option[contains(text(), '" + region + "')]"));
+        WebElement regionDropdown = waitAndFindElement(By.id("input-payment-zone"));
+        return regionDropdown.findElement(By.xpath(".//option[contains(text(), '" + region + "')]"));
     }
 
     public WebElement agreePrivacy() {
@@ -152,18 +154,18 @@ public class CheckoutPageMap extends BaseMap {
     }
 
     public WebElement productNameElement(int id, String name) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id='" + id + "') and normalize-space()='" + name + "'}']]//a"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "') and normalize-space(text())='" + name + "']]//a"));
     }
 
     public WebElement productQuantityElement(int id, String productName) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "') and normalize-space()='" + productName + "']]//following-sibling::td//input"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "') and normalize-space(text())='" + productName + "']]//following-sibling::td//input"));
     }
 
     public WebElement productPriceElement(String cell, String price) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(normalize-space(@class),'" + cell + "') and contains(text(), '" + price + "')]"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(normalize-space(@class), '" + cell + "') and contains(normalize-space(text()), '" + price + "')]"));
     }
 
     public WebElement productTotalPriceElement(String cell, String price) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(normalize-space(@class),'" + cell + "') and contains(text(), '" + price+ "')]//following-sibling::td"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(normalize-space(@class), '" + cell + "') and contains(normalize-space(text()), '" + price + "')]//following-sibling::td"));
     }
 }

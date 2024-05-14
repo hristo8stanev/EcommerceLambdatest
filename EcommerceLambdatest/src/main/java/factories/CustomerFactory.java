@@ -22,18 +22,17 @@ public class CustomerFactory {
         return personalInformation;
     }
 
-    public static BillingInformation GenerateBillingAddress(String firstName, String lastName, String company, String address1, String address2, String city, String postCode, String country, String region)
-    {
+    public static BillingInformation GenerateBillingAddress(){
        BillingInformation billingInformation = new BillingInformation();
-        billingInformation.setFirstName(firstName != null ? firstName : faker.name().firstName());
-        billingInformation.setLastName(lastName != null ? lastName : faker.name().lastName());
-        billingInformation.setCompany(company != null ? company : faker.company().name());
-        billingInformation.setAddress1(address1 != null ? address1 : faker.address().streetAddress());
-        billingInformation.setAddress2(address2 != null ? address2 : faker.address().secondaryAddress());
-        billingInformation.setCity(city != null ? city : faker.address().cityName());
-        billingInformation.setPostCode(postCode != null ? postCode : faker.address().countryCode());
-        billingInformation.setCountry(country != null ? country : faker.country().name());
-        billingInformation.setRegion(region != null ? region : faker.country().capital());
+        billingInformation.setFirstName(faker.name().firstName());
+        billingInformation.setLastName(faker.name().lastName());
+        billingInformation.setCompany(faker.company().name());
+        billingInformation.setAddress1(faker.address().streetAddress());
+        billingInformation.setAddress2(faker.address().secondaryAddress());
+        billingInformation.setCity(faker.address().cityName());
+        billingInformation.setPostCode(faker.address().countryCode());
+        billingInformation.setCountry("United States");
+        billingInformation.setRegion("California");
 
         return billingInformation;
     }

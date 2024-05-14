@@ -17,16 +17,12 @@ public class LoginPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//*[@value='Login']"));
     }
 
-    public WebElement myAccountNavigationBarElement() {
-        return waitAndFindElement(By.xpath("//ul[@class='navbar-nav horizontal']//a[contains(@href, 'account/account')]"));
-    }
-
-    public WebElement logoutButton() {
-        return waitAndFindElement(By.xpath("//div[@id='account-account']//a[contains(normalize-space(@href),'account/logout')]"));
-    }
-
     public WebElement forgotPasswordButton() {
         return waitAndFindElement(By.xpath("//div[@id='content']//a[contains(normalize-space(@href),'account/forgotten')]"));
+    }
+
+    public WebElement warningMessage() {
+        return waitAndFindElement(By.xpath("//div[@id='account-login']//div[contains(normalize-space(@class), 'alert alert-danger')]"));
     }
 
     public WebElement emailAddress() {
@@ -35,18 +31,6 @@ public class LoginPageMap extends BaseMap {
 
     public WebElement continueButton() {
         return waitAndFindElement(By.xpath("//div[@id='content']//button[contains(normalize-space(@type),'submit')]"));
-    }
-
-    public WebElement confirmationMessage() {
-        return waitAndFindElement(By.xpath("//div[@id='account-login']//div[contains(normalize-space(@class), 'alert alert-success')]"));
-    }
-
-    public WebElement warningMessage() {
-        return waitAndFindElement(By.xpath("//div[@id='account-login']//div[contains(normalize-space(@class), 'alert alert-danger')]"));
-    }
-
-    public WebElement accountLogout() {
-        return waitAndFindElement(By.xpath("//h1[@class='page-title my-3']"));
     }
 }
 

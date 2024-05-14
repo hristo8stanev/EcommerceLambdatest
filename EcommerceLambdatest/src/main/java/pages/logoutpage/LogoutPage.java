@@ -12,4 +12,10 @@ public class LogoutPage extends WebPage <LogoutPageMap, LogoutPageAssertions> {
     protected String Url() {
         return LOGOUT_USER_PAGE;
     }
+
+    public void logoutUser()
+    {
+        elements().myAccountNavigationBarElement();
+        elements().logoutButton().click();
+    }
 }

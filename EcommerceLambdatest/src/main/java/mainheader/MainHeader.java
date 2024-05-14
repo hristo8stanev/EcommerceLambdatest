@@ -13,16 +13,18 @@ public class MainHeader extends WebPage<MainHeaderMap,MainHeaderAssertions> {
         return HOME_PAGE;
     }
 
-    public void AddProductToCard(ProductDetails product){
+    public void addProductToCard(ProductDetails product){
         searchProductByName(product);
         elements().findProduct().click();
+        elements().quantityInput().clear();
         elements().quantityInput().sendKeys(product.quantity);
         elements().addToCartButton().click();
     }
 
     public void searchProductByName(ProductDetails productDetails){
+        elements().searchField().clear();
         elements().searchField().sendKeys(productDetails.name);
-        //waitForAjax();
+        elements().waitForAjax();
         elements().searchButton().click();
     }
 }
