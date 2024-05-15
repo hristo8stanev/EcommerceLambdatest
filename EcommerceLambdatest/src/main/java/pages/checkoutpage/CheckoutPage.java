@@ -2,6 +2,7 @@ package pages.checkoutpage;
 
 import core.basepage.WebPage;
 import enums.DifferentAccountType;
+import org.openqa.selenium.By;
 import pages.cartpage.BillingInformation;
 import pages.registerpage.PersonalInformation;
 
@@ -15,6 +16,10 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
     }
 
     public void fillUserDetails(BillingInformation billingInformation) {
+        if (elements().newAddressLabel().isDisplayed()) {
+            elements().newAddressLabel().click();
+        }
+
         elements().firstNameInput().sendKeys(billingInformation.firstName);
         elements().lastNameInput().sendKeys(billingInformation.lastName);
         elements().companyInput().sendKeys(billingInformation.company);
@@ -28,6 +33,7 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
     }
 
     public void fillBillingAddress(BillingInformation billingInformation) {
+        elements().scrollToVisible(elements().companyInput());
         elements().companyInput().sendKeys(billingInformation.company);
         elements().addressField1().sendKeys(billingInformation.address1);
         elements().addressField2().sendKeys(billingInformation.address2);
@@ -41,18 +47,14 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
     public void fillBillingNewUserDetails(PersonalInformation user) {
         elements().firstNameInput().sendKeys(user.firstName);
         elements().lastNameInput().sendKeys(user.lastName);
-        elements().emailInput().sendKeys(user.email);
+        elements().emailPaymentInput().sendKeys(user.email);
         elements().telephonePaymentInput().sendKeys(user.telephone);
-
         if (elements().passwordPaymentInput().isDisplayed()) {
             elements().passwordPaymentInput().sendKeys(user.password);
-        }
-
-        if (elements().passwordPaymentInput().isDisplayed()) {
             elements().confirmPasswordPaymentInput().sendKeys(user.confirmPassword);
         }
-
         if (elements().agreePrivacy().isDisplayed()) {
+            elements().scrollToVisible(elements().agreePrivacy());
             elements().agreePrivacy().click();
         }
     }
@@ -60,7 +62,7 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
     private void selectAccountType(DifferentAccountType accountType) {
         switch (accountType) {
             case LOGIN:
-                elements().loginInput().click();
+                elements().loginAccountType().click();
                 break;
 
             case REGISTER:
@@ -92,9 +94,11 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
         elements().emailInput().sendKeys(email);
         elements().passwordInput().sendKeys(password);
         elements().loginButton().click();
+        elements().waitForAjax();
     }
 
     public void proceedToCheckout() {
+        elements().scrollToVisible(elements().agreeTerms());
         elements().agreeTerms().click();
         elements().waitForAjax();
         elements().continueButton().click();

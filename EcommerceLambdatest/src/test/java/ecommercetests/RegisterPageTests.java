@@ -1,7 +1,6 @@
 package ecommercetests;
 
 import core.BaseTest;
-import core.driver.Driver;
 import factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +15,6 @@ public class RegisterPageTests extends BaseTest {
         webSite.registerPage.CreateUser(registerUser);
 
         webSite.successfulRegisterPage.assertUrlPage();
-        webSite.registerPage.assertions().AssertLogoutButtonIsDisplayed();
+        webSite.registerPage.assertions().assertLogoutButtonIsDisplayed();
     }
 }

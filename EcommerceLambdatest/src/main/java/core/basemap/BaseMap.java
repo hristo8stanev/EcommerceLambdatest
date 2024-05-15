@@ -13,6 +13,7 @@ public abstract class BaseMap {
     protected WebDriver browser;
     protected Actions actions;
     protected WebDriverWait browserWait;
+    protected WebElement element;
 
     public BaseMap() {
         browser = Driver.getBrowser();
@@ -34,6 +35,11 @@ public abstract class BaseMap {
         browserWait.until(ExpectedConditions.jsReturnsValue(script));
     }
 
+
+    public Boolean displayed(WebElement webElement) {
+        return webElement != null ? webElement.isDisplayed() : null;
+    }
+
     public void scrollToVisible(WebElement element) {
         try {
             ((JavascriptExecutor) browser).executeScript("arguments[0].scrollIntoView(true);", element);
@@ -41,10 +47,10 @@ public abstract class BaseMap {
         }
     }
 
-    protected WebElement moveToElement(By locator) {
+    public WebElement hover (WebElement element) {
         actions = new Actions(browser);
-        actions.moveToElement(waitAndFindElement(locator)).perform();
-        return waitAndFindElement(locator);
+        actions.moveToElement(element).perform();
+        return element;
     }
 
     protected WebElement waitElementToBeClickable(By locator) {

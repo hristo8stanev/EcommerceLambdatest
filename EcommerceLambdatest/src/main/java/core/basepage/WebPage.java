@@ -12,7 +12,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.NumberFormat;
 import java.time.Duration;
+import java.util.Locale;
 
 import static constants.Constants.ErrorMessageUrl;
 
@@ -38,6 +40,11 @@ public abstract class WebPage<ElementsT extends BaseMap, AssertionsT extends Bas
 
     public void deleteAllCookies() {
         driver.manage().deleteAllCookies();
+    }
+
+    public static NumberFormat getNumberFormat() {
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+        return currencyFormat;
     }
 
     public void assertUrlPage() {

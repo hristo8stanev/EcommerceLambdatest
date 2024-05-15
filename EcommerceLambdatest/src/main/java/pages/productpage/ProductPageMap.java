@@ -14,16 +14,8 @@ public class ProductPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//button[contains(@onclick, 'cart.remove')]"));
     }
 
-    public WebElement compareButton() {
-        return waitAndFindElement(By.partialLinkText("Product Compare"));
-    }
-
     public WebElement removeFromWishList() {
         return waitAndFindElement(By.xpath("//div[@id='content']//td[contains(@class, 'text-right text-nowrap')]//a[contains(@href, 'account/wishlist&remove')]"));
-    }
-
-    public WebElement removeFromCompareList(int id) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td//a[contains(@href, 'remove=" + id + "') and normalize-space()='Remove']"));
     }
 
     public WebElement quantityInput() {
@@ -34,24 +26,12 @@ public class ProductPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@class='content']//button[contains(text(),'Add to Cart')]"));
     }
 
-    public WebElement compareProductButton() {
-        return waitAndFindElement(By.xpath("//div[@id='product-product']//button[contains(normalize-space(@class), 'btn-compare')]"));
-    }
-
     public WebElement proceedToCompare() {
         return waitAndFindElement(By.xpath("//*[@data-original-title='Compare']"));
     }
 
     public WebElement findProduct() {
         return waitAndFindElement(By.xpath("//h4/a"));
-    }
-
-    public WebElement wishListSection() {
-        return waitAndFindElement(By.xpath("//div[@class='toast-body']//a[contains(normalize-space(@href),'account/wishlist')]"));
-    }
-
-    public WebElement wishListButton() {
-        return waitAndFindElement(By.xpath("//div[@id='product-product']//button[contains(normalize-space(@title),'Add to Wish List')]"));
     }
 
     public WebElement sizeField() {
@@ -76,17 +56,5 @@ public class ProductPageMap extends BaseMap {
 
     public WebElement productNameElement(int id, String productName) {
         return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "') and normalize-space()='" + productName + "']]"));
-    }
-
-    public WebElement productPriceWishListElement(String price) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//td[@class='text-right' and normalize-space()='" + price + "']"));
-    }
-
-    public WebElement productElementInformation(String expectedElement) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(text(),'" + expectedElement + "')]"));
-    }
-
-    public WebElement productWeightElement(String weight) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(text(),'" + weight + "')]"));
     }
 }

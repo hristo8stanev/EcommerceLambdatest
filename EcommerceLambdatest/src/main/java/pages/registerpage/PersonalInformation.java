@@ -27,4 +27,22 @@ public class PersonalInformation {
     @Getter
     @Setter
     public DifferentAccountType accountType;
+    public Boolean isPasswordVisible = false;
+    public Boolean isPrivacyVisible = false;
+
+    public Boolean getPasswordVisible() {
+        return isPasswordVisible;
+    }
+
+    public void setPasswordVisible(Boolean passwordVisible) {
+        this.isPasswordVisible = passwordVisible;
+    }
+
+    public Boolean getPrivacyVisible() {
+        return isPrivacyVisible;
+    }
+
+    public void setPrivacyVisible(Boolean privacyVisible) {
+        this.isPrivacyVisible = privacyVisible;
+    }
 }

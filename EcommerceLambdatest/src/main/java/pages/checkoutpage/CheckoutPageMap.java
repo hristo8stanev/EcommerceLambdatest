@@ -4,14 +4,13 @@ import core.basemap.BaseMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.function.Supplier;
-
 public class CheckoutPageMap extends BaseMap {
+
     public WebElement applyCoupon() {
-        return moveToElement(By.xpath("//div[@id='content']//button[@id='button-coupon']"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//button[@id='button-coupon']"));
     }
 
-    public WebElement loginInput() {
+    public WebElement loginAccountType() {
         return waitAndFindElement(By.xpath("//*[@for='input-account-login']"));
     }
 
@@ -36,15 +35,15 @@ public class CheckoutPageMap extends BaseMap {
     }
 
     public WebElement agreeTerms() {
-        return waitAndFindElement(By.xpath("//*[@for='input-agree']"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//input[@name='agree']//following-sibling::label"));
     }
 
     public WebElement continueButton() {
-        return waitAndFindElement(By.id("button-save"));
+        return waitAndFindElement(By.xpath("//button[@id='button-save']"));
     }
 
     public WebElement confirmOrderButton() {
-        return moveToElement(By.id("button-confirm"));
+        return waitAndFindElement(By.id("button-confirm"));
     }
 
     public WebElement successfullyConfirmOrderText() {
@@ -68,7 +67,7 @@ public class CheckoutPageMap extends BaseMap {
     }
 
     public WebElement passwordPaymentInput() {
-        return waitAndFindElement(By.id("input-payment-password"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//input[contains(normalize-space(@id),'input-payment-password')]"));
     }
 
     public WebElement confirmPasswordPaymentInput() {
@@ -95,8 +94,12 @@ public class CheckoutPageMap extends BaseMap {
         return waitAndFindElement(By.name("postcode"));
     }
 
+    public WebElement newAddressLabel() {
+        return waitElementToBeClickable(By.xpath("//div[@id='content']//input[@id='input-payment-address-new']//following-sibling::label"));
+    }
+
     public WebElement searchButton() {
-        return moveToElement(By.xpath("//div[@id='search']//button[contains(normalize-space(@type),'submit')]"));
+        return waitAndFindElement(By.xpath("//div[@id='search']//button[contains(normalize-space(@type),'submit')]"));
     }
 
     public WebElement quantityField() {
@@ -134,7 +137,7 @@ public class CheckoutPageMap extends BaseMap {
     }
 
     public WebElement agreePrivacy() {
-        return waitAndFindElement(By.xpath("//*[@for='input-account-agree']"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//*[@name='account_agree']//following-sibling::label"));
     }
 
     public WebElement confirmOrderProductName(String cell, String productName) {

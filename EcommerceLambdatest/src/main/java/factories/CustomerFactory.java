@@ -31,8 +31,8 @@ public class CustomerFactory {
         billingInformation.setAddress2(faker.address().secondaryAddress());
         billingInformation.setCity(faker.address().cityName());
         billingInformation.setPostCode(faker.address().countryCode());
-        billingInformation.setCountry("United States");
-        billingInformation.setRegion("California");
+        billingInformation.setCountry("United Kingdom");
+        billingInformation.setRegion("London");
 
         return billingInformation;
     }

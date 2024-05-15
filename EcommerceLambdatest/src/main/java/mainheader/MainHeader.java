@@ -19,6 +19,7 @@ public class MainHeader extends WebPage<MainHeaderMap,MainHeaderAssertions> {
         elements().quantityInput().clear();
         elements().quantityInput().sendKeys(product.quantity);
         elements().addToCartButton().click();
+        elements().waitForAjax();
     }
 
     public void searchProductByName(ProductDetails productDetails){

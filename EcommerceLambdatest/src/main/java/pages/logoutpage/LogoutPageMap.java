@@ -10,7 +10,7 @@ public class LogoutPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='account-account']//a[contains(normalize-space(@href),'account/logout')]"));
     }
     public WebElement myAccountNavigationBarElement() {
-        return moveToElement(By.xpath("//ul[@class='navbar-nav horizontal']//a[contains(@href, 'account/account')]"));
+        return waitAndFindElement(By.xpath("//ul[@class='navbar-nav horizontal']//a[contains(@href, 'account/account')]"));
     }
     public WebElement accountLogout() {
         return waitAndFindElement(By.xpath("//h1[@class='page-title my-3']"));

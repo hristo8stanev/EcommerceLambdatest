@@ -1,5 +1,7 @@
 package core.newistance;
 
+import org.openqa.selenium.WebElement;
+
 import java.lang.reflect.ParameterizedType;
 
 public class NewInstance {
