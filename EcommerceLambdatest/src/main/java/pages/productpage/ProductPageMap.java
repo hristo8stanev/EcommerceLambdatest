@@ -6,10 +6,6 @@ import org.openqa.selenium.WebElement;
 
 public class ProductPageMap extends BaseMap {
 
-    public WebElement searchField() {
-        return waitAndFindElement(By.name("search"));
-    }
-
     public WebElement removeButton() {
         return waitAndFindElement(By.xpath("//button[contains(@onclick, 'cart.remove')]"));
     }

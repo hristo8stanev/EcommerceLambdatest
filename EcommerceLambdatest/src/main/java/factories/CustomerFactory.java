@@ -1,62 +1,57 @@
 package factories;
 
 import com.github.javafaker.Faker;
-import org.apache.commons.lang3.RandomStringUtils;
+import enums.AccountType;
+import org.apache.commons.lang.RandomStringUtils;
 import pages.cartpage.BillingInformation;
 import pages.loginpage.LoginInformation;
 import pages.registerpage.PersonalInformation;
 
+import java.util.random.RandomGenerator;
+
 public class CustomerFactory {
     private static final Faker faker = new Faker();
 
-    public static PersonalInformation GenerateUserDetails() {
+    protected static PersonalInformation.PersonalInformationBuilder<?, ?> GenerateCorePersonalInformation() {
 
-        PersonalInformation personalInformation = new PersonalInformation();
-        personalInformation.setFirstName(faker.name().firstName());
-        personalInformation.setLastName(faker.name().lastName());
-        personalInformation.setEmail(faker.internet().emailAddress());
-        personalInformation.setPassword(faker.internet().password());
-        personalInformation.setConfirmPassword(personalInformation.getPassword());
-        personalInformation.setTelephone(RandomStringUtils.randomNumeric(8));
-
-        return personalInformation;
+        return PersonalInformation.builder()
+                .accountType(AccountType.Guest)
+                .firstName(faker.name().firstName())
+                .email(faker.internet().emailAddress())
+                .telephone(RandomStringUtils.randomNumeric(8))
+                .lastName(faker.name().lastName());
     }
 
-    public static BillingInformation GenerateBillingAddress(){
-       BillingInformation billingInformation = new BillingInformation();
-        billingInformation.setFirstName(faker.name().firstName());
-        billingInformation.setLastName(faker.name().lastName());
-        billingInformation.setCompany(faker.company().name());
-        billingInformation.setAddress1(faker.address().streetAddress());
-        billingInformation.setAddress2(faker.address().secondaryAddress());
-        billingInformation.setCity(faker.address().cityName());
-        billingInformation.setPostCode(faker.address().countryCode());
-        billingInformation.setCountry("United Kingdom");
-        billingInformation.setRegion("London");
-
-        return billingInformation;
+    public static PersonalInformation GenerateRegisterAccount() {
+        return GenerateCorePersonalInformation()
+                .password(faker.internet().password())
+                .accountType(AccountType.Register)
+                .build();
     }
-    public static LoginInformation loginUser(String email, String password)
-    {
+
+    public static PersonalInformation GenerateGuestCheckout() {
+        return GenerateCorePersonalInformation().accountType(AccountType.Guest).build();
+    }
+
+    public static PersonalInformation GenerateLoginCheckout(String email, String password) {
+        return GenerateCorePersonalInformation().accountType(AccountType.Login).email(email).password(password).build();
+    }
+
+    public static BillingInformation GenerateBillingAddress() {
+        return BillingInformation.builder().firstName(faker.name().firstName())
+                .lastName(faker.name().lastName())
+                .company(faker.company().name())
+                .address1(faker.address().streetAddress())
+                .address2(faker.address().secondaryAddress())
+                .city(faker.address().cityName())
+                .postCode(faker.address().countryCode())
+                .country("United Kingdom").region("London").build();
+    }
+
+    public static LoginInformation loginUser(String email, String password) {
         var loginDetails = new LoginInformation();
         loginDetails.emailAddress = email;
         loginDetails.passwordField = password;
-
-        return loginDetails;
-    }
-
-    public static LoginInformation BuildExistingCustomer()
-    {
-        //ToDo Implement
-        var loginDetails = new LoginInformation();
-
-        return loginDetails;
-    }
-
-    public static LoginInformation BuildNewCustomer()
-    {
-        //ToDo Implement
-        var loginDetails = new LoginInformation();
 
         return loginDetails;
     }

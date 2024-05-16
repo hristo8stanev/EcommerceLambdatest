@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 
 public class WishlistPageMap extends BaseMap {
 
+    public WebElement searchField() {
+        return waitAndFindElement(By.name("search"));
+    }
 
     public WebElement removeFromWishList() {
         return waitAndFindElement(By.xpath("//div[@id='content']//td[contains(@class, 'text-right text-nowrap')]//a[contains(@href, 'account/wishlist&remove')]"));

@@ -1,11 +1,13 @@
 package pages.cartpage;
 
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.Data;
+import lombok.experimental.SuperBuilder;
 import pages.productpage.ProductDetails;
 
 import java.util.List;
-
+//TO do
+@Data
 public class CheckoutInformation {
 
     public List<ProductDetails> products;

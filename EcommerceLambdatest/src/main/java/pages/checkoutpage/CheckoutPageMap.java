@@ -1,17 +1,26 @@
 package pages.checkoutpage;
 
 import core.basemap.BaseMap;
+import enums.AccountType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class CheckoutPageMap extends BaseMap {
 
-    public WebElement applyCoupon() {
-        return waitAndFindElement(By.xpath("//div[@id='content']//button[@id='button-coupon']"));
+    public WebElement accountType(AccountType accountType) {
+        return waitAndFindElement(By.xpath("//input[@name='account']/following-sibling::label[contains(text(),'" + accountType + "')]"));
     }
 
     public WebElement loginAccountType() {
         return waitAndFindElement(By.xpath("//*[@for='input-account-login']"));
+    }
+
+    public WebElement registerAccountType() {
+        return waitAndFindElement(By.xpath("//*[@for='input-account-register']"));
+    }
+
+    public WebElement guestAccountType() {
+        return waitAndFindElement(By.xpath("//*[@for='input-account-guest']"));
     }
 
     public WebElement emailInput() {
@@ -24,14 +33,6 @@ public class CheckoutPageMap extends BaseMap {
 
     public WebElement loginButton() {
         return waitAndFindElement(By.xpath("//*[@id='button-login']"));
-    }
-
-    public WebElement registerAccountType() {
-        return waitAndFindElement(By.xpath("//*[@for='input-account-register']"));
-    }
-
-    public WebElement guestAccountType() {
-        return waitAndFindElement(By.xpath("//*[@for='input-account-guest']"));
     }
 
     public WebElement agreeTerms() {
@@ -136,8 +137,8 @@ public class CheckoutPageMap extends BaseMap {
         return regionDropdown.findElement(By.xpath(".//option[contains(text(), '" + region + "')]"));
     }
 
-    public WebElement agreePrivacy() {
-        return waitAndFindElement(By.xpath("//div[@id='content']//*[@name='account_agree']//following-sibling::label"));
+    public WebElement privacyPolicy() {
+        return waitElementToBeClickable(By.xpath("//label[@for='input-account-agree']"));
     }
 
     public WebElement confirmOrderProductName(String cell, String productName) {

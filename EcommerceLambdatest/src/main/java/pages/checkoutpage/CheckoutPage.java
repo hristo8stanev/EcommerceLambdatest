@@ -1,8 +1,8 @@
 package pages.checkoutpage;
 
 import core.basepage.WebPage;
-import enums.DifferentAccountType;
-import org.openqa.selenium.By;
+import enums.AccountType;
+import org.jetbrains.annotations.NotNull;
 import pages.cartpage.BillingInformation;
 import pages.registerpage.PersonalInformation;
 
@@ -45,54 +45,48 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
     }
 
     public void fillBillingNewUserDetails(PersonalInformation user) {
+        selectAccount(user.getAccountType());
+
         elements().firstNameInput().sendKeys(user.firstName);
         elements().lastNameInput().sendKeys(user.lastName);
         elements().emailPaymentInput().sendKeys(user.email);
         elements().telephonePaymentInput().sendKeys(user.telephone);
-        if (elements().passwordPaymentInput().isDisplayed()) {
+
+        if (!(user.password == null || user.password.isEmpty())) {
             elements().passwordPaymentInput().sendKeys(user.password);
-            elements().confirmPasswordPaymentInput().sendKeys(user.confirmPassword);
+            elements().confirmPasswordPaymentInput().sendKeys(user.password);
         }
-        if (elements().agreePrivacy().isDisplayed()) {
-            elements().scrollToVisible(elements().agreePrivacy());
-            elements().agreePrivacy().click();
+
+        if (user.getAccountType() == AccountType.Register) {
+            agreePrivacyTerms();
         }
+
     }
 
-    private void selectAccountType(DifferentAccountType accountType) {
-        switch (accountType) {
-            case LOGIN:
-                elements().loginAccountType().click();
-                break;
+ // public AccountType (AccountType accountType) {
+ //     switch (accountType) {
+ //         case Login:
+ //            return "Login";
+//
+ //         case REGISTER:
+ //            return "Register Account";
+//
+ //         case GUEST:
+ //           return "Guest Checkout";
+//
+ //         default:
+ //             throw new IllegalArgumentException("Unsupported account type: " + accountType);
+ //     }
+ // }
 
-            case REGISTER:
-                elements().registerAccountType().click();
-                break;
+   public void selectAccount(AccountType accountType) {
+       elements().accountType(accountType).click();
+   }
 
-            case GUEST:
-                elements().guestAccountType().click();
-                break;
-
-            default:
-                throw new IllegalArgumentException("Unsupported account type: " + accountType);
-        }
-    }
-
-    public void selectLoginAccountType() {
-        selectAccountType(DifferentAccountType.LOGIN);
-    }
-
-    public void selectRegisterAccountType() {
-        selectAccountType(DifferentAccountType.REGISTER);
-    }
-
-    public void selectGuestAccountType() {
-        selectAccountType(DifferentAccountType.GUEST);
-    }
-
-    public void loginUser(String email, String password) {
-        elements().emailInput().sendKeys(email);
-        elements().passwordInput().sendKeys(password);
+    public void loginUser(PersonalInformation user) {
+        selectAccount(user.getAccountType());
+        elements().emailInput().sendKeys(user.email);
+        elements().passwordInput().sendKeys(user.password);
         elements().loginButton().click();
         elements().waitForAjax();
     }
@@ -107,5 +101,11 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
 
     public void confirmOrder() {
         elements().confirmOrderButton().click();
+    }
+
+    private void agreePrivacyTerms() {
+        elements().waitForAjax();
+        elements().scrollToVisible(elements().privacyPolicy());
+        elements().privacyPolicy().click();
     }
 }

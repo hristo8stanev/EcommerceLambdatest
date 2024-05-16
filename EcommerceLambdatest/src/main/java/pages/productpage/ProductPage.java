@@ -1,7 +1,6 @@
 package pages.productpage;
 
 import core.basepage.WebPage;
-import enums.DifferentAccountType;
 import enums.DifferentSizeType;
 
 import static urls.Urls.SEARCH_SHOP_PRODUCTS_PAGE;

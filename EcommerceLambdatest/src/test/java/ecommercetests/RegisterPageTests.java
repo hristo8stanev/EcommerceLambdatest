@@ -11,7 +11,7 @@ public class RegisterPageTests extends BaseTest {
     {
         webSite.registerPage.navigate();
 
-        var registerUser = CustomerFactory.GenerateUserDetails();
+        var registerUser = CustomerFactory.GenerateRegisterAccount();
         webSite.registerPage.CreateUser(registerUser);
 
         webSite.successfulRegisterPage.assertUrlPage();
