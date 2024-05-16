@@ -3,6 +3,7 @@ package enums;
 public enum ReasonType {
     DEAD_ON_ARRIVAL,
     FAULTY_PLEASE_SUPPLY_DETAILS,
+    ORDER_ERROR,
     OTHER_PLEASE_SUPPLY_DETAILS,
     RECEIVED_WRONG_ITEM
 }
