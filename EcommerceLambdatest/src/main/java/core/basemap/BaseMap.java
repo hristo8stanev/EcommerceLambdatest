@@ -35,11 +35,6 @@ public abstract class BaseMap {
         browserWait.until(ExpectedConditions.jsReturnsValue(script));
     }
 
-
-    public Boolean displayed(WebElement webElement) {
-        return webElement != null ? webElement.isDisplayed() : null;
-    }
-
     public void scrollToVisible(WebElement element) {
         try {
             ((JavascriptExecutor) browser).executeScript("arguments[0].scrollIntoView(true);", element);
@@ -47,10 +42,13 @@ public abstract class BaseMap {
         }
     }
 
-    public WebElement hover (WebElement element) {
+    public WebElement hover(WebElement element) {
         actions = new Actions(browser);
         actions.moveToElement(element).perform();
         return element;
+    }
+    public void deleteAllCookies(){
+        browser.manage().deleteAllCookies();
     }
 
     protected WebElement waitElementToBeClickable(By locator) {

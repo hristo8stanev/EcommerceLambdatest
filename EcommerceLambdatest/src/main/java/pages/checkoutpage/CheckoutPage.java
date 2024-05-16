@@ -2,7 +2,6 @@ package pages.checkoutpage;
 
 import core.basepage.WebPage;
 import enums.AccountType;
-import org.jetbrains.annotations.NotNull;
 import pages.cartpage.BillingInformation;
 import pages.registerpage.PersonalInformation;
 
@@ -54,7 +53,7 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
 
         if (!(user.password == null || user.password.isEmpty())) {
             elements().passwordPaymentInput().sendKeys(user.password);
-            elements().confirmPasswordPaymentInput().sendKeys(user.password);
+            elements().passwordPaymentInput().sendKeys(user.password);
         }
 
         if (user.getAccountType() == AccountType.Register) {
@@ -63,25 +62,10 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
 
     }
 
- // public AccountType (AccountType accountType) {
- //     switch (accountType) {
- //         case Login:
- //            return "Login";
-//
- //         case REGISTER:
- //            return "Register Account";
-//
- //         case GUEST:
- //           return "Guest Checkout";
-//
- //         default:
- //             throw new IllegalArgumentException("Unsupported account type: " + accountType);
- //     }
- // }
-
-   public void selectAccount(AccountType accountType) {
-       elements().accountType(accountType).click();
-   }
+    public void selectAccount(AccountType accountType) {
+        elements().waitForAjax();
+        elements().accountType(accountType).click();
+    }
 
     public void loginUser(PersonalInformation user) {
         selectAccount(user.getAccountType());

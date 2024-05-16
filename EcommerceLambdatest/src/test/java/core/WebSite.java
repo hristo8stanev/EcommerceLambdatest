@@ -62,7 +62,6 @@ public class WebSite {
         this.myAccountPage = new MyAccountPage();
         this.productPage = new ProductPage();
         this.comparisonPage = new ComparisonPage();
-        this.forgotPasswordPage = new ForgotPasswordPage();
         this.newAddressBookPage = new NewAddressBookPage();
         this.newAddressPage = new NewAddressPage();
         this.returnProductPage = new ReturnProductPage();

@@ -21,8 +21,6 @@ import static constants.Constants.ErrorMessageUrl;
 public abstract class WebPage<ElementsT extends BaseMap, AssertionsT extends BaseAssertions<ElementsT>> {
 
     public String url;
-    protected WebDriver driver;
-    protected WebDriverWait wait;
 
     protected abstract String Url();
 
@@ -36,10 +34,6 @@ public abstract class WebPage<ElementsT extends BaseMap, AssertionsT extends Bas
 
     public AssertionsT assertions() {
         return NewInstance.createByTypeParameter(getClass(), 1);
-    }
-
-    public void deleteAllCookies() {
-        driver.manage().deleteAllCookies();
     }
 
     public static NumberFormat getNumberFormat() {

@@ -38,6 +38,10 @@ public class Driver {
         return browser.getCurrentUrl();
     }
 
+    public void deleteAllCookies() {
+
+    }
+
     public static WebDriverWait getBrowserWait() {
         if (browserWait == null || browser == null) {
             throw new NullPointerException("The WebDriver browser wait instance was not initialized. You should first call the start() method.");

@@ -4,16 +4,16 @@ import com.github.javafaker.Faker;
 import enums.AccountType;
 import org.apache.commons.lang.RandomStringUtils;
 import pages.cartpage.BillingInformation;
-import pages.loginpage.LoginInformation;
 import pages.registerpage.PersonalInformation;
 
-import java.util.random.RandomGenerator;
+import static constants.Constants.EmailAddress;
+import static constants.Constants.Password;
 
 public class CustomerFactory {
+    
     private static final Faker faker = new Faker();
 
     protected static PersonalInformation.PersonalInformationBuilder<?, ?> GenerateCorePersonalInformation() {
-
         return PersonalInformation.builder()
                 .accountType(AccountType.Guest)
                 .firstName(faker.name().firstName())
@@ -48,11 +48,7 @@ public class CustomerFactory {
                 .country("United Kingdom").region("London").build();
     }
 
-    public static LoginInformation loginUser(String email, String password) {
-        var loginDetails = new LoginInformation();
-        loginDetails.emailAddress = email;
-        loginDetails.passwordField = password;
-
-        return loginDetails;
+    public static PersonalInformation loginUser(String email, String password) {
+        return PersonalInformation.builder().email(email).password(password).build();
     }
 }

@@ -14,6 +14,7 @@ public class BaseTest {
     @BeforeEach
     public void setUp() {
         driver = Driver.startBrowser(BrowserType.CHROME);
+        driver.manage().deleteAllCookies();
         webSite = new WebSite(driver);
     }
 

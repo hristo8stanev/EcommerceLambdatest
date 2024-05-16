@@ -6,7 +6,6 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 public class BillingInformation {
-
     public String firstName;
     public String lastName;
     public String company;
