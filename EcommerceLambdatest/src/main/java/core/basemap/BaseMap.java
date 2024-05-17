@@ -13,7 +13,6 @@ public abstract class BaseMap {
     protected WebDriver browser;
     protected Actions actions;
     protected WebDriverWait browserWait;
-    protected WebElement element;
 
     public BaseMap() {
         browser = Driver.getBrowser();
@@ -46,9 +45,6 @@ public abstract class BaseMap {
         actions = new Actions(browser);
         actions.moveToElement(element).perform();
         return element;
-    }
-    public void deleteAllCookies(){
-        browser.manage().deleteAllCookies();
     }
 
     protected WebElement waitElementToBeClickable(By locator) {

@@ -1,5 +1,6 @@
 package pages.myaccountpage;
 
+import enums.ProductOpened;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -11,5 +12,6 @@ public class PurchaseGiftCertificate {
     public String yourName;
     public String yourEmail;
     public PurchaseGiftCertificate giftCertificateType;
+    public ProductOpened productOpened;
     public String amount;
 }

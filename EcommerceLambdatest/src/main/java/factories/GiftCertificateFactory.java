@@ -2,6 +2,7 @@ package factories;
 
 import com.github.javafaker.Faker;
 
+import enums.ProductOpened;
 import org.apache.commons.lang.RandomStringUtils;
 import pages.myaccountpage.PurchaseGiftCertificate;
 
@@ -16,6 +17,7 @@ public class GiftCertificateFactory {
                 .recipientEmail(faker.internet().emailAddress())
                 .yourName(faker.name().firstName())
                 .yourEmail(faker.internet().emailAddress())
+                .productOpened(ProductOpened.YES)
                 .amount(RandomStringUtils.randomNumeric(2)).build();
     }
 }

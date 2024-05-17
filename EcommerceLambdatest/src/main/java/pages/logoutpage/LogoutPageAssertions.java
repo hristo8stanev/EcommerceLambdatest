@@ -18,8 +18,7 @@ public class LogoutPageAssertions extends BaseAssertions<LogoutPageMap> {
 
     public void assertAccountSuccessfullyLogout() {
         boolean isLogoutButtonDisplayed = elementsT().accountLogout().isDisplayed();
-        var successfullyLogoutMessage = String.format("%s \n Actual Result: %b \n Expected Result: %b",
-                ErrorMessageConfirmationEmail, isLogoutButtonDisplayed, true);
+        var successfullyLogoutMessage = String.format("%s \n Actual Result: %b \n Expected Result: %b", ErrorMessageConfirmationEmail, isLogoutButtonDisplayed, true);
         Assertions.assertTrue(isLogoutButtonDisplayed, successfullyLogoutMessage);
     }
 }

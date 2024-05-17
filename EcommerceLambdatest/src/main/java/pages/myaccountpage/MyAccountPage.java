@@ -22,62 +22,18 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
     }
 
     public void selectGiftType(GiftCertificateType giftCertificateType) {
-        switch (giftCertificateType) {
-            case GiftCertificateType.GENERAL:
-                elements().generalCertificate().click();
-                break;
-
-            case GiftCertificateType.BIRTHDAY:
-                elements().birthdayCertificate().click();
-                break;
-
-            case GiftCertificateType.CHRISTMAS:
-                elements().christmasCertificate().click();
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported gift certificate type " + giftCertificateType);
-        }
+        elements().waitForAjax();
+        elements().giftCertificateTheme(giftCertificateType).click();
     }
 
     public void selectReasonType(ReasonType reasonType) {
-        switch (reasonType) {
-            case ReasonType.DEAD_ON_ARRIVAL:
-                elements().returnReasonInput(1).click();
-                break;
-
-            case ReasonType.FAULTY_PLEASE_SUPPLY_DETAILS:
-                elements().returnReasonInput(2).click();
-                break;
-
-            case ReasonType.ORDER_ERROR:
-                elements().returnReasonInput(3).click();
-                break;
-
-            case ReasonType.OTHER_PLEASE_SUPPLY_DETAILS:
-                elements().returnReasonInput(4).click();
-                break;
-
-            case ReasonType.RECEIVED_WRONG_ITEM:
-                elements().returnReasonInput(5).click();
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported reason type: " + reasonType);
-        }
+        elements().waitForAjax();
+        elements().returnReasonInput(reasonType).click();
     }
 
-
-    public void selectIsProductOpened(ProductOpened productOpened) {
-        switch (productOpened) {
-            case ProductOpened.YES:
-                elements().productOpenedInput(1).click();
-                break;
-
-            case ProductOpened.NO:
-                elements().productOpenedInput(0).click();
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported type: " + productOpened);
-        }
+    public void selectIsProductOpened(ProductOpened reasonId) {
+        elements().waitForAjax();
+        elements().productOpenedInput(reasonId).click();
     }
 
     public void changeMyAccountInformation(PersonalInformation user) {
@@ -160,13 +116,13 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
     }
 
     public void fillReturnProductForm(ProductDetails product) {
-        selectReasonType(ReasonType.DEAD_ON_ARRIVAL);
         elements().orderIdInput().sendKeys(String.valueOf(product.getId()));
         elements().orderDateInput().sendKeys(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         elements().productNameInput().sendKeys(product.getName());
         elements().productCodeInput().sendKeys(product.getModel());
         elements().productQuantityInput().clear();
         elements().productQuantityInput().sendKeys(product.getQuantity());
+        selectReasonType(ReasonType.DEAD_ON_ARRIVAL);
         selectIsProductOpened(ProductOpened.YES);
         elements().submitButton().click();
     }

@@ -1,6 +1,9 @@
 package pages.myaccountpage;
 
 import core.basemap.BaseMap;
+import enums.GiftCertificateType;
+import enums.ProductOpened;
+import enums.ReasonType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -72,12 +75,12 @@ public class MyAccountPageMap extends BaseMap {
         return waitAndFindElement(By.id("input-quantity"));
     }
 
-    public WebElement returnReasonInput(int reasonId) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//input[@name='return_reason_id' and @value='" + reasonId + "']"));
+    public WebElement returnReasonInput(ReasonType reasonType) {
+        return waitAndFindElement(By.xpath("//div[@id='content']//input[@name='return_reason_id' and @value='" + reasonType.getReasonType() + "']"));
     }
 
-    public WebElement productOpenedInput(int reasonId) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//input[@name='opened' and @value='" + reasonId + "']"));
+    public WebElement productOpenedInput(ProductOpened reasonId) {
+        return waitAndFindElement(By.xpath("//div[@id='content']//input[@name='opened' and normalize-space(@value)='" + reasonId.getNumberDisplayed() + "']"));
     }
 
     public WebElement country(String country) {
@@ -149,16 +152,8 @@ public class MyAccountPageMap extends BaseMap {
         return waitAndFindElement(By.id("input-from-email"));
     }
 
-    public WebElement birthdayCertificate() {
-        return waitAndFindElement(By.xpath("//*[contains(text(), 'Birthday')]"));
-    }
-
-    public WebElement christmasCertificate() {
-        return waitAndFindElement(By.xpath("//*[contains(text(), ' Christmas')]"));
-    }
-
-    public WebElement generalCertificate() {
-        return waitAndFindElement(By.xpath("//*[contains(text(), ' General')]"));
+    public WebElement giftCertificateTheme(GiftCertificateType giftCertificateType) {
+        return waitAndFindElement(By.xpath("//label[contains(text(), '" + giftCertificateType.getGiftType() + "')]"));
     }
 
     public WebElement amountCertificateInput() {
@@ -182,7 +177,7 @@ public class MyAccountPageMap extends BaseMap {
     }
 
     public WebElement giftPriceNameElement(String amount, String name) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tr/td[@class='text-left' and contains(text(), '$"+amount + ".00 Gift Certificate for " + name + "')]"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//tr/td[@class='text-left' and contains(text(), '$" + amount + ".00 Gift Certificate for " + name + "')]"));
     }
 
     public WebElement myAccountMenuSection() {
