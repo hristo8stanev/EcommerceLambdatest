@@ -182,7 +182,7 @@ public class MyAccountPageMap extends BaseMap {
     }
 
     public WebElement giftPriceNameElement(String amount, String name) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tr/td[@class='text-left' and contains(text(), '$" + amount + "}.00 Gift Certificate for " + name + "')]"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//tr/td[@class='text-left' and contains(text(), '$"+amount + ".00 Gift Certificate for " + name + "')]"));
     }
 
     public WebElement myAccountMenuSection() {

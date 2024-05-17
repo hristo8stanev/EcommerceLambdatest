@@ -24,6 +24,12 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
         Assertions.assertTrue(isConfirmButtonDisplayed, ErrorMessageLogoutButton);
     }
 
+    public void assertSuccessfullyCheckoutOrder() {
+        var expectedMessage = SuccessfullyPurchaseMessage;
+        var successfullyCheckoutOrderMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageLogoutButton, elementsT().successfullyConfirmOrderText().getText(), expectedMessage);
+        Assertions.assertEquals(elementsT().successfullyConfirmOrderText().getText(), expectedMessage, successfullyCheckoutOrderMessage);
+    }
+
     public void assertProductInformationCorrect(ProductDetails expectedProduct) {
 
         String nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageProduct,

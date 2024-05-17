@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 public class CheckoutPageMap extends BaseMap {
 
     public WebElement accountType(AccountType accountType) {
-        return waitAndFindElement(By.xpath("//input[@name='account']/following-sibling::label[contains(text(),'" + accountType + "')]"));
+        return waitAndFindElement(By.xpath("//input[@name='account']/following-sibling::label[contains(text(),'" + accountType.getDisplayName() + "')]"));
     }
 
     public WebElement loginAccountType() {

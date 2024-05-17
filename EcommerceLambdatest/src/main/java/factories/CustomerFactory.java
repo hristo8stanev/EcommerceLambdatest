@@ -6,16 +6,13 @@ import org.apache.commons.lang.RandomStringUtils;
 import pages.cartpage.BillingInformation;
 import pages.registerpage.PersonalInformation;
 
-import static constants.Constants.EmailAddress;
-import static constants.Constants.Password;
-
 public class CustomerFactory {
-    
+
     private static final Faker faker = new Faker();
 
     protected static PersonalInformation.PersonalInformationBuilder<?, ?> GenerateCorePersonalInformation() {
         return PersonalInformation.builder()
-                .accountType(AccountType.Guest)
+                .accountType(AccountType.GUEST)
                 .firstName(faker.name().firstName())
                 .email(faker.internet().emailAddress())
                 .telephone(RandomStringUtils.randomNumeric(8))
@@ -25,16 +22,16 @@ public class CustomerFactory {
     public static PersonalInformation GenerateRegisterAccount() {
         return GenerateCorePersonalInformation()
                 .password(faker.internet().password())
-                .accountType(AccountType.Register)
+                .accountType(AccountType.REGISTER)
                 .build();
     }
 
     public static PersonalInformation GenerateGuestCheckout() {
-        return GenerateCorePersonalInformation().accountType(AccountType.Guest).build();
+        return GenerateCorePersonalInformation().accountType(AccountType.GUEST).build();
     }
 
     public static PersonalInformation GenerateLoginCheckout(String email, String password) {
-        return GenerateCorePersonalInformation().accountType(AccountType.Login).email(email).password(password).build();
+        return GenerateCorePersonalInformation().accountType(AccountType.LOGIN).email(email).password(password).build();
     }
 
     public static BillingInformation GenerateBillingAddress() {

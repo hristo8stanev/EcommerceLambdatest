@@ -8,6 +8,9 @@ import pages.cartpage.BillingInformation;
 import pages.productpage.ProductDetails;
 import pages.registerpage.PersonalInformation;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static constants.Constants.*;
 import static urls.Urls.ACCOUNT_PAGE;
 
@@ -79,9 +82,13 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
 
     public void changeMyAccountInformation(PersonalInformation user) {
         elements().editMyAccountButton().click();
+        elements().firstNameInput().clear();
         elements().firstNameInput().sendKeys(user.firstName);
+        elements().lastNameInput().clear();
         elements().lastNameInput().sendKeys(user.lastName);
-        elements().emailAddressNameInput().sendKeys(user.email);
+        elements().emailAddressNameInput().clear();
+        elements().emailAddressNameInput().sendKeys(EmailAddress);
+        elements().telephoneInput().clear();
         elements().telephoneInput().sendKeys(user.telephone);
         elements().continueButton().click();
     }
@@ -93,7 +100,7 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
     }
 
     public void proceedToMyVoucherSection() {
-        elements().scrollToVisible(elements().myAccountMenuSection());
+        elements().hover(elements().myAccountMenuSection());
         elements().myVoucherButton().click();
         elements().waitForAjax();
     }
@@ -105,7 +112,7 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
     }
 
     public void proceedToReturnOrderSection() {
-        elements().scrollToVisible(elements().myAccountMenuSection());
+        elements().hover(elements().myAccountMenuSection());
         elements().returnOrderButton().click();
         elements().waitForAjax();
     }
@@ -137,24 +144,34 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
     }
 
     public void purchaseGiftCertificate(PurchaseGiftCertificate gift) {
+        elements().recipientNameInput().clear();
         elements().recipientNameInput().sendKeys(gift.recipientName);
+        elements().recipientEmailInput().clear();
         elements().recipientEmailInput().sendKeys(gift.recipientEmail);
+        elements().yourNameInput().clear();
         elements().yourNameInput().sendKeys(gift.yourName);
+        elements().yourEmailInput().clear();
         elements().yourEmailInput().sendKeys(gift.yourEmail);
         selectGiftType(GiftCertificateType.BIRTHDAY);
-        elements().amountCertificateInput().click();
+        elements().amountCertificateInput().clear();
+        elements().amountCertificateInput().sendKeys(gift.getAmount());
         elements().agreeGiftCertificate().click();
         elements().continueButton().click();
     }
 
     public void fillReturnProductForm(ProductDetails product) {
         selectReasonType(ReasonType.DEAD_ON_ARRIVAL);
-        elements().orderDateInput().sendKeys(product.id).toString();
-        elements().orderDateInput().sendKeys(DateTime.Now.ToString("dd/MM/yyyy"));
-        elements().productNameInput().sendKeys(product.name);
-        elements().productCodeInput().sendKeys(product.quantity);
-        elements().productQuantityInput().sendKeys(product.quantity);
+        elements().orderIdInput().sendKeys(String.valueOf(product.getId()));
+        elements().orderDateInput().sendKeys(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        elements().productNameInput().sendKeys(product.getName());
+        elements().productCodeInput().sendKeys(product.getModel());
+        elements().productQuantityInput().clear();
+        elements().productQuantityInput().sendKeys(product.getQuantity());
         selectIsProductOpened(ProductOpened.YES);
         elements().submitButton().click();
     }
 }
+
+
+
+

@@ -1,7 +1,7 @@
 package constants;
 
 public class Constants {
-    public static String EmailAddress = "alabala@gmail.com";
+    public static String EmailAddress = "qatest@gmail.com";
     public static String Password = "tester";
     public static String SuccessfullyPurchaseMessage = "Your order has been placed!";
     public static String InvalidEmail = "testtest@gmail.com";

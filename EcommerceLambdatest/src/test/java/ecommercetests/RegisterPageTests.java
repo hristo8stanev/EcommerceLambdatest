@@ -12,7 +12,7 @@ public class RegisterPageTests extends BaseTest {
         webSite.registerPage.navigate();
 
         var registerUser = CustomerFactory.GenerateRegisterAccount();
-        webSite.registerPage.CreateUser(registerUser);
+        webSite.registerPage.createUser(registerUser);
 
         webSite.successfulRegisterPage.assertUrlPage();
         webSite.registerPage.assertions().assertLogoutButtonIsDisplayed();

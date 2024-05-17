@@ -1,8 +1,10 @@
 package pages.myaccountpage;
 
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Data
+@SuperBuilder
 public class PurchaseGiftCertificate {
     public String recipientName;
     public String recipientEmail;

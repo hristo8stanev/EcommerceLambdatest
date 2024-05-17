@@ -53,10 +53,10 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
 
         if (!(user.password == null || user.password.isEmpty())) {
             elements().passwordPaymentInput().sendKeys(user.password);
-            elements().passwordPaymentInput().sendKeys(user.password);
+            elements().confirmPasswordPaymentInput().sendKeys(user.password);
         }
 
-        if (user.getAccountType() == AccountType.Register) {
+        if (user.getAccountType() == AccountType.REGISTER) {
             agreePrivacyTerms();
         }
 
