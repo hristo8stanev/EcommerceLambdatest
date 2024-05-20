@@ -19,6 +19,16 @@ public class CustomerFactory {
                 .lastName(faker.name().lastName());
     }
 
+    public static PersonalInformation GenerateRegisterAccount(String firstName,String email, String password) {
+        return GenerateCorePersonalInformation()
+                .firstName(firstName)
+                .email(email)
+                .password(password)
+                .password(faker.internet().password())
+                .accountType(AccountType.REGISTER)
+                .build();
+    }
+
     public static PersonalInformation GenerateRegisterAccount() {
         return GenerateCorePersonalInformation()
                 .password(faker.internet().password())

@@ -47,7 +47,7 @@ public class ProductPageMap extends BaseMap {
     }
 
     public WebElement productSize(int id) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id={" + id + "')]]//following-sibling::small"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "')]]//following-sibling::small"));
     }
 
     public WebElement productNameElement(int id, String productName) {

@@ -38,6 +38,8 @@ public class ProductPage extends WebPage<ProductPageMap, ProductPageAssertions> 
     }
     public void selectMediumSizeType() {
         selectSize(DifferentSizeType.MEDIUM);
+        elements().waitForAjax();
+        elements().addToCartButton().click();
     }
     public void selectLargeSizeType() {
         selectSize(DifferentSizeType.LARGE);
