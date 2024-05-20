@@ -34,4 +34,3 @@ public class SearchPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@class='content']//input[contains(normalize-space(@placeholder), 'Maximum Price')]"));
     }
 }
-

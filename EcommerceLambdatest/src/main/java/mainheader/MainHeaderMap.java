@@ -3,6 +3,7 @@ package mainheader;
 import core.basemap.BaseMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.productpage.ProductDetails;
 
 public class MainHeaderMap extends BaseMap {
 
@@ -22,8 +23,8 @@ public class MainHeaderMap extends BaseMap {
         return waitAndFindElement(By.name("search"));
     }
 
-    public WebElement findProduct() {
-        return waitAndFindElement(By.xpath("//h4/a"));
+    public WebElement findProduct(int productId) {
+        return waitAndFindElement(By.xpath("//div[@id='product-search']//a[contains(@href, 'product_id=" + productId + "')]"));
     }
 
     public WebElement quantityInput() {

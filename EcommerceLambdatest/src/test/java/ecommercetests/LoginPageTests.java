@@ -9,7 +9,7 @@ import static constants.Constants.*;
 public class LoginPageTests extends BaseTest {
     @Test
     public void loginIntoSystem_When_ValidEmailAddressAndPasswordProvided_And_LoginButtonClicked() {
-        var loginUser = CustomerFactory.loginUser(EmailAddress,Password);
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
@@ -20,7 +20,7 @@ public class LoginPageTests extends BaseTest {
 
     @Test
     public void LoginIntoSystem_When_InvalidEmailAddress_And_LoginButtonClicked() {
-        var loginUser = CustomerFactory.loginUser(InvalidEmail, Password);
+        var loginUser = CustomerFactory.loginUser(INVALID_EMAIL, PASSWORD);
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);

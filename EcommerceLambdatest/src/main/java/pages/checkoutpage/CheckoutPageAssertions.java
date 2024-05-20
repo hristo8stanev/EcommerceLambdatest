@@ -2,52 +2,48 @@ package pages.checkoutpage;
 
 import core.baseassertions.BaseAssertions;
 import factories.CustomerFactory;
-import org.apache.velocity.runtime.directive.Foreach;
 import org.junit.jupiter.api.Assertions;
-import pages.cartpage.BillingInformation;
 import pages.cartpage.CheckoutInformation;
 import pages.productpage.ProductDetails;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
-import java.util.Locale;
 
 import static constants.Constants.*;
 import static core.basepage.WebPage.getNumberFormat;
-import static java.lang.System.in;
 
 public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
 
     public void assertConfirmButtonDisplayed() {
         boolean isConfirmButtonDisplayed = elementsT().confirmOrderButton().isDisplayed();
-        var confirmButtonMessage = String.format("%s \n Actual Result: %b \n Expected Result: %b", ErrorMessageLogoutButton, isConfirmButtonDisplayed, true);
-        Assertions.assertTrue(isConfirmButtonDisplayed, ErrorMessageLogoutButton);
+        var confirmButtonMessage = String.format("%s \n Actual Result: %b \n Expected Result: %b", ERROR_MESSAGE_LOGOUT_BUTTON, isConfirmButtonDisplayed, true);
+        Assertions.assertTrue(isConfirmButtonDisplayed, ERROR_MESSAGE_LOGOUT_BUTTON);
     }
 
     public void assertSuccessfullyCheckoutOrder() {
-        var expectedMessage = SuccessfullyPurchaseMessage;
-        var successfullyCheckoutOrderMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageLogoutButton, elementsT().successfullyConfirmOrderText().getText(), expectedMessage);
+        var expectedMessage = SUCCESSFULLY_PURCHASE_MESSAGE;
+        var successfullyCheckoutOrderMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_LOGOUT_BUTTON, elementsT().successfullyConfirmOrderText().getText(), expectedMessage);
         Assertions.assertEquals(elementsT().successfullyConfirmOrderText().getText(), expectedMessage, successfullyCheckoutOrderMessage);
     }
 
     public void assertProductInformationCorrect(ProductDetails expectedProduct) {
 
-        String nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageProduct,
+        String nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(),
                 expectedProduct.getName()
         );
 
-        String quantityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageProduct,
+        String quantityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productQuantityElement(expectedProduct.getId(), expectedProduct.getName()).getAttribute("value"),
                 expectedProduct.getQuantity()
         );
 
-        String unitPriceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageProduct,
+        String unitPriceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productPriceElement("text-right", expectedProduct.getUnitPrice()).getText(),
                 expectedProduct.getUnitPrice()
         );
 
-        String totalPriceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessage,
+        String totalPriceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION,
                 elementsT().productTotalPriceElement("text-right", expectedProduct.getUnitPrice()).getText(),
                 String.format("%.2f", expectedProduct.getTotal())
         );
@@ -60,23 +56,23 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
 
     public void assertProductInformationConfirmOrder(ProductDetails expectedProductInfo) {
         String nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s",
-                ErrorMessageProduct,
+                ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderProductName("text-left", expectedProductInfo.getName()).getText(),
                 expectedProductInfo.getName()
         );
 
         String modelMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s",
-                ErrorMessageProduct,
+                ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderInformation("text-left", expectedProductInfo.getModel()).getText(),
                 expectedProductInfo.getModel()
         );
 
-        String quantityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageProduct,
+        String quantityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderQuantityElement(expectedProductInfo.getModel()).getText(), expectedProductInfo.getQuantity()
         );
 
         String priceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s",
-                ErrorMessageProduct,
+                ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderPriceElement(expectedProductInfo.getQuantity()).getText(),
                 expectedProductInfo.getUnitPrice()
         );

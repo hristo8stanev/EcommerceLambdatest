@@ -4,15 +4,15 @@ import core.BaseTest;
 import factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
-import static constants.Constants.EmailAddress;
-import static constants.Constants.Password;
+import static constants.Constants.EMAIL_ADDRESS;
+import static constants.Constants.PASSWORD;
 import static factories.ProductsFactory.AppleProduct;
 
 public class ProductPageTests extends BaseTest {
 
     @Test
     public void selectDifferentSizeOfProduct_When_DifferentSizeOfProductsSelected() {
-        var loginUser = CustomerFactory.loginUser(EmailAddress, Password);
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);

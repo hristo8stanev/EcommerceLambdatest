@@ -15,7 +15,7 @@ public class MainHeader extends WebPage<MainHeaderMap,MainHeaderAssertions> {
 
     public void addProductToCard(ProductDetails product){
         searchProductByName(product);
-        elements().findProduct().click();
+        elements().findProduct(product.id).click();
         elements().quantityInput().clear();
         elements().quantityInput().sendKeys(product.quantity);
         elements().addToCartButton().click();

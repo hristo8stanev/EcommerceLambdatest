@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class CartPageMap extends BaseMap {
+    public WebElement total() {
+        return waitAndFindElement(By.xpath("//table[@id='checkout-total']//tbody//preceding-sibling::td[text()='Total:']//following-sibling::td"));
+    }
 
     public WebElement updateQuantityButton() {
         return waitAndFindElement(By.xpath("//div[@id='content']//button[contains(normalize-space(@type),'submit')]"));
@@ -19,11 +22,11 @@ public class CartPageMap extends BaseMap {
     }
 
     public WebElement productNameElement(int id, String productName) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id={" + id + "}') and normalize-space()='" + productName + "']]"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "') and normalize-space()='" + productName + "']]//a"));
     }
 
     public WebElement productPriceElement(String price) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//td[@class='text-right' and contains(text(), '" + price + "}')]"));
+        return waitAndFindElement(By.xpath("//div[@id='content']//td[@class='text-right' and contains(text(), '" + price + "')]"));
     }
 
     public WebElement productModel(String modelProduct) {

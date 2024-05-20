@@ -10,4 +10,16 @@ public class CartPage extends WebPage<CartPageMap, CartPageAssertions> {
     protected String Url() {
         return CART_PAGE;
     }
+
+    public void updateQuantity(String product) {
+        elements().updateQuantityField().clear();
+        elements().updateQuantityField().sendKeys(product);
+        elements().updateQuantityButton().click();
+        elements().waitForAjax();
+    }
+
+    public void removeProductFromCart() {
+        elements().waitForAjax();
+        elements().removeButton().click();
+    }
 }

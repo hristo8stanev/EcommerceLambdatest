@@ -9,22 +9,22 @@ import static constants.Constants.*;
 public class ComparisonPageAssertions extends BaseAssertions<ComparisonPageMap> {
 
     public void assertTheProductAddedToComparePage(ProductDetails expectedProduct) {
-        var nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessage, expectedProduct.getName(),
+        var nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getName(),
                 elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText());
 
-        var messagePrice = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessage, expectedProduct.getUnitPrice(),
+        var messagePrice = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getUnitPrice(),
                 elementsT().productElementInformation(expectedProduct.getUnitPrice()).getText());
 
-        var brandMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessage, expectedProduct.getBrand(),
+        var brandMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getBrand(),
                 elementsT().productElementInformation(expectedProduct.getBrand()).getText());
 
-        var availabilityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessage, expectedProduct.getAvailability(),
+        var availabilityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getAvailability(),
                 elementsT().productElementInformation(expectedProduct.getAvailability()).getText());
 
-        var modelMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessage, expectedProduct.getModel(),
+        var modelMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getModel(),
                 elementsT().productElementInformation(expectedProduct.getModel()).getText());
 
-        var weightMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessage, expectedProduct.getWeight(),
+        var weightMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getWeight(),
                 elementsT().productWeightElement(expectedProduct.getWeight()).getText());
 
         Assertions.assertEquals(expectedProduct.getName(), elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), nameMessage);

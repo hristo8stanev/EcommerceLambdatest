@@ -43,7 +43,7 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
         elements().lastNameInput().clear();
         elements().lastNameInput().sendKeys(user.lastName);
         elements().emailAddressNameInput().clear();
-        elements().emailAddressNameInput().sendKeys(EmailAddress);
+        elements().emailAddressNameInput().sendKeys(EMAIL_ADDRESS);
         elements().telephoneInput().clear();
         elements().telephoneInput().sendKeys(user.telephone);
         elements().continueButton().click();
@@ -94,8 +94,8 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
 
     public void changeMyPassword() {
         elements().changeMyPasswordButton().click();
-        elements().passwordInput().sendKeys(Password);
-        elements().confirmPasswordInput().sendKeys(Password);
+        elements().passwordInput().sendKeys(PASSWORD);
+        elements().confirmPasswordInput().sendKeys(PASSWORD);
         elements().continueButton().click();
     }
 

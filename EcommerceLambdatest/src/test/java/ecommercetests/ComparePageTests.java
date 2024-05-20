@@ -11,7 +11,7 @@ public class ComparePageTests extends BaseTest {
 
     @Test
     public void compare3products_when_3ProductsSelected_and_authenticatedUserProvided() {
-        var loginUser = CustomerFactory.loginUser(EmailAddress, Password);
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);

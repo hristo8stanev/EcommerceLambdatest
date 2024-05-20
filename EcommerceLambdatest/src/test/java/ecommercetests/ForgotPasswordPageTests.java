@@ -1,11 +1,10 @@
 package ecommercetests;
 
 import core.BaseTest;
-import factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
-import static constants.Constants.EmailAddress;
-import static constants.Constants.InvalidEmail;
+import static constants.Constants.EMAIL_ADDRESS;
+import static constants.Constants.INVALID_EMAIL;
 
 public class ForgotPasswordPageTests extends BaseTest {
 
@@ -16,7 +15,7 @@ public class ForgotPasswordPageTests extends BaseTest {
 
         webSite.forgotPasswordPage.assertUrlPage();
 
-        webSite.forgotPasswordPage.sentEmail(EmailAddress);
+        webSite.forgotPasswordPage.sentEmail(EMAIL_ADDRESS);
 
         webSite.forgotPasswordPage.assertions().assertSuccessfullySentEmail();
         webSite.loginPage.assertUrlPage();
@@ -29,7 +28,7 @@ public class ForgotPasswordPageTests extends BaseTest {
 
         webSite.forgotPasswordPage.assertUrlPage();
 
-        webSite.forgotPasswordPage.sentEmail(InvalidEmail);
+        webSite.forgotPasswordPage.sentEmail(INVALID_EMAIL);
 
         webSite.forgotPasswordPage.assertions().assertWarningMessageInvalidEmail();
         webSite.forgotPasswordPage.assertUrlPage();

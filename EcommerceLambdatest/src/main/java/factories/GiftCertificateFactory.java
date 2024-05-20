@@ -10,7 +10,6 @@ public class GiftCertificateFactory {
 
     private static final Faker faker = new Faker();
 
-
     public static PurchaseGiftCertificate generateGiftCertificate() {
         return PurchaseGiftCertificate.builder()
                 .recipientName(faker.name().nameWithMiddle())

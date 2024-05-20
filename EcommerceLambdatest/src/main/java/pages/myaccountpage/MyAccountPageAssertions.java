@@ -13,48 +13,48 @@ import static constants.Constants.*;
 public class MyAccountPageAssertions extends BaseAssertions<MyAccountPageMap> {
 
     public void assertAccountInformationIsSuccessfullyUpdated() {
-        var successfullyUpdatedAccountInfoMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessagePassword,
-                SuccessfullyAccountInformationUpdatedMessage, elementsT().successfullyMessage().getText());
-        Assertions.assertEquals(SuccessfullyAccountInformationUpdatedMessage, elementsT().successfullyMessage().getText(), successfullyUpdatedAccountInfoMessage);
+        var successfullyUpdatedAccountInfoMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PASSWORD,
+                SUCCESSFULLY_ACCOUNT_INFORMATION_UPDATED_MESSAGE, elementsT().successfullyMessage().getText());
+        Assertions.assertEquals(SUCCESSFULLY_ACCOUNT_INFORMATION_UPDATED_MESSAGE, elementsT().successfullyMessage().getText(), successfullyUpdatedAccountInfoMessage);
     }
 
     public void assertPasswordSuccessfullyChanged() {
-        var successfullyChangePasswordMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessagePassword,
-                SuccessfullyPasswordMessage, elementsT().successfullyMessage().getText());
-        Assertions.assertEquals(SuccessfullyPasswordMessage, elementsT().successfullyMessage().getText(), successfullyChangePasswordMessage);
+        var successfullyChangePasswordMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PASSWORD,
+                SUCCESSFULLY_PASSWORD_MESSAGE, elementsT().successfullyMessage().getText());
+        Assertions.assertEquals(SUCCESSFULLY_PASSWORD_MESSAGE, elementsT().successfullyMessage().getText(), successfullyChangePasswordMessage);
     }
 
     public void assertSuccessfullyPurchaseGiftCertificate() {
-        var successfullyPurchaseGiftCertificateMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessagePassword,
-                elementsT().successfullyPurchaseCertificate().getText(), SuccessfullyPurchaseVoucherMessage);
-        Assertions.assertEquals(elementsT().successfullyPurchaseCertificate().getText(), SuccessfullyPurchaseVoucherMessage, successfullyPurchaseGiftCertificateMessage);
+        var successfullyPurchaseGiftCertificateMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PASSWORD,
+                elementsT().successfullyPurchaseCertificate().getText(), SUCCESSFULLY_PURCHASE_VOUCHER_MESSAGE);
+        Assertions.assertEquals(elementsT().successfullyPurchaseCertificate().getText(), SUCCESSFULLY_PURCHASE_VOUCHER_MESSAGE, successfullyPurchaseGiftCertificateMessage);
     }
 
     public void assertSuccessfullyAddedNewAddress() {
-        var successfullyChangePasswordMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageAddress, SuccessfullyAddedNewAddressMessage,
+        var successfullyChangePasswordMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_ADDRESS, SUCCESSFULLY_ADDED_NEW_ADDRESS_MESSAGE,
                 elementsT().successfullyMessage().getText());
-        Assertions.assertEquals(SuccessfullyAddedNewAddressMessage, elementsT().successfullyMessage().getText(), successfullyChangePasswordMessage);
+        Assertions.assertEquals(SUCCESSFULLY_ADDED_NEW_ADDRESS_MESSAGE, elementsT().successfullyMessage().getText(), successfullyChangePasswordMessage);
     }
 
     public void assertCustomerNameCorrect(PersonalInformation user) {
 
         var expectedFullName = user.getFirstName() + " " + user.getLastName();
         var actualFullName = elementsT().customerElement(expectedFullName).getText();
-        var customerNameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageAddress, actualFullName, expectedFullName);
+        var customerNameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_ADDRESS, actualFullName, expectedFullName);
         Assertions.assertEquals(actualFullName, expectedFullName, customerNameMessage);
     }
 
     public void assertThePurchaseDateToday() {
         var currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         var actualDate = elementsT().dateTimeElement(currentDate).getText();
-        var dateMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageDate, actualDate, currentDate);
+        var dateMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_DATE, actualDate, currentDate);
         Assertions.assertEquals(actualDate, currentDate, dateMessage);
     }
 
     public void assertGiftCertificateAddedToShoppingCart(PurchaseGiftCertificate purchaseGiftCertificate) {
         var actualResult = elementsT().giftPriceNameElement(purchaseGiftCertificate.getAmount(), purchaseGiftCertificate.getRecipientName()).getText();
         String expectedResult = String.format("$%s.00 Gift Certificate for %s", purchaseGiftCertificate.getAmount(), purchaseGiftCertificate.getRecipientName());
-        var successfullyGiftCertificateAddedToShoppingCartMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageAddress, actualResult, expectedResult);
+        var successfullyGiftCertificateAddedToShoppingCartMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_ADDRESS, actualResult, expectedResult);
         Assertions.assertEquals(expectedResult, actualResult, successfullyGiftCertificateAddedToShoppingCartMessage);
     }
 
@@ -66,7 +66,7 @@ public class MyAccountPageAssertions extends BaseAssertions<MyAccountPageMap> {
     }
 
     public void assertProductReturnsMessage(String expectedMessage) {
-        var returnProductMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ErrorMessageReturns, ProductReturnsMessage, elementsT().successfullyProductReturn(expectedMessage).getText());
-        Assertions.assertEquals(elementsT().successfullyProductReturn(expectedMessage).getText(), ProductReturnsMessage, returnProductMessage);
+        var returnProductMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_RETURNS, PRODUCT_RETURNS_MESSAGE, elementsT().successfullyProductReturn(expectedMessage).getText());
+        Assertions.assertEquals(elementsT().successfullyProductReturn(expectedMessage).getText(), PRODUCT_RETURNS_MESSAGE, returnProductMessage);
     }
 }

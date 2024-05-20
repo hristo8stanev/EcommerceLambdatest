@@ -204,6 +204,3 @@ public class MyAccountPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='content']//p[contains(text(), '" + product + "')]"));
     }
 }
-
-
-

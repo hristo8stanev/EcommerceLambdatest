@@ -14,7 +14,7 @@ public class MyAccountPageTests extends BaseTest {
 
     @Test
     public void editMyProfile_When_FirstNameLastNameEmailAddressAndTelephoneEdited_And_ContinueButtonClicked() {
-        var loginUser = CustomerFactory.loginUser(EmailAddress, Password);
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
         var myAccountInformation = CustomerFactory.GenerateRegisterAccount();
 
         webSite.loginPage.navigate();
@@ -27,7 +27,7 @@ public class MyAccountPageTests extends BaseTest {
 
     @Test
     public void changeMyPassword_When_NewPasswordSet_And_ContinueButtonClicked() {
-        var loginUser = CustomerFactory.loginUser(EmailAddress, Password);
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
@@ -40,7 +40,7 @@ public class MyAccountPageTests extends BaseTest {
     @Test
     public void purchaseGiftCertificate_When_AuthenticatedUser_VerifyGiftInShoppingCart() {
         var gift = GiftCertificateFactory.generateGiftCertificate();
-        var loginUser = CustomerFactory.loginUser(EmailAddress, Password);
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
@@ -75,7 +75,7 @@ public class MyAccountPageTests extends BaseTest {
 
     @Test
     public void addNewAddress_AddressAddedFromAddressBook_And_AuthenticatedUserProvidesDetails() {
-        var loginUser = CustomerFactory.loginUser(EmailAddress, Password);
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
         var newAddress = CustomerFactory.GenerateBillingAddress();
 
         webSite.loginPage.navigate();
@@ -113,7 +113,7 @@ public class MyAccountPageTests extends BaseTest {
 
     @Test
     public void returnProduct_When_AuthenticatedUser_FillsReturnForm() {
-        var loginUser = CustomerFactory.loginUser(EmailAddress, Password);
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
@@ -124,6 +124,6 @@ public class MyAccountPageTests extends BaseTest {
         webSite.myAccountPage.fillReturnProductForm(iPodNano());
 
         webSite.successfulReturnProductPage.assertUrlPage();
-        webSite.myAccountPage.assertions().assertProductReturnsMessage(ProductReturnsMessage);
+        webSite.myAccountPage.assertions().assertProductReturnsMessage(PRODUCT_RETURNS_MESSAGE);
     }
 }

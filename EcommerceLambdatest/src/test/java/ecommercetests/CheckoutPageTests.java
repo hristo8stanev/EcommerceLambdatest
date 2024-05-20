@@ -1,7 +1,6 @@
 package ecommercetests;
 
 import core.BaseTest;
-import enums.AccountType;
 import factories.CheckoutInformationFactory;
 import factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ public class CheckoutPageTests extends BaseTest {
     @Test
     public void Checkout_When_LoginUserTypeSelected_And_1ProductPurchased_And_PaymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
-        var personalInformation = CustomerFactory.GenerateLoginCheckout(EmailAddress, Password);
+        var personalInformation = CustomerFactory.GenerateLoginCheckout(EMAIL_ADDRESS, PASSWORD);
         var checkoutInformation = CheckoutInformationFactory.Build(HtcTouch());
 
         webSite.checkoutPage.navigate();
@@ -44,7 +43,7 @@ public class CheckoutPageTests extends BaseTest {
     @Test
     public void Checkout_When_LoginUserTypeSelected_And_2ProductPurchased_And_PaymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
-        var personalInformation = CustomerFactory.GenerateLoginCheckout(EmailAddress, Password);
+        var personalInformation = CustomerFactory.GenerateLoginCheckout(EMAIL_ADDRESS, PASSWORD);
         var checkoutInformation = CheckoutInformationFactory.Build(IPodShuffleProduct(), HtcTouch());
 
         webSite.checkoutPage.navigate();

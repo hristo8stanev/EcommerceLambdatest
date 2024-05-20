@@ -27,7 +27,7 @@ public class ProductsFactory {
         productDetails.weight = "146.40g";
         productDetails.id = 28;
         productDetails.availability = "In Stock";
-        productDetails.unitPrice = "$120.00";
+        productDetails.unitPrice = "$146.00";
         productDetails.model = "Product 1";
         productDetails.quantity = "3";
         var parsedQuantity = ParseQuantity(productDetails);
@@ -42,9 +42,9 @@ public class ProductsFactory {
         productDetails.name = "Samsung SyncMaster 941BW";
         productDetails.brand = "Canon";
         productDetails.weight = "5.00kg";
-        productDetails.id = 33;
+        productDetails.id = 66;
         productDetails.availability = "In Stock";
-        productDetails.unitPrice = "$200.00";
+        productDetails.unitPrice = "$242.00";
         productDetails.model = "Product 6";
         productDetails.quantity = "2";
         var parsedQuantity = ParseQuantity(productDetails);
@@ -61,7 +61,7 @@ public class ProductsFactory {
         productDetails.weight = "5.00kg";
         productDetails.id = 36;
         productDetails.availability = "In Stock";
-        productDetails.unitPrice = "$100.00";
+        productDetails.unitPrice = "$122.00";
         productDetails.model = "Product 9";
         productDetails.quantity = "3";
         double parsedQuantity = ParseQuantity(productDetails);
@@ -96,7 +96,7 @@ public class ProductsFactory {
         productDetails.weight = "5.00kg";
         productDetails.id = 34;
         productDetails.availability = "In Stock";
-        productDetails.unitPrice = "$150.00";
+        productDetails.unitPrice = "$182.00";
         productDetails.model = "Product 7";
         productDetails.quantity = "5";
         var parsedQuantity = ParseQuantity(productDetails);

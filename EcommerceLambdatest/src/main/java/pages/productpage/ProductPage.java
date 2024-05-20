@@ -12,36 +12,25 @@ public class ProductPage extends WebPage<ProductPageMap, ProductPageAssertions> 
         return SEARCH_SHOP_PRODUCTS_PAGE;
     }
 
-    public void selectSize(DifferentSizeType sizeType)
-    {
-        switch (sizeType)
-        {
-            case DifferentSizeType.SMALL:
-                elements().smallSize().click();
-                break;
-
-            case DifferentSizeType.MEDIUM:
-                elements().mediumSize().click();
-                break;
-
-            case DifferentSizeType.LARGE:
-                elements().largeSize().click();
-                break;
-
-            default:
-                throw new IllegalArgumentException("Unsupported size type: " + sizeType);
-        }
+    public void selectSize(DifferentSizeType sizeType) {
+        elements().selectSize(sizeType).click();
     }
 
     public void selectSmallSizeType() {
         selectSize(DifferentSizeType.SMALL);
+        elements().waitForAjax();
+        elements().addToCartButton().click();
     }
+
     public void selectMediumSizeType() {
         selectSize(DifferentSizeType.MEDIUM);
         elements().waitForAjax();
         elements().addToCartButton().click();
     }
+
     public void selectLargeSizeType() {
         selectSize(DifferentSizeType.LARGE);
+        elements().waitForAjax();
+        elements().addToCartButton().click();
     }
 }

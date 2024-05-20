@@ -4,15 +4,15 @@ import core.BaseTest;
 import factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
-import static constants.Constants.EmailAddress;
-import static constants.Constants.Password;
+import static constants.Constants.EMAIL_ADDRESS;
+import static constants.Constants.PASSWORD;
 
 public class LogoutPageTests extends BaseTest {
 
     @Test
     public void LogoutFromTheSystem_When_LogoutButtonClicked()
     {
-        var loginUser = CustomerFactory.loginUser(EmailAddress, Password);
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);

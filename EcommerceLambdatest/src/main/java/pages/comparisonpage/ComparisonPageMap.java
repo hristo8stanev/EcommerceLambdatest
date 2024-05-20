@@ -29,5 +29,4 @@ public class ComparisonPageMap extends BaseMap {
     public WebElement productNameElement(int id, String productName) {
         return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "') and normalize-space()='" + productName + "']]"));
     }
-
 }

@@ -1,6 +1,7 @@
 package pages.productpage;
 
 import core.basemap.BaseMap;
+import enums.DifferentSizeType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -36,6 +37,10 @@ public class ProductPageMap extends BaseMap {
 
     public WebElement smallSize() {
         return sizeField().findElement(By.xpath(".//option[contains(text(), 'Small')]"));
+    }
+
+    public WebElement selectSize(DifferentSizeType sizeType) {
+        return sizeField().findElement(By.xpath(".//option[contains(text(), '" + sizeType.getSizeType() + "')]"));
     }
 
     public WebElement mediumSize() {

@@ -42,14 +42,14 @@ public class RegisterPageTests extends BaseTest {
         webSite.registerPage.assertions().assertErrorMessageMessageEmailAddress();
     }
 
-   // @Test
-   // public void registerUser_When_EmptyPasswordField_And_ContinueButtonClicked() {
-   //     webSite.registerPage.navigate();
-//
-   //     var registerUser = CustomerFactory.GenerateRegisterAccount(password:string.Empty);
-   //     webSite.registerPage.createUser(registerUser);
-//
-   //     webSite.registerPage.assertUrlPage();
-   //     webSite.registerPage.assertions().assertErrorMessagePassword();
-   // }
+    @Test
+    public void registerUser_When_EmptyPasswordField_And_ContinueButtonClicked() {
+        webSite.registerPage.navigate();
+
+        var registerUser = CustomerFactory.GenerateRegisterAccount();
+        webSite.registerPage.createUser(registerUser);
+
+        webSite.registerPage.assertUrlPage();
+        webSite.registerPage.assertions().assertErrorMessagePassword();
+    }
 }

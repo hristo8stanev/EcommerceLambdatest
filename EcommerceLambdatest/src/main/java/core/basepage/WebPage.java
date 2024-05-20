@@ -5,18 +5,11 @@ import core.basemap.BaseMap;
 import core.driver.Driver;
 import core.newistance.NewInstance;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.NumberFormat;
-import java.time.Duration;
 import java.util.Locale;
 
-import static constants.Constants.ErrorMessageUrl;
+import static constants.Constants.ERROR_MESSAGE_URL;
 
 public abstract class WebPage<ElementsT extends BaseMap, AssertionsT extends BaseAssertions<ElementsT>> {
 
@@ -42,7 +35,7 @@ public abstract class WebPage<ElementsT extends BaseMap, AssertionsT extends Bas
     }
 
     public void assertUrlPage() {
-        Assertions.assertEquals(Url(), Driver.getCurrentUrl(), ErrorMessageUrl);
+        Assertions.assertEquals(Url(), Driver.getCurrentUrl(), ERROR_MESSAGE_URL);
         elements().waitForAjax();
     }
 }
