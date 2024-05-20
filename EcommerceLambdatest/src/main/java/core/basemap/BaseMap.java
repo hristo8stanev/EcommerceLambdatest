@@ -41,6 +41,11 @@ public abstract class BaseMap {
         }
     }
 
+    public void typeText(WebElement element,String text){
+        element.clear();
+        element.sendKeys(text);
+    }
+
     public WebElement hover(WebElement element) {
         actions = new Actions(browser);
         actions.moveToElement(element).perform();

@@ -13,12 +13,12 @@ public class RegisterPage extends WebPage<RegisterPageMap, RegisterPageAssertion
 
     public void createUser(PersonalInformation user)
     {
-        elements().firstNameInput().sendKeys(user.firstName);
-        elements().lastNameInput().sendKeys(user.lastName);
-        elements().emailAddressInput().sendKeys(user.email);
-        elements().telephoneInput().sendKeys(user.telephone);
-        elements().passwordInput().sendKeys(user.password);
-        elements().confirmPasswordInput().sendKeys(user.password);
+        elements().typeText(elements().firstNameInput(), user.firstName);
+        elements().typeText(elements().lastNameInput(), user.lastName);
+        elements().typeText(elements().emailAddressInput(), user.email);
+        elements().typeText(elements().telephoneInput(), user.telephone);
+        elements().typeText(elements().passwordInput(), user.password);
+        elements().typeText(elements().confirmPasswordInput(), user.password);
         elements().agreePrivacy().click();
         elements().continueButton().click();
     }

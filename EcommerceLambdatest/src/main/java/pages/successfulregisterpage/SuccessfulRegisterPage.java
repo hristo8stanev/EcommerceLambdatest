@@ -4,7 +4,7 @@ import core.basepage.WebPage;
 
 import static urls.Urls.SUCCESSFUL_REGISTRATION_PAGE;
 
-public class SuccessfulRegisterPage extends WebPage {
+public class SuccessfulRegisterPage extends WebPage<SuccessfulRegisterPageMap,SuccessfulRegisterPageAssertions> {
 
     @Override
     protected String Url() {

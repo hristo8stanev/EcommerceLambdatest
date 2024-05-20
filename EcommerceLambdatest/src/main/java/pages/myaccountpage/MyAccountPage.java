@@ -38,14 +38,23 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
 
     public void changeMyAccountInformation(PersonalInformation user) {
         elements().editMyAccountButton().click();
-        elements().firstNameInput().clear();
-        elements().firstNameInput().sendKeys(user.firstName);
-        elements().lastNameInput().clear();
-        elements().lastNameInput().sendKeys(user.lastName);
-        elements().emailAddressNameInput().clear();
-        elements().emailAddressNameInput().sendKeys(EMAIL_ADDRESS);
-        elements().telephoneInput().clear();
-        elements().telephoneInput().sendKeys(user.telephone);
+
+        elements().typeText(elements().firstNameInput(), user.firstName);
+        //elements().firstNameInput().clear();
+        //elements().firstNameInput().sendKeys(user.firstName);
+
+        elements().typeText(elements().lastNameInput(), user.lastName);
+        // elements().lastNameInput().clear();
+        // elements().lastNameInput().sendKeys(user.lastName);
+
+        elements().typeText(elements().emailAddressNameInput(), EMAIL_ADDRESS);
+        // elements().emailAddressNameInput().clear();
+        // elements().emailAddressNameInput().sendKeys(EMAIL_ADDRESS);
+
+        elements().typeText(elements().telephoneInput(), user.telephone);
+        //elements().telephoneInput().clear();
+        //elements().telephoneInput().sendKeys(user.telephone);
+
         elements().continueButton().click();
     }
 
@@ -79,13 +88,20 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
     }
 
     public void addNewAddress(BillingInformation billingInformation) {
-        elements().firstNameInput().sendKeys(billingInformation.firstName);
-        elements().lastNameInput().sendKeys(billingInformation.lastName);
-        elements().companyInput().sendKeys(billingInformation.company);
-        elements().addressInput1().sendKeys(billingInformation.address1);
-        elements().addressInput2().sendKeys(billingInformation.address2);
-        elements().cityInput().sendKeys(billingInformation.city);
-        elements().postCodeInput().sendKeys(billingInformation.postCode);
+        elements().typeText(elements().firstNameInput(), billingInformation.firstName);
+        //elements().firstNameInput().sendKeys(billingInformation.firstName);
+        elements().typeText(elements().lastNameInput(), billingInformation.lastName);
+        //elements().lastNameInput().sendKeys(billingInformation.lastName);
+        elements().typeText(elements().companyInput(), billingInformation.company);
+        //elements().companyInput().sendKeys(billingInformation.company);
+        elements().typeText(elements().addressInput1(), billingInformation.address1);
+        //elements().addressInput1().sendKeys(billingInformation.address1);
+        elements().typeText(elements().addressInput2(), billingInformation.address2);
+        //elements().addressInput2().sendKeys(billingInformation.address2);
+        elements().typeText(elements().cityInput(), billingInformation.city);
+        //elements().cityInput().sendKeys(billingInformation.city);
+        elements().typeText(elements().postCodeInput(), billingInformation.postCode);
+        //elements().postCodeInput().sendKeys(billingInformation.postCode);
         elements().country(billingInformation.country);
         elements().waitForAjax();
         elements().findRegionOption(billingInformation.region).click();
@@ -94,40 +110,53 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
 
     public void changeMyPassword() {
         elements().changeMyPasswordButton().click();
-        elements().passwordInput().sendKeys(PASSWORD);
-        elements().confirmPasswordInput().sendKeys(PASSWORD);
+        elements().typeText(elements().passwordInput(), PASSWORD);
+        //elements().passwordInput().sendKeys(PASSWORD);
+        elements().typeText(elements().confirmPasswordInput(), PASSWORD);
+        //elements().confirmPasswordInput().sendKeys(PASSWORD);
         elements().continueButton().click();
     }
 
     public void purchaseGiftCertificate(PurchaseGiftCertificate gift) {
-        elements().recipientNameInput().clear();
-        elements().recipientNameInput().sendKeys(gift.recipientName);
-        elements().recipientEmailInput().clear();
-        elements().recipientEmailInput().sendKeys(gift.recipientEmail);
-        elements().yourNameInput().clear();
-        elements().yourNameInput().sendKeys(gift.yourName);
-        elements().yourEmailInput().clear();
-        elements().yourEmailInput().sendKeys(gift.yourEmail);
+        elements().typeText(elements().recipientNameInput(), gift.recipientName);
+       // elements().recipientNameInput().clear();
+       // elements().recipientNameInput().sendKeys(gift.recipientName);
+        elements().typeText(elements().recipientEmailInput(), gift.recipientEmail);
+        //elements().recipientEmailInput().clear();
+        //elements().recipientEmailInput().sendKeys(gift.recipientEmail);
+        elements().typeText(elements().yourNameInput(), gift.yourName);
+        //elements().yourNameInput().clear();
+        //elements().yourNameInput().sendKeys(gift.yourName);
+        elements().typeText(elements().yourEmailInput(), gift.yourEmail);
+        //elements().yourEmailInput().clear();
+        //elements().yourEmailInput().sendKeys(gift.yourEmail);
         selectGiftType(GiftCertificateType.BIRTHDAY);
-        elements().amountCertificateInput().clear();
-        elements().amountCertificateInput().sendKeys(gift.getAmount());
+        elements().typeText(elements().amountCertificateInput(), gift.getAmount());
+       // elements().amountCertificateInput().clear();
+       // elements().amountCertificateInput().sendKeys(gift.getAmount());
         elements().agreeGiftCertificate().click();
         elements().continueButton().click();
     }
 
     public void fillReturnProductForm(ProductDetails product) {
-        elements().orderIdInput().sendKeys(String.valueOf(product.getId()));
-        elements().orderDateInput().sendKeys(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        elements().productNameInput().sendKeys(product.getName());
-        elements().productCodeInput().sendKeys(product.getModel());
-        elements().productQuantityInput().clear();
-        elements().productQuantityInput().sendKeys(product.getQuantity());
+        elements().typeText(elements().amountCertificateInput(), gift.getAmount());
+        //elements().orderIdInput().sendKeys(String.valueOf(product.getId()));
+
+        elements().typeText(elements().amountCertificateInput(), gift.getAmount());
+       // elements().orderDateInput().sendKeys(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
+        elements().typeText(elements().amountCertificateInput(), gift.getAmount());
+        //elements().productNameInput().sendKeys(product.getName());
+
+        elements().typeText(elements().amountCertificateInput(), gift.getAmount());
+        //elements().productCodeInput().sendKeys(product.getModel());
+
+        elements().typeText(elements().amountCertificateInput(), gift.getAmount());
+       //elements().productQuantityInput().clear();
+       //elements().productQuantityInput().sendKeys(product.getQuantity());
+
         selectReasonType(ReasonType.DEAD_ON_ARRIVAL);
         selectIsProductOpened(ProductOpened.YES);
         elements().submitButton().click();
     }
 }
-
-
-
-

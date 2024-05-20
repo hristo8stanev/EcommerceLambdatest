@@ -5,6 +5,7 @@ import core.basemap.BaseMap;
 import core.driver.Driver;
 import core.newistance.NewInstance;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebElement;
 
 import java.text.NumberFormat;
 import java.util.Locale;

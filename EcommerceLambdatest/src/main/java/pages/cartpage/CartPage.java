@@ -12,8 +12,9 @@ public class CartPage extends WebPage<CartPageMap, CartPageAssertions> {
     }
 
     public void updateQuantity(String product) {
-        elements().updateQuantityField().clear();
-        elements().updateQuantityField().sendKeys(product);
+        elements().typeText(elements().updateQuantityField(), product);
+        //elements().updateQuantityField().clear();
+        //elements().updateQuantityField().sendKeys(product);
         elements().updateQuantityButton().click();
         elements().waitForAjax();
     }
