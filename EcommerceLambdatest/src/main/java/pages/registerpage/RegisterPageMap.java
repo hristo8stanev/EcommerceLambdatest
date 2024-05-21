@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 
 public class RegisterPageMap extends BaseMap {
 
-
     public WebElement firstNameInput() {
         return waitAndFindElement(By.id("input-firstname"));
     }

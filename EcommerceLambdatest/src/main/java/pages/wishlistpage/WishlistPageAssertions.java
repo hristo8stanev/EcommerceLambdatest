@@ -29,5 +29,4 @@ public class WishlistPageAssertions extends BaseAssertions<WishlistPageMap> {
 
         elementsT().removeFromWishList().click();
     }
-
 }

@@ -15,15 +15,13 @@ public class SearchPage extends WebPage<SearchPageMap, SearchPageAssertions> {
     }
 
     public void searchProductByName(ProductDetails product) {
-        elements().searchInput().sendKeys(product.getName());
+        elements().typeText(elements().searchInput(), product.getName());
         elements().searchButton().click();
     }
 
     public void typeRangePrices(String min, String max) {
-        elements().minPriceField().clear();
-        elements().minPriceField().sendKeys(min);
-        elements().maxPriceField().clear();
-        elements().maxPriceField().sendKeys(max);
+        elements().typeText(elements().minPriceField(), min);
+        elements().typeText(elements().maxPriceField(), max);
         elements().maxPriceField().sendKeys(Keys.ENTER);
         elements().waitForAjax();
     }

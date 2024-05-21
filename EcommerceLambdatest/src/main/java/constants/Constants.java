@@ -1,8 +1,13 @@
 package constants;
 
+import static factories.CustomerFactory.faker;
+
 public class Constants {
     public static final String EMAIL_ADDRESS = "qatest@gmail.com";
     public static final String PASSWORD = "tester";
+    public static String emailAddress = faker.internet().emailAddress();
+    public static String firstName = faker.name().firstName();
+    public static String password = faker.internet().password();
     public static final String SUCCESSFULLY_PURCHASE_MESSAGE = "Your order has been placed!";
     public static final String INVALID_EMAIL = "testtest@gmail.com";
     public static final String MIN_PRICE = "10";

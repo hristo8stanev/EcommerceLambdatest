@@ -18,7 +18,6 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
         if (elements().newAddressLabel().isDisplayed()) {
             elements().newAddressLabel().click();
         }
-
         elements().firstNameInput().sendKeys(billingInformation.firstName);
         elements().lastNameInput().sendKeys(billingInformation.lastName);
         elements().companyInput().sendKeys(billingInformation.company);
@@ -45,31 +44,20 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
 
     public void fillBillingNewUserDetails(PersonalInformation user) {
         selectAccount(user.getAccountType());
-
         elements().typeText(elements().firstNameInput(), user.firstName);
-        //elements().firstNameInput().sendKeys(user.firstName);
-
         elements().typeText(elements().lastNameInput(), user.lastName);
-        //elements().lastNameInput().sendKeys(user.lastName);
-
         elements().typeText(elements().emailPaymentInput(), user.email);
-        //elements().emailPaymentInput().sendKeys(user.email);
-
         elements().typeText(elements().telephonePaymentInput(), user.telephone);
-        //elements().telephonePaymentInput().sendKeys(user.telephone);
 
         if (!(user.password == null || user.password.isEmpty())) {
 
             elements().typeText(elements().passwordPaymentInput(), user.password);
-            //elements().passwordPaymentInput().sendKeys(user.password);
             elements().typeText(elements().confirmPasswordPaymentInput(), user.password);
-            //elements().confirmPasswordPaymentInput().sendKeys(user.password);
         }
 
         if (user.getAccountType() == AccountType.REGISTER) {
             agreePrivacyTerms();
         }
-
     }
 
     public void selectAccount(AccountType accountType) {
@@ -79,12 +67,8 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
 
     public void loginUser(PersonalInformation user) {
         selectAccount(user.getAccountType());
-
         elements().typeText(elements().emailInput(), user.email);
-        //elements().emailInput().sendKeys(user.email);
-
         elements().typeText(elements().passwordInput(), user.password);
-        //elements().passwordInput().sendKeys(user.password);
         elements().loginButton().click();
         elements().waitForAjax();
     }

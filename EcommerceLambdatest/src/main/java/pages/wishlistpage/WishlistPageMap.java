@@ -30,13 +30,7 @@ public class WishlistPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(text(),'" + expectedElement + "')]"));
     }
 
-    public WebElement productWeightElement(String weight) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(text(),'" + weight + "')]"));
-    }
-
     public WebElement productNameElement(int id, String productName) {
         return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "') and normalize-space()='" + productName + "']]"));
     }
-
-
 }

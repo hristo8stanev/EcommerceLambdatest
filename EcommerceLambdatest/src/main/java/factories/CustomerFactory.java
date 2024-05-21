@@ -8,7 +8,7 @@ import pages.registerpage.PersonalInformation;
 
 public class CustomerFactory {
 
-    private static final Faker faker = new Faker();
+    public static final Faker faker = new Faker();
 
     protected static PersonalInformation.PersonalInformationBuilder<?, ?> GenerateCorePersonalInformation() {
         return PersonalInformation.builder()
@@ -19,13 +19,23 @@ public class CustomerFactory {
                 .lastName(faker.name().lastName());
     }
 
-    public static PersonalInformation GenerateRegisterAccount(String firstName,String email, String password) {
+    public static PersonalInformation GenerateRegisterAccount(String firstName, String email, String password) {
         return GenerateCorePersonalInformation()
                 .firstName(firstName)
                 .email(email)
                 .password(password)
-                .password(faker.internet().password())
-                .accountType(AccountType.REGISTER)
+                .build();
+    }
+
+    public static PersonalInformation GenerateRegisterAccount(String email, String password) {
+        return GenerateCorePersonalInformation()
+                .email(email)
+                .build();
+    }
+
+    public static PersonalInformation GenerateRegisterAccount(String password) {
+        return GenerateCorePersonalInformation()
+                .password(password)
                 .build();
     }
 
@@ -37,11 +47,17 @@ public class CustomerFactory {
     }
 
     public static PersonalInformation GenerateGuestCheckout() {
-        return GenerateCorePersonalInformation().accountType(AccountType.GUEST).build();
+        return GenerateCorePersonalInformation()
+                .accountType(AccountType.GUEST)
+                .build();
     }
 
     public static PersonalInformation GenerateLoginCheckout(String email, String password) {
-        return GenerateCorePersonalInformation().accountType(AccountType.LOGIN).email(email).password(password).build();
+        return GenerateCorePersonalInformation()
+                .accountType(AccountType.LOGIN)
+                .email(email)
+                .password(password)
+                .build();
     }
 
     public static BillingInformation GenerateBillingAddress() {
@@ -56,6 +72,9 @@ public class CustomerFactory {
     }
 
     public static PersonalInformation loginUser(String email, String password) {
-        return PersonalInformation.builder().email(email).password(password).build();
+        return PersonalInformation.builder()
+                .email(email)
+                .password(password)
+                .build();
     }
 }

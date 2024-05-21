@@ -11,8 +11,7 @@ public class RegisterPage extends WebPage<RegisterPageMap, RegisterPageAssertion
         return REGISTER_PAGE;
     }
 
-    public void createUser(PersonalInformation user)
-    {
+    public void createUser(PersonalInformation user) {
         elements().typeText(elements().firstNameInput(), user.firstName);
         elements().typeText(elements().lastNameInput(), user.lastName);
         elements().typeText(elements().emailAddressInput(), user.email);
