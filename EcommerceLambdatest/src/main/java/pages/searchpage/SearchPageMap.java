@@ -22,6 +22,10 @@ public class SearchPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='product-search']//span[contains(normalize-space(@class), 'price-new')]"));
     }
 
+    public WebElement getProduct(int id) {
+        return waitAndFindElement(By.xpath("//div[@id='product-search']//a[contains(@href, 'product_id=" + id + "')]"));
+    }
+
     public WebElement errorMessageNonExistingProduct(String message) {
         return waitAndFindElement(By.xpath("//p[contains(text(), '" + message + "')]"));
     }

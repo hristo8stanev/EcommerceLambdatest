@@ -1,19 +1,16 @@
 package constants;
 
-import static factories.CustomerFactory.faker;
-
 public class Constants {
+    public static final int REVIEW_STAR = 5;
     public static final String EMAIL_ADDRESS = "qatest@gmail.com";
     public static final String PASSWORD = "tester";
-    public static String emailAddress = faker.internet().emailAddress();
-    public static String firstName = faker.name().firstName();
-    public static String password = faker.internet().password();
     public static final String SUCCESSFULLY_PURCHASE_MESSAGE = "Your order has been placed!";
     public static final String INVALID_EMAIL = "testtest@gmail.com";
     public static final String MIN_PRICE = "10";
     public static final String MAX_PRICE = "1000";
     public static final String UPDATE_QUANTITY = "5";
     public static final String ERROR_MESSAGE_PRODUCT = "This product is not exist";
+    public static final String ERROR_MESSAGE_REVIEW = "Your review message is not correct, pleasea try again";
     public static final String ERROR_MESSAGE_QUANTITY = "The expected and actual quantity of the product is not equal!";
     public static final String ERROR_MESSAGE_ORDER = "Your order hasn't been placed successfully";
     public static final String ERROR_MESSAGE_LOGOUT_BUTTON = "Logout button is not displayed";
@@ -39,4 +36,5 @@ public class Constants {
     public static final String ERROR_MESSAGE_URL = "Expected page was not navigated.";
     public static final String ERROR_MESSAGE_RETURNS = "Your return request are not submitting.Try Again";
     public static final String PRODUCT_RETURNS_MESSAGE = "Thank you for submitting your return request. Your request has been sent to the relevant department for processing.";
+    public static final String REVIEW_MESSAGE_FOR_APPROVAL = "Thank you for your review. It has been submitted to the webmaster for approval.";
 }

@@ -16,26 +16,25 @@ public class CustomerFactory {
                 .firstName(faker.name().firstName())
                 .email(faker.internet().emailAddress())
                 .telephone(RandomStringUtils.randomNumeric(8))
-                .lastName(faker.name().lastName());
+                .lastName(faker.name().lastName())
+                .password(faker.internet().password());
     }
 
-    public static PersonalInformation GenerateRegisterAccount(String firstName, String email, String password) {
+    public static PersonalInformation GenerateRegisterAccountWithEmptyFirstName() {
         return GenerateCorePersonalInformation()
-                .firstName(firstName)
-                .email(email)
-                .password(password)
+                .firstName("")
                 .build();
     }
 
-    public static PersonalInformation GenerateRegisterAccount(String email, String password) {
+    public static PersonalInformation GenerateRegisterAccountWithEmptyEmail() {
         return GenerateCorePersonalInformation()
-                .email(email)
+                .email("")
                 .build();
     }
 
-    public static PersonalInformation GenerateRegisterAccount(String password) {
+    public static PersonalInformation GenerateRegisterAccountWithEmptyPassword() {
         return GenerateCorePersonalInformation()
-                .password(password)
+                .password("")
                 .build();
     }
 
@@ -75,6 +74,13 @@ public class CustomerFactory {
         return PersonalInformation.builder()
                 .email(email)
                 .password(password)
+                .build();
+    }
+
+    public static PersonalInformation userReview() {
+        return PersonalInformation.builder()
+                .firstName(faker.name().firstName())
+                .yourReview(faker.lorem().characters())
                 .build();
     }
 }

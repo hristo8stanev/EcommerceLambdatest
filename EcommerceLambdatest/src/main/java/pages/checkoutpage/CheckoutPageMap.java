@@ -103,10 +103,6 @@ public class CheckoutPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='search']//button[contains(normalize-space(@type),'submit')]"));
     }
 
-    public WebElement quantityField() {
-        return waitAndFindElement(By.xpath("//table[@class='table']//tbody//input"));
-    }
-
     public WebElement updateButton() {
         return waitAndFindElement(By.xpath("//table[@class='table']//tbody//button[contains(normalize-space(@class),'btn-primary')]"));
     }

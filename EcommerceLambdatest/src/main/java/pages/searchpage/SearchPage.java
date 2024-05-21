@@ -19,6 +19,12 @@ public class SearchPage extends WebPage<SearchPageMap, SearchPageAssertions> {
         elements().searchButton().click();
     }
 
+    public void proceedToProduct(ProductDetails product) {
+        elements().waitForAjax();
+        elements().scrollToVisible(elements().getProduct(product.getId()));
+        elements().getProduct(product.getId()).click();
+    }
+
     public void typeRangePrices(String min, String max) {
         elements().typeText(elements().minPriceField(), min);
         elements().typeText(elements().maxPriceField(), max);

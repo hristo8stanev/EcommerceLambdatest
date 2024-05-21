@@ -2,13 +2,9 @@ package ecommercetests;
 
 import core.BaseTest;
 import factories.CustomerFactory;
-import net.bytebuddy.pool.TypePool;
 import org.junit.jupiter.api.Test;
-import pages.productpage.ProductDetails;
-import pages.registerpage.PersonalInformation;
 
 import static constants.Constants.*;
-import static factories.CustomerFactory.faker;
 
 public class RegisterPageTests extends BaseTest {
 
@@ -27,7 +23,7 @@ public class RegisterPageTests extends BaseTest {
     public void registerUser_When_EmptyFirstNameField_And_ContinueButtonIsClicked() {
         webSite.registerPage.navigate();
 
-        var registerUser = CustomerFactory.GenerateRegisterAccount("", emailAddress, password);
+        var registerUser = CustomerFactory.GenerateRegisterAccountWithEmptyFirstName();
         webSite.registerPage.createUser(registerUser);
 
         webSite.registerPage.assertUrlPage();
@@ -38,7 +34,7 @@ public class RegisterPageTests extends BaseTest {
     public void registerUser_When_EmptyEmailAddressField_And_ContinueButtonClicked() {
         webSite.registerPage.navigate();
 
-        var registerUser = CustomerFactory.GenerateRegisterAccount(firstName, "", password);
+        var registerUser = CustomerFactory.GenerateRegisterAccountWithEmptyEmail();
         webSite.registerPage.createUser(registerUser);
 
         webSite.registerPage.assertUrlPage();
@@ -49,7 +45,7 @@ public class RegisterPageTests extends BaseTest {
     public void registerUser_When_EmptyPasswordField_And_ContinueButtonClicked() {
         webSite.registerPage.navigate();
 
-        var registerUser = CustomerFactory.GenerateRegisterAccount("");
+        var registerUser = CustomerFactory.GenerateRegisterAccountWithEmptyPassword();
         webSite.registerPage.createUser(registerUser);
 
         webSite.registerPage.assertUrlPage();
