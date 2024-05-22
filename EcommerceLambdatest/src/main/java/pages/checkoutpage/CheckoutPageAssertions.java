@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import pages.cartpage.CheckoutInformation;
 import pages.productpage.ProductDetails;
 
+import static core.driver.Driver.*;
+
 import java.text.NumberFormat;
 import java.util.Arrays;
 
@@ -84,7 +86,7 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
     }
 
     private void assertProductSubTotalPrice(CheckoutInformation... expectedProducts) {
-        elementsT().waitForAjax();
+        waitForAjax();
         elementsT().scrollToVisible(elementsT().searchButton());
         elementsT().updateButton().click();
 
@@ -99,16 +101,12 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
     }
 
     private void assertProductTotalPrice(CheckoutInformation... checkoutInformation) {
-        elementsT().waitForAjax();
+        waitForAjax();
         var billingDetails = CustomerFactory.GenerateBillingAddress();
 
         double expectedTotal;
         if ("United Kingdom".equals(billingDetails.getCountry())) {
-            double subTotalSum = Arrays.stream(checkoutInformation).mapToDouble(CheckoutInformation::getSubTotal).sum();
-            double shippingRateSum = Arrays.stream(checkoutInformation).mapToDouble(CheckoutInformation::getFlatShippingRate).sum();
-            double vatTax = Arrays.stream(checkoutInformation).mapToDouble(CheckoutInformation::getVatTax).sum();
-            double ecoTax = Arrays.stream(checkoutInformation).mapToDouble(CheckoutInformation::getEcoTax).sum();
-            expectedTotal = subTotalSum + shippingRateSum + vatTax + ecoTax;
+            expectedTotal = Arrays.stream(checkoutInformation).mapToDouble(CheckoutInformation::getTotal).sum();
 
         } else {
             double subTotalSum = Arrays.stream(checkoutInformation).mapToDouble(CheckoutInformation::getSubTotal).sum();

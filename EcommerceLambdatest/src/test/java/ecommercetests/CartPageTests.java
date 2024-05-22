@@ -27,7 +27,7 @@ public class CartPageTests extends BaseTest {
     }
 
     @Test
-    public void UpdateTheQuantityTheProducts_When_AuthenticatedUserUpdatesProductQuantityInCart_And_QuantityIsUpdatedCorrectly() {
+    public void updateTheQuantityTheProducts_When_AuthenticatedUserUpdatesProductQuantityInCart_And_QuantityIsUpdatedCorrectly() {
         var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
@@ -44,7 +44,7 @@ public class CartPageTests extends BaseTest {
     }
 
     @Test
-    public void RemoveProductFromTheShoppingCart_When_AuthenticatedUserRemovesProductFromCart_And_ProductIsSuccessfullyRemoved() {
+    public void removeProductFromTheShoppingCart_When_AuthenticatedUserRemovesProductFromCart_And_ProductIsSuccessfullyRemoved() {
         var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
@@ -58,7 +58,7 @@ public class CartPageTests extends BaseTest {
     }
 
     @Test
-    public void AddProductToTheShopping_NonAuthenticatedUserAddsProductToCart_And_ProductIsAddedSuccessfully() {
+    public void addProductToTheShopping_NonAuthenticatedUserAddsProductToCart_And_ProductIsAddedSuccessfully() {
         webSite.cartPage.navigate();
         webSite.mainHeader.addProductToCard(SamsungSyncMaster());
         webSite.cartPage.navigate();
@@ -69,7 +69,7 @@ public class CartPageTests extends BaseTest {
     }
 
     @Test
-    public void UpdateTheQuantityOfTheProducts_When_NonAuthenticatedUserUpdatesProductQuantityInCart_And_QuantityIsUpdatedCorrectly() {
+    public void updateTheQuantityOfTheProducts_When_NonAuthenticatedUserUpdatesProductQuantityInCart_And_QuantityIsUpdatedCorrectly() {
         webSite.cartPage.navigate();
         webSite.mainHeader.addProductToCard(iPodNano());
         webSite.cartPage.navigate();
@@ -81,7 +81,7 @@ public class CartPageTests extends BaseTest {
     }
 
     @Test
-    public void RemoveProductTheShoppingCart_When_NonAuthenticatedUserRemovesProductFromCart_And_ProductIsSuccessfullyRemoved() {
+    public void removeProductTheShoppingCart_When_NonAuthenticatedUserRemovesProductFromCart_And_ProductIsSuccessfullyRemoved() {
         webSite.cartPage.navigate();
         webSite.mainHeader.addProductToCard(HtcTouch());
         webSite.cartPage.navigate();

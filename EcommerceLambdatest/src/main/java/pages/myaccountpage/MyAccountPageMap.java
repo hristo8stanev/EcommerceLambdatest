@@ -47,42 +47,6 @@ public class MyAccountPageMap extends BaseMap {
         return waitAndFindElement(By.id("input-postcode"));
     }
 
-    public WebElement firstNameInputPayment() {
-        return waitAndFindElement(By.xpath("//*[@id='input-payment-firstname']"));
-    }
-
-    public WebElement lastNameInputPayment() {
-        return waitAndFindElement(By.xpath("//*[@id='input-payment-lastname']"));
-    }
-
-    public WebElement orderIdInput() {
-        return waitAndFindElement(By.id("input-order-id"));
-    }
-
-    public WebElement productNameInput() {
-        return waitAndFindElement(By.id("input-product"));
-    }
-
-    public WebElement productCodeInput() {
-        return waitAndFindElement(By.id("input-model"));
-    }
-
-    public WebElement orderDateInput() {
-        return waitAndFindElement(By.id("input-date-ordered"));
-    }
-
-    public WebElement productQuantityInput() {
-        return waitAndFindElement(By.id("input-quantity"));
-    }
-
-    public WebElement returnReasonInput(ReasonType reasonType) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//input[@name='return_reason_id' and @value='" + reasonType.getReasonType() + "']"));
-    }
-
-    public WebElement productOpenedInput(ProductOpened reasonId) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//input[@name='opened' and normalize-space(@value)='" + reasonId.getNumberDisplayed() + "']"));
-    }
-
     public WebElement country(String country) {
         return waitAndFindElement(By.id("input-country")).findElement(By.xpath(".//option[contains(text(), '" + country + "')]"));
     }
@@ -100,20 +64,12 @@ public class MyAccountPageMap extends BaseMap {
         return waitAndFindElement(By.id("input-confirm"));
     }
 
-    public WebElement submitButton() {
-        return waitAndFindElement(By.xpath("//*[@value='Submit']"));
-    }
-
     public WebElement continueButton() {
         return waitAndFindElement(By.xpath("//*[@value='Continue']"));
     }
 
     public WebElement successfullyMessage() {
         return waitAndFindElement(By.xpath("//*[@class='alert alert-success alert-dismissible']"));
-    }
-
-    public WebElement successfullyProductReturn(String expectedMessage) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//p[contains(text(),'" + expectedMessage + "')]"));
     }
 
     public WebElement successfullyPurchaseCertificate() {
@@ -158,10 +114,6 @@ public class MyAccountPageMap extends BaseMap {
 
     public WebElement amountCertificateInput() {
         return waitAndFindElement(By.id("input-amount"));
-    }
-
-    public WebElement messageCertificate() {
-        return waitAndFindElement(By.id("input-message"));
     }
 
     public WebElement agreeGiftCertificate() {

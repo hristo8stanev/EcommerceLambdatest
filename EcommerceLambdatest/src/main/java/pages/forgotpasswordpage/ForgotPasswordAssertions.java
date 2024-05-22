@@ -7,7 +7,6 @@ import static constants.Constants.*;
 
 public class ForgotPasswordAssertions extends BaseAssertions<ForgotPasswordPageMap> {
 
-
     public void assertSuccessfullySentEmail() {
         boolean isConfirmationMessageDisplayed = elementsT().confirmationMessage().isDisplayed();
         String sentEmailMessage = String.format("%s \n Actual Result: %b \n Expected Result: %b",

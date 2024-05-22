@@ -2,6 +2,8 @@ package pages.cartpage;
 
 import core.basepage.WebPage;
 
+import static core.driver.Driver.*;
+
 import static urls.Urls.CART_PAGE;
 
 public class CartPage extends WebPage<CartPageMap, CartPageAssertions> {
@@ -14,11 +16,11 @@ public class CartPage extends WebPage<CartPageMap, CartPageAssertions> {
     public void updateQuantity(String product) {
         elements().typeText(elements().updateQuantityField(), product);
         elements().updateQuantityButton().click();
-        elements().waitForAjax();
+        waitForAjax();
     }
 
     public void removeProductFromCart() {
-        elements().waitForAjax();
+        waitForAjax();
         elements().removeButton().click();
     }
 }

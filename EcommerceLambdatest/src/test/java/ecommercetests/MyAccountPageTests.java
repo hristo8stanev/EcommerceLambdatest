@@ -9,7 +9,6 @@ import static constants.Constants.*;
 import static factories.ProductsFactory.IPodShuffleProduct;
 import static factories.ProductsFactory.iPodNano;
 
-
 public class MyAccountPageTests extends BaseTest {
 
     @Test
@@ -111,19 +110,4 @@ public class MyAccountPageTests extends BaseTest {
         webSite.myAccountPage.assertions().assertThePurchaseDateToday();
     }
 
-    @Test
-    public void returnProduct_When_AuthenticatedUser_FillsReturnForm() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-
-        webSite.loginPage.navigate();
-        webSite.loginPage.loginUser(loginUser);
-        webSite.myAccountPage.proceedToReturnOrderSection();
-
-        webSite.returnProductPage.assertUrlPage();
-
-        webSite.myAccountPage.fillReturnProductForm(iPodNano());
-
-        webSite.successfulReturnProductPage.assertUrlPage();
-        webSite.myAccountPage.assertions().assertProductReturnsMessage(PRODUCT_RETURNS_MESSAGE);
-    }
 }

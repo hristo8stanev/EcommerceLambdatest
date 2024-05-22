@@ -8,6 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -36,6 +37,11 @@ public class Driver {
         }
 
         return browser.getCurrentUrl();
+    }
+
+    public static void waitForAjax() {
+        var script = "return window.jQuery != undefined && jQuery.active == 0";
+        browserWait.until(ExpectedConditions.jsReturnsValue(script));
     }
 
     public static WebDriverWait getBrowserWait() {

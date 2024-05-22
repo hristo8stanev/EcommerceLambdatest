@@ -3,7 +3,7 @@ package pages.cartpage;
 import core.baseassertions.BaseAssertions;
 import org.junit.jupiter.api.Assertions;
 import pages.productpage.ProductDetails;
-
+import static core.driver.Driver.*;
 
 import java.text.NumberFormat;
 
@@ -13,12 +13,11 @@ import static core.basepage.WebPage.getNumberFormat;
 public class CartPageAssertions extends BaseAssertions<CartPageMap> {
 
     public void assertProductName(ProductDetails expectedProduct) {
-
         var messageName = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), expectedProduct.getName());
 
         Assertions.assertEquals(elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), expectedProduct.getName(), messageName);
-        elementsT().waitForAjax();
+        waitForAjax();
     }
 
     public void assertProductInformation(ProductDetails expectedProductInfo) {
@@ -39,9 +38,8 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
         String expectedTotalFormatted = currencyFormat.format(expectedProductInfo.getTotal());
         Assertions.assertEquals(elementsT().productTotalPriceElement(String.valueOf(expectedProductInfo.getTotal())).getText(), expectedTotalFormatted, totalPriceMessage);
 
-
         elementsT().removeButton().click();
-        elementsT().waitForAjax();
+        waitForAjax();
     }
 
     public void assertProductRemoved() {
@@ -62,6 +60,6 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
         Assertions.assertEquals(elementsT().updateQuantityField().getAttribute("value"), expectedQuantity, successfullyUpdateQuantityMessage);
 
         elementsT().removeButton().click();
-        elementsT().waitForAjax();
+        waitForAjax();
     }
 }

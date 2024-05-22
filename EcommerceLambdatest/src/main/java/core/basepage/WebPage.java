@@ -5,12 +5,12 @@ import core.basemap.BaseMap;
 import core.driver.Driver;
 import core.newistance.NewInstance;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebElement;
+import static core.driver.Driver.*;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import static constants.Constants.ERROR_MESSAGE_URL;
+import static constants.Constants.*;
 
 public abstract class WebPage<ElementsT extends BaseMap, AssertionsT extends BaseAssertions<ElementsT>> {
 
@@ -37,6 +37,6 @@ public abstract class WebPage<ElementsT extends BaseMap, AssertionsT extends Bas
 
     public void assertUrlPage() {
         Assertions.assertEquals(Url(), Driver.getCurrentUrl(), ERROR_MESSAGE_URL);
-        elements().waitForAjax();
+        waitForAjax();
     }
 }

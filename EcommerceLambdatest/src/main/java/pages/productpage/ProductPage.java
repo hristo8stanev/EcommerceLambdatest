@@ -1,11 +1,12 @@
 package pages.productpage;
 
 import core.basepage.WebPage;
+import core.driver.Driver;
 import enums.DifferentSizeType;
 import pages.registerpage.PersonalInformation;
+import static core.driver.Driver.*;
 
-import static constants.Constants.REVIEW_STAR;
-import static factories.CustomerFactory.faker;
+import static enums.ReviewStars.*;
 import static urls.Urls.SEARCH_SHOP_PRODUCTS_PAGE;
 
 public class ProductPage extends WebPage<ProductPageMap, ProductPageAssertions> {
@@ -22,25 +23,25 @@ public class ProductPage extends WebPage<ProductPageMap, ProductPageAssertions> 
 
     public void selectSmallSizeType() {
         selectSize(DifferentSizeType.SMALL);
-        elements().waitForAjax();
+        waitForAjax();
         elements().addToCartButton().click();
     }
 
     public void selectMediumSizeType() {
         selectSize(DifferentSizeType.MEDIUM);
-        elements().waitForAjax();
+        waitForAjax();
         elements().addToCartButton().click();
     }
 
     public void selectLargeSizeType() {
         selectSize(DifferentSizeType.LARGE);
-        elements().waitForAjax();
+        waitForAjax();
         elements().addToCartButton().click();
     }
 
     public void writeReview(PersonalInformation user) {
         elements().scrollToVisible(elements().addToCartButton());
-        elements().starFormCheck(REVIEW_STAR).click();
+        elements().starFormCheck(FIVE_STAR).click();
         elements().typeText(elements().yourNameReviewInput(), user.firstName);
         elements().typeText(elements().yourReviewInput(), user.yourReview);
         elements().writeReviewButton().click();

@@ -29,11 +29,6 @@ public abstract class BaseMap {
         browserWait.until(wd -> js.executeScript("return document.readyState").toString().equals("comeplete"));
     }
 
-    public void waitForAjax() {
-        var script = "return window.jQuery != undefined && jQuery.active == 0";
-        browserWait.until(ExpectedConditions.jsReturnsValue(script));
-    }
-
     public void scrollToVisible(WebElement element) {
         try {
             ((JavascriptExecutor) browser).executeScript("arguments[0].scrollIntoView(true);", element);

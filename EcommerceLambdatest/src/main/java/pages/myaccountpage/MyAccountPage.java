@@ -8,6 +8,8 @@ import pages.cartpage.BillingInformation;
 import pages.productpage.ProductDetails;
 import pages.registerpage.PersonalInformation;
 
+import static core.driver.Driver.*;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,18 +24,8 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
     }
 
     public void selectGiftType(GiftCertificateType giftCertificateType) {
-        elements().waitForAjax();
+        waitForAjax();
         elements().giftCertificateTheme(giftCertificateType).click();
-    }
-
-    public void selectReasonType(ReasonType reasonType) {
-        elements().waitForAjax();
-        elements().returnReasonInput(reasonType).click();
-    }
-
-    public void selectIsProductOpened(ProductOpened reasonId) {
-        elements().waitForAjax();
-        elements().productOpenedInput(reasonId).click();
     }
 
     public void changeMyAccountInformation(PersonalInformation user) {
@@ -48,29 +40,29 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
     public void proceedToAddressBookSection() {
         elements().addressBookButton().click();
         elements().newAddressButton().click();
-        elements().waitForAjax();
+        waitForAjax();
     }
 
     public void proceedToMyVoucherSection() {
         elements().hover(elements().myAccountMenuSection());
         elements().myVoucherButton().click();
-        elements().waitForAjax();
+        waitForAjax();
     }
 
     public void proceedToOrderHistorySection() {
         elements().myAccountMenuSection().click();
         elements().myOrderHistoryButton().click();
-        elements().waitForAjax();
+        waitForAjax();
     }
 
     public void proceedToReturnOrderSection() {
         elements().hover(elements().myAccountMenuSection());
         elements().returnOrderButton().click();
-        elements().waitForAjax();
+        waitForAjax();
     }
 
     public void removeProductFromCart() {
-        elements().waitForAjax();
+        waitForAjax();
         elements().removeButton().click();
     }
 
@@ -83,7 +75,7 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
         elements().typeText(elements().cityInput(), billingInformation.city);
         elements().typeText(elements().postCodeInput(), billingInformation.postCode);
         elements().country(billingInformation.country);
-        elements().waitForAjax();
+        waitForAjax();
         elements().findRegionOption(billingInformation.region).click();
         elements().continueButton().click();
     }
@@ -106,14 +98,4 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
         elements().continueButton().click();
     }
 
-    public void fillReturnProductForm(ProductDetails product) {
-        elements().typeText(elements().orderIdInput(), String.valueOf(product.getId()));
-        elements().typeText(elements().orderDateInput(), LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        elements().typeText(elements().productNameInput(), product.getName());
-        elements().typeText(elements().productCodeInput(), product.getModel());
-        elements().typeText(elements().productQuantityInput(), product.getQuantity());
-        selectReasonType(ReasonType.DEAD_ON_ARRIVAL);
-        selectIsProductOpened(ProductOpened.YES);
-        elements().submitButton().click();
-    }
 }

@@ -2,6 +2,7 @@ package pages.productpage;
 
 import core.basemap.BaseMap;
 import enums.DifferentSizeType;
+import enums.ReviewStars;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -35,8 +36,8 @@ public class ProductPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//form[@id='form-review']//following-sibling::button[@id='button-review']"));
     }
 
-    public WebElement starFormCheck(int id) {
-        return waitAndFindElement(By.xpath("//form[@id='form-review']//input[@name='rating' and @value=" + id + "]//following-sibling::label"));
+    public WebElement starFormCheck(ReviewStars stars) {
+        return waitAndFindElement(By.xpath("//form[@id='form-review']//input[@name='rating' and @value=" + stars.getReviewStars() + "]//following-sibling::label"));
     }
 
     public WebElement reviewSection() {
@@ -55,7 +56,7 @@ public class ProductPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "')]]//following-sibling::small"));
     }
 
-    public WebElement reviewMessage(){
+    public WebElement reviewMessage() {
         return waitAndFindElement(By.xpath("//form[@id='form-review']//div[contains(normalize-space(@class),'alert')]"));
     }
 }

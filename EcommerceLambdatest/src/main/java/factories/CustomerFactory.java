@@ -16,8 +16,7 @@ public class CustomerFactory {
                 .firstName(faker.name().firstName())
                 .email(faker.internet().emailAddress())
                 .telephone(RandomStringUtils.randomNumeric(8))
-                .lastName(faker.name().lastName())
-                .password(faker.internet().password());
+                .lastName(faker.name().lastName());
     }
 
     public static PersonalInformation GenerateRegisterAccountWithEmptyFirstName() {
@@ -40,7 +39,6 @@ public class CustomerFactory {
 
     public static PersonalInformation GenerateRegisterAccount() {
         return GenerateCorePersonalInformation()
-                .password(faker.internet().password())
                 .accountType(AccountType.REGISTER)
                 .build();
     }
@@ -48,6 +46,7 @@ public class CustomerFactory {
     public static PersonalInformation GenerateGuestCheckout() {
         return GenerateCorePersonalInformation()
                 .accountType(AccountType.GUEST)
+                .password(faker.internet().password())
                 .build();
     }
 

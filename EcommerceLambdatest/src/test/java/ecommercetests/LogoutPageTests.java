@@ -10,7 +10,7 @@ import static constants.Constants.PASSWORD;
 public class LogoutPageTests extends BaseTest {
 
     @Test
-    public void LogoutFromTheSystem_When_LogoutButtonClicked()
+    public void logoutFromTheSystem_When_LogoutButtonClicked()
     {
         var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 

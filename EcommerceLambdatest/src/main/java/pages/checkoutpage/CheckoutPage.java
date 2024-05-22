@@ -5,6 +5,9 @@ import enums.AccountType;
 import pages.cartpage.BillingInformation;
 import pages.registerpage.PersonalInformation;
 
+import static core.driver.Driver.*;
+
+import static factories.CustomerFactory.faker;
 import static urls.Urls.CHECKOUT_PAGE;
 
 public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertions> {
@@ -26,7 +29,7 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
         elements().cityInput().sendKeys(billingInformation.city);
         elements().postCodeInput().sendKeys(billingInformation.postCode);
         elements().country(billingInformation.country).click();
-        elements().waitForAjax();
+        waitForAjax();
         elements().region(billingInformation.region).click();
     }
 
@@ -38,7 +41,7 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
         elements().cityInput().sendKeys(billingInformation.city);
         elements().postCodeInput().sendKeys(billingInformation.postCode);
         elements().country(billingInformation.country).click();
-        elements().waitForAjax();
+        waitForAjax();
         elements().region(billingInformation.region).click();
     }
 
@@ -49,19 +52,17 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
         elements().typeText(elements().emailPaymentInput(), user.email);
         elements().typeText(elements().telephonePaymentInput(), user.telephone);
 
-        if (!(user.password == null || user.password.isEmpty())) {
-
-            elements().typeText(elements().passwordPaymentInput(), user.password);
+        if (user.password == null || user.password.isEmpty()) {
+            elements().typeText(elements().passwordPaymentInput(), user.password = faker.internet().password());
             elements().typeText(elements().confirmPasswordPaymentInput(), user.password);
         }
-
         if (user.getAccountType() == AccountType.REGISTER) {
             agreePrivacyTerms();
         }
     }
 
     public void selectAccount(AccountType accountType) {
-        elements().waitForAjax();
+        waitForAjax();
         elements().accountType(accountType).click();
     }
 
@@ -70,15 +71,15 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
         elements().typeText(elements().emailInput(), user.email);
         elements().typeText(elements().passwordInput(), user.password);
         elements().loginButton().click();
-        elements().waitForAjax();
+        waitForAjax();
     }
 
     public void proceedToCheckout() {
         elements().scrollToVisible(elements().agreeTerms());
         elements().agreeTerms().click();
-        elements().waitForAjax();
+        waitForAjax();
+        elements().scrollToVisible(elements().continueButton());
         elements().continueButton().click();
-        elements().confirmOrderButton();
     }
 
     public void confirmOrder() {
@@ -86,7 +87,7 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
     }
 
     private void agreePrivacyTerms() {
-        elements().waitForAjax();
+        waitForAjax();
         elements().scrollToVisible(elements().privacyPolicy());
         elements().privacyPolicy().click();
     }

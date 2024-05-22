@@ -10,7 +10,7 @@ import static factories.ProductsFactory.*;
 public class SearchPageTests extends BaseTest {
 
     @Test
-    public void SearchExistingProductByName_When_NonAuthenticatedUserSearchesProducts()
+    public void searchExistingProductByName_When_NonAuthenticatedUserSearchesProducts()
     {
         webSite.searchPage.navigate();
         webSite.searchPage.assertUrlPage();
@@ -21,7 +21,7 @@ public class SearchPageTests extends BaseTest {
     }
 
     @Test
-    public void SearchNonExistingProductByName_When_NonAuthenticatedUserSearchedProduct()
+    public void searchNonExistingProductByName_When_NonAuthenticatedUserSearchedProduct()
     {
         webSite.homePage.navigate();
         webSite.homePage.assertUrlPage();
@@ -31,7 +31,7 @@ public class SearchPageTests extends BaseTest {
     }
 
     @Test
-    public void FilterProductByPrice_When_NonAuthenticatedUserFiltersProductsByPrice_And_ProductsAreFilteredCorrectly()
+    public void filterProductByPrice_When_NonAuthenticatedUserFiltersProductsByPrice_And_ProductsAreFilteredCorrectly()
     {
         webSite.searchPage.navigate();
         webSite.searchPage.assertUrlPage();
@@ -41,7 +41,7 @@ public class SearchPageTests extends BaseTest {
     }
 
     @Test
-    public void FilterProductByName_When_AuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly()
+    public void filterProductByName_When_AuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly()
     {
         var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
@@ -57,7 +57,7 @@ public class SearchPageTests extends BaseTest {
     }
 
     @Test
-    public void FilterProductByName_When_NonAuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly()
+    public void filterProductByName_When_NonAuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly()
     {
        webSite.searchPage.navigate();
 

@@ -10,7 +10,7 @@ import static factories.ProductsFactory.*;
 public class WishlistPageTests extends BaseTest {
 
     @Test
-    public void AddProductToWishList_When_ProductAddedToWishlist_And_ProductSuccessfullyAddedToWishlist()
+    public void addProductToWishList_When_ProductAddedToWishlist_And_ProductSuccessfullyAddedToWishlist()
     {
         var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 

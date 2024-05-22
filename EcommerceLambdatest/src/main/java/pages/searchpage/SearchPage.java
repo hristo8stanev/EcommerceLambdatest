@@ -4,8 +4,9 @@ import core.basepage.WebPage;
 import org.openqa.selenium.Keys;
 import pages.productpage.ProductDetails;
 
-import static urls.Urls.SEARCH_SHOP_PRODUCTS_PAGE;
+import static core.driver.Driver.*;
 
+import static urls.Urls.SEARCH_SHOP_PRODUCTS_PAGE;
 
 public class SearchPage extends WebPage<SearchPageMap, SearchPageAssertions> {
 
@@ -20,7 +21,7 @@ public class SearchPage extends WebPage<SearchPageMap, SearchPageAssertions> {
     }
 
     public void proceedToProduct(ProductDetails product) {
-        elements().waitForAjax();
+        waitForAjax();
         elements().scrollToVisible(elements().getProduct(product.getId()));
         elements().getProduct(product.getId()).click();
     }
@@ -29,6 +30,6 @@ public class SearchPage extends WebPage<SearchPageMap, SearchPageAssertions> {
         elements().typeText(elements().minPriceField(), min);
         elements().typeText(elements().maxPriceField(), max);
         elements().maxPriceField().sendKeys(Keys.ENTER);
-        elements().waitForAjax();
+        waitForAjax();
     }
 }

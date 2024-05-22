@@ -33,4 +33,3 @@ public class LoginPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='content']//button[contains(normalize-space(@type),'submit')]"));
     }
 }
-

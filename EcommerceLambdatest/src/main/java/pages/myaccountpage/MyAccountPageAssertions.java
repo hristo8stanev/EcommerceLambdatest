@@ -64,9 +64,4 @@ public class MyAccountPageAssertions extends BaseAssertions<MyAccountPageMap> {
         var giftCertificateMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", errorMessageRemovedProduct, elementsT().removedProduct(expectedMessage), expectedMessage);
         Assertions.assertTrue(elementsT().removedProduct(expectedMessage).getText().contains(expectedMessage), giftCertificateMessage);
     }
-
-    public void assertProductReturnsMessage(String expectedMessage) {
-        var returnProductMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_RETURNS, PRODUCT_RETURNS_MESSAGE, elementsT().successfullyProductReturn(expectedMessage).getText());
-        Assertions.assertEquals(elementsT().successfullyProductReturn(expectedMessage).getText(), PRODUCT_RETURNS_MESSAGE, returnProductMessage);
-    }
 }

@@ -8,7 +8,6 @@ import static constants.Constants.ERROR_MESSAGE_PRODUCT_INFORMATION;
 
 public class WishlistPageAssertions extends BaseAssertions<WishlistPageMap> {
 
-
     public void assertProductAddedToWishList(ProductDetails expectedProduct) {
         var nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getName(),
                 elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText());

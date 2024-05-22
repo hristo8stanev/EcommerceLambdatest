@@ -9,7 +9,7 @@ import static constants.Constants.INVALID_EMAIL;
 public class ForgotPasswordPageTests extends BaseTest {
 
     @Test
-    public void ForgotPassword_When_ValidEmailAddressProvided_And_ContinueButtonClicked() {
+    public void forgotPassword_When_ValidEmailAddressProvided_And_ContinueButtonClicked() {
         webSite.loginPage.navigate();
         webSite.forgotPasswordPage.proceedToForgottenPasswordSection();
 
@@ -22,7 +22,7 @@ public class ForgotPasswordPageTests extends BaseTest {
     }
 
     @Test
-    public void ForgotPassword_When_InvalidEmailAddressProvided_And_ContinueButtonIsClicked() {
+    public void forgotPassword_When_InvalidEmailAddressProvided_And_ContinueButtonIsClicked() {
         webSite.loginPage.navigate();
         webSite.forgotPasswordPage.proceedToForgottenPasswordSection();
 
