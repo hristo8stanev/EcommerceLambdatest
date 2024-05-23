@@ -12,10 +12,10 @@ public class CheckoutPageTests extends BaseTest {
 
     //LOGIN USER
     @Test
-    public void checkout_When_LoginUserTypeSelected_And_1ProductPurchased_And_PaymentConfirmed() {
+    public void checkout_when_loginUserTypeSelected_and_1productPurchased_and_paymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateLoginCheckout(EMAIL_ADDRESS, PASSWORD);
-        var checkoutInformation = CheckoutInformationFactory.Build(IPodShuffleProduct());
+        var checkoutInformation = CheckoutInformationFactory.build(IPodShuffleProduct());
 
         webSite.checkoutPage.navigate();
         webSite.mainHeader.addProductToCard(IPodShuffleProduct());
@@ -44,10 +44,10 @@ public class CheckoutPageTests extends BaseTest {
     }
 
     @Test
-    public void checkout_When_LoginUserTypeSelected_And_2ProductPurchased_And_PaymentConfirmed() {
+    public void checkout_when_loginUserTypeSelected_and_2productPurchased_and_paymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateLoginCheckout(EMAIL_ADDRESS, PASSWORD);
-        var checkoutInformation = CheckoutInformationFactory.Build(NikonProduct(), HtcTouch());
+        var checkoutInformation = CheckoutInformationFactory.build(NikonProduct(), HtcTouch());
 
         webSite.checkoutPage.navigate();
         webSite.mainHeader.addProductToCard(HtcTouch());
@@ -82,7 +82,7 @@ public class CheckoutPageTests extends BaseTest {
     public void checkout_When_GuestUserTypeSelected_And_1ProductPurchased_And_PaymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateGuestCheckout();
-        var checkoutInformation = CheckoutInformationFactory.Build(IPodShuffleProduct());
+        var checkoutInformation = CheckoutInformationFactory.build(IPodShuffleProduct());
 
         webSite.checkoutPage.navigate();
         webSite.mainHeader.addProductToCard(IPodShuffleProduct());
@@ -109,7 +109,7 @@ public class CheckoutPageTests extends BaseTest {
     public void checkout_When_GuestUserTypeSelected_And_2ProductPurchased_And_PaymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateGuestCheckout();
-        var checkoutInformation = CheckoutInformationFactory.Build(HtcTouch(), IPodShuffleProduct());
+        var checkoutInformation = CheckoutInformationFactory.build(HtcTouch(), IPodShuffleProduct());
 
         webSite.checkoutPage.navigate();
         webSite.mainHeader.addProductToCard(IPodShuffleProduct());
@@ -141,7 +141,7 @@ public class CheckoutPageTests extends BaseTest {
     public void checkout_When_RegisterUserTypeSelected_And_1ProductPurchased_And_PaymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateRegisterAccount();
-        var checkoutInformation = CheckoutInformationFactory.Build(HtcTouch());
+        var checkoutInformation = CheckoutInformationFactory.build(HtcTouch());
 
         webSite.checkoutPage.navigate();
         webSite.mainHeader.addProductToCard(HtcTouch());
@@ -169,7 +169,7 @@ public class CheckoutPageTests extends BaseTest {
     public void checkout_When_RegisterUserTypeSelected_And_2ProductPurchased_And_PaymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateRegisterAccount();
-        var checkoutInformation = CheckoutInformationFactory.Build(HtcTouch(), IPodShuffleProduct());
+        var checkoutInformation = CheckoutInformationFactory.build(HtcTouch(), IPodShuffleProduct());
 
         webSite.checkoutPage.navigate();
         webSite.mainHeader.addProductToCard(IPodShuffleProduct());

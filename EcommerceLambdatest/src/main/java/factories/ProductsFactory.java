@@ -3,6 +3,8 @@ package factories;
 import pages.productpage.ProductDetails;
 
 public class ProductsFactory {
+
+
     public static ProductDetails NikonProduct() {
         var productDetails = new ProductDetails();
         productDetails.name = "Nikon D300";
@@ -96,7 +98,7 @@ public class ProductsFactory {
         productDetails.weight = "5.00kg";
         productDetails.id = 34;
         productDetails.availability = "In Stock";
-        productDetails.unitPrice = "$150.00";
+        productDetails.unitPrice = "$182.00";
         productDetails.model = "Product 7";
         productDetails.quantity = "5";
         var parsedQuantity = ParseQuantity(productDetails);
@@ -131,6 +133,7 @@ public class ProductsFactory {
         } catch (NumberFormatException e) {
             parsedUnitPrice = 0.0;
         }
+
         return parsedUnitPrice;
     }
 
@@ -142,6 +145,7 @@ public class ProductsFactory {
         } catch (NumberFormatException e) {
             parsedQuantity = 0.0;
         }
+
         return parsedQuantity;
     }
 }

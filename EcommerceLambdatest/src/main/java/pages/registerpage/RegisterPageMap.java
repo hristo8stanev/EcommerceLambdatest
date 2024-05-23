@@ -4,7 +4,6 @@ import core.basemap.BaseMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-
 public class RegisterPageMap extends BaseMap {
 
     public WebElement firstNameInput() {

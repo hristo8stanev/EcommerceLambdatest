@@ -3,40 +3,56 @@ package pages.cartpage;
 import core.baseassertions.BaseAssertions;
 import org.junit.jupiter.api.Assertions;
 import pages.productpage.ProductDetails;
-import static core.driver.Driver.*;
 
 import java.text.NumberFormat;
 
 import static constants.Constants.ERROR_MESSAGE_PRODUCT;
 import static core.basepage.WebPage.getNumberFormat;
+import static core.driver.Driver.waitForAjax;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class CartPageAssertions extends BaseAssertions<CartPageMap> {
 
-    public void assertProductName(ProductDetails expectedProduct) {
+    private void assertProductName(ProductDetails expectedProduct) {
         var messageName = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
-                elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), expectedProduct.getName());
-
-        Assertions.assertEquals(elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), expectedProduct.getName(), messageName);
-        waitForAjax();
+                elementsT().productNameElement(expectedProduct).getText(), expectedProduct.getName());
+        Assertions.assertEquals(elementsT().productNameElement(expectedProduct).getText(), expectedProduct.getName(), messageName);
     }
 
-    public void assertProductInformation(ProductDetails expectedProductInfo) {
+    private void assertProductModel(ProductDetails expectedProductInfo) {
         var messageModel = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
-                elementsT().productModel(expectedProductInfo.getModel()).getText(), expectedProductInfo.getModel());
+                elementsT().productModel(expectedProductInfo).getText(), expectedProductInfo.getModel());
+        Assertions.assertEquals(elementsT().productModel(expectedProductInfo).getText(), expectedProductInfo.getModel(), messageModel);
+    }
+
+    private void assertProductQuantity(ProductDetails expectedProductInfo) {
         var messageQuantity = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productQuantity("form-control").getAttribute("value"), expectedProductInfo.getQuantity());
+        Assertions.assertEquals(elementsT().productQuantity("form-control").getAttribute("value"), expectedProductInfo.getQuantity(), messageQuantity);
+    }
+
+    private void assertProductUnitPrice(ProductDetails expectedProductInfo) {
         var messagePrice = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productPriceElement(expectedProductInfo.getUnitPrice()).getText(), expectedProductInfo.getUnitPrice());
+        Assertions.assertEquals(elementsT().productPriceElement(expectedProductInfo.getUnitPrice()).getText(), expectedProductInfo.getUnitPrice(), messagePrice);
+    }
+
+    private void assertProductTotalPrice(ProductDetails expectedProductInfo) {
         var totalPriceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productTotalPriceElement(String.valueOf(expectedProductInfo.getTotal())).getText(), expectedProductInfo.getTotal());
-
-        Assertions.assertEquals(elementsT().productModel(expectedProductInfo.getModel()).getText(), expectedProductInfo.getModel(), messageModel);
-        Assertions.assertEquals(elementsT().productQuantity("form-control").getAttribute("value"), expectedProductInfo.getQuantity(), messageQuantity);
-        Assertions.assertEquals(elementsT().productPriceElement(expectedProductInfo.getUnitPrice()).getText(), expectedProductInfo.getUnitPrice(), messagePrice);
 
         NumberFormat currencyFormat = getNumberFormat();
         String expectedTotalFormatted = currencyFormat.format(expectedProductInfo.getTotal());
         Assertions.assertEquals(elementsT().productTotalPriceElement(String.valueOf(expectedProductInfo.getTotal())).getText(), expectedTotalFormatted, totalPriceMessage);
+    }
+
+    public void assertProductsInformation(ProductDetails expectedProductInfo) {
+        assertAll(
+                () -> assertProductName(expectedProductInfo),
+                () -> assertProductModel(expectedProductInfo),
+                () -> assertProductQuantity(expectedProductInfo),
+                () -> assertProductUnitPrice(expectedProductInfo),
+                () -> assertProductTotalPrice(expectedProductInfo));
 
         elementsT().removeButton().click();
         waitForAjax();

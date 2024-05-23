@@ -9,10 +9,10 @@ import static constants.Constants.*;
 public class RegisterPageTests extends BaseTest {
 
     @Test
-    public void registerUser_When_ValidCredentialsProvided_And_ContinueButtonClicked() {
+    public void registerUser_when_validCredentialsProvided_and_continueButtonClicked() {
         webSite.registerPage.navigate();
 
-        var registerUser = CustomerFactory.GenerateRegisterAccount();
+        var registerUser = CustomerFactory.GenerateGuestCheckout();
         webSite.registerPage.createUser(registerUser);
 
         webSite.successfulRegisterPage.assertUrlPage();
@@ -20,7 +20,7 @@ public class RegisterPageTests extends BaseTest {
     }
 
     @Test
-    public void registerUser_When_EmptyFirstNameField_And_ContinueButtonIsClicked() {
+    public void registerUser_when_emptyFirstNameField_and_continueButtonIsClicked() {
         webSite.registerPage.navigate();
 
         var registerUser = CustomerFactory.GenerateRegisterAccountWithEmptyFirstName();
@@ -31,7 +31,7 @@ public class RegisterPageTests extends BaseTest {
     }
 
     @Test
-    public void registerUser_When_EmptyEmailAddressField_And_ContinueButtonClicked() {
+    public void registerUser_when_emptyEmailAddressField_and_continueButtonClicked() {
         webSite.registerPage.navigate();
 
         var registerUser = CustomerFactory.GenerateRegisterAccountWithEmptyEmail();
@@ -42,7 +42,7 @@ public class RegisterPageTests extends BaseTest {
     }
 
     @Test
-    public void registerUser_When_EmptyPasswordField_And_ContinueButtonClicked() {
+    public void registerUser_when_emptyPasswordField_and_continueButtonClicked() {
         webSite.registerPage.navigate();
 
         var registerUser = CustomerFactory.GenerateRegisterAccountWithEmptyPassword();

@@ -3,6 +3,7 @@ package pages.cartpage;
 import core.basemap.BaseMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.productpage.ProductDetails;
 
 public class CartPageMap extends BaseMap {
     public WebElement total() {
@@ -21,16 +22,16 @@ public class CartPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//button[contains(@onclick, 'cart.remove')]"));
     }
 
-    public WebElement productNameElement(int id, String productName) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + id + "') and normalize-space()='" + productName + "']]//a"));
+    public WebElement productNameElement(ProductDetails expectedProduct) {
+        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//a[contains(@href, 'product_id=" + expectedProduct.getId() + "') and normalize-space()='" + expectedProduct.getName() + "']]//a"));
     }
 
     public WebElement productPriceElement(String price) {
         return waitAndFindElement(By.xpath("//div[@id='content']//td[@class='text-right' and contains(text(), '" + price + "')]"));
     }
 
-    public WebElement productModel(String modelProduct) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tbody//td[contains(text(), '" + modelProduct + "')]"));
+    public WebElement productModel(ProductDetails expectedProduct) {
+        return waitAndFindElement(By.xpath("//div[@id='content']//tbody//td[contains(text(), '" + expectedProduct.getModel() + "')]"));
     }
 
     public WebElement productTotalPriceElement(String price) {

@@ -6,8 +6,7 @@ import pages.productpage.ProductDetails;
 import java.util.Arrays;
 
 public class CheckoutInformationFactory {
-    public static CheckoutInformation Build(ProductDetails... products)
-    {
+    public static CheckoutInformation build(ProductDetails... products) {
         var checkoutInformation = new CheckoutInformation();
         checkoutInformation.products = (Arrays.asList(products));
         checkoutInformation.isVatApplied = true;
@@ -15,19 +14,17 @@ public class CheckoutInformationFactory {
         return checkoutInformation;
     }
 
-    public static CheckoutInformation BuildWithCoupon(ProductDetails... products)
-    {
-        var checkoutInformation = Build(products);
+    public static CheckoutInformation buildWithCoupon(ProductDetails... products) {
+        var checkoutInformation = build(products);
         checkoutInformation.coupon = "birthday";
 
         return checkoutInformation;
     }
-    public static CheckoutInformation BuildWithGiftCertificate(ProductDetails... products)
-    {
-        var checkoutInformation = Build(products);
+
+    public static CheckoutInformation buildwithgiftcertificate(ProductDetails... products) {
+        var checkoutInformation = build(products);
         checkoutInformation.giftCertificate = "giftCertificate";
 
         return checkoutInformation;
     }
-
 }

@@ -2,8 +2,12 @@ package pages.productpage;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ProductDetails {
+
+    public List<ProductDetails> products;
     public String name;
     public int id;
     public String unitPrice;

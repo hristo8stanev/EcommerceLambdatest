@@ -56,7 +56,7 @@ public class MyAccountPageTests extends BaseTest {
     @Test
     public void removeGiftCertificate_When_AuthenticatedUser_And_RemovedGiftFromShoppingCart() {
         var gift = GiftCertificateFactory.generateGiftCertificate();
-        var registerUser = CustomerFactory.GenerateRegisterAccount();
+        var registerUser = CustomerFactory.GenerateGuestCheckout();
 
         webSite.registerPage.navigate();
         webSite.registerPage.createUser(registerUser);

@@ -22,12 +22,14 @@ public class CustomerFactory {
     public static PersonalInformation GenerateRegisterAccountWithEmptyFirstName() {
         return GenerateCorePersonalInformation()
                 .firstName("")
+                .password(faker.internet().password())
                 .build();
     }
 
     public static PersonalInformation GenerateRegisterAccountWithEmptyEmail() {
         return GenerateCorePersonalInformation()
                 .email("")
+                .password(faker.internet().password())
                 .build();
     }
 
@@ -40,6 +42,7 @@ public class CustomerFactory {
     public static PersonalInformation GenerateRegisterAccount() {
         return GenerateCorePersonalInformation()
                 .accountType(AccountType.REGISTER)
+                .password(faker.internet().password())
                 .build();
     }
 
