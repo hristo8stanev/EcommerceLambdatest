@@ -13,7 +13,7 @@ public class CartPageTests extends BaseTest {
     @Test
     public void addTwoProductToCart_When_AuthenticatedUserAddsProductsToCart_And_ProductDetailsCorrect() {
         var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-        var productDetails = ProductInformationFactory.build();
+        var productDetails = ProductInformationFactory.build(NikonProduct());
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);

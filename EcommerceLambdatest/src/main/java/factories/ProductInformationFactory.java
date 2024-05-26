@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class ProductInformationFactory {
 
     public static ProductDetails build(ProductDetails... products) {
-        var productInfo = new ProductDetails();
+        var productInfo = ProductsFactory.NikonProduct();
         productInfo.products = (Arrays.asList(products));
 
         return productInfo;
