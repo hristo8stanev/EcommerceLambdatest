@@ -21,7 +21,7 @@ public class CartPageTests extends BaseTest {
         webSite.cartPage.navigate();
 
         webSite.cartPage.assertUrlPage();
-        webSite.cartPage.assertions().assertProductsInformation(IPodShuffleProduct());
+        webSite.cartPage.assertions().assertProductsInformation(IPodShuffleProduct(), iPodNano());
     }
 
     @Test

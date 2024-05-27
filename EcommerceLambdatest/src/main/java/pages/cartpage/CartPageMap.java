@@ -38,15 +38,15 @@ public class CartPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='content']//tbody//td[contains(text(), '" + price + "')]"));
     }
 
-    public WebElement productQuantity(String cell) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//td[.//input[@class='" + cell + "']]//following-sibling::input"));
+    public WebElement productQuantity(ProductDetails expectedProduct) {
+        return waitAndFindElement(By.xpath("//div[@id='content']//td[contains(normalize-space(@class),'text-left')]//input[contains(normalize-space(@value),'" + expectedProduct.getQuantity() + "')]"));
     }
 
     public WebElement removedProduct(String product) {
         return waitAndFindElement(By.xpath("//div[@id='content']//p[contains(text(), '" + product + "')]"));
     }
 
-    public WebElement shoppingCartAmount(){
+    public WebElement shoppingCartAmount() {
         return waitAndFindElement(By.xpath("//div[@id='main-header']//span[contains(normalize-space(@class),'badge badge-pill badge-info cart-item-total')]"));
     }
 }

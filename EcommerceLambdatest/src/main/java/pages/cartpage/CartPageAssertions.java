@@ -29,8 +29,8 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
 
     private void assertProductQuantity(ProductDetails expectedProductInfo) {
         var messageQuantity = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
-                elementsT().productQuantity("form-control").getAttribute("value"), expectedProductInfo.getQuantity());
-        Assertions.assertEquals(elementsT().productQuantity("form-control").getAttribute("value"), expectedProductInfo.getQuantity(), messageQuantity);
+                elementsT().productQuantity(expectedProductInfo).getAttribute("value"), expectedProductInfo.getQuantity());
+        Assertions.assertEquals(elementsT().productQuantity(expectedProductInfo).getAttribute("value"), expectedProductInfo.getQuantity(), messageQuantity);
     }
 
     private void assertProductUnitPrice(ProductDetails expectedProductInfo) {
@@ -59,7 +59,6 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
                         () -> assertProductTotalPrice(expectedProduct)
                 ));
 
-        //removeProduct();
         waitForAjax();
     }
 
@@ -79,12 +78,6 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
 
         Assertions.assertEquals(elementsT().updateQuantityField().getAttribute("value"), expectedQuantity, successfullyUpdateQuantityMessage);
 
-       // removeProduct();
         waitForAjax();
-    }
-
-    private void removeProduct() {
-        waitForAjax();
-        elementsT().removeButton().click();
     }
 }
