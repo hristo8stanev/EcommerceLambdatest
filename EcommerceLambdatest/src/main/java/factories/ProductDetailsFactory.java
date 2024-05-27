@@ -4,7 +4,6 @@ import pages.productpage.ProductDetails;
 
 public class ProductDetailsFactory {
 
-
     public static ProductDetails NikonProduct() {
         var productDetails = new ProductDetails();
         productDetails.name = "Nikon D300";

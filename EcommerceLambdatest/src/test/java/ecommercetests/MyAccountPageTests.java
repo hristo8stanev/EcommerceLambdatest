@@ -108,5 +108,4 @@ public class MyAccountPageTests extends BaseTest {
         webSite.myAccountPage.assertions().assertCustomerNameCorrect(personalInformation);
         webSite.myAccountPage.assertions().assertThePurchaseDateToday();
     }
-
 }

@@ -16,10 +16,10 @@ public class CheckoutPageTests extends BaseTest {
     public void checkout_when_loginUserTypeSelected_and_1productPurchased_and_paymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateLoginCheckout(EMAIL_ADDRESS, PASSWORD);
-        var checkoutInformation = CheckoutInformationFactory.build(IPodShuffleProduct());
+        var checkoutInformation = CheckoutInformationFactory.build(HtcTouch());
 
         webSite.checkoutPage.navigate();
-        webSite.mainHeader.addProductToCard(IPodShuffleProduct());
+        webSite.mainHeader.addProductToCard(HtcTouch());
         webSite.checkoutPage.navigate();
         webSite.checkoutPage.loginUser(personalInformation);
 
@@ -33,7 +33,7 @@ public class CheckoutPageTests extends BaseTest {
         webSite.checkoutPage.proceedToCheckout();
 
         webSite.checkoutPage.assertions().assertConfirmButtonDisplayed();
-        webSite.checkoutPage.assertions().assertProductInformationConfirmOrder(IPodShuffleProduct());
+        webSite.checkoutPage.assertions().assertProductInformationConfirmOrder(HtcTouch());
         //The assertion failed because there is a bug in this step. On the checkout/checkout page and checkout/confirm page, the prices are different.
         //Expected: "$150.00"
         //But was:  "$182.00"
@@ -80,43 +80,14 @@ public class CheckoutPageTests extends BaseTest {
 
     //GUEST USER
     @Test
-    public void checkout_When_GuestUserTypeSelected_And_1ProductPurchased_And_PaymentConfirmed() {
+    public void checkout_when_guestUserTypeSelected_and_1productPurchased_and_paymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateGuestCheckout();
-        var checkoutInformation = CheckoutInformationFactory.build(IPodShuffleProduct());
+        var checkoutInformation = CheckoutInformationFactory.build(HtcTouch());
 
         webSite.checkoutPage.navigate();
-        webSite.mainHeader.addProductToCard(IPodShuffleProduct());
-        webSite.checkoutPage.navigate();
-        webSite.checkoutPage.fillBillingNewUserDetails(personalInformation);
-        webSite.checkoutPage.fillBillingAddress(billingDetails);
-
-        webSite.checkoutPage.assertions().assertCheckoutInformation(checkoutInformation);
-
-        webSite.checkoutPage.proceedToCheckout();
-
-        webSite.checkoutPage.assertions().assertConfirmButtonDisplayed();
-        webSite.checkoutPage.assertions().assertProductInformationConfirmOrder(IPodShuffleProduct());
-        //The assertion failed because there is a bug in this step. On the checkout/checkout page and checkout/confirm page, the prices are different.
-        //Expected: "$150.00"
-        //But was:  "$182.00"
-        webSite.checkoutPage.confirmOrder();
-
-        webSite.successfulOrderPage.assertions().assertSuccessfullyCheckoutOrder();
-        webSite.successfulOrderPage.assertUrlPage();
-    }
-
-    @Test
-    public void checkout_When_GuestUserTypeSelected_And_2ProductPurchased_And_PaymentConfirmed() {
-        var billingDetails = CustomerFactory.GenerateBillingAddress();
-        var personalInformation = CustomerFactory.GenerateGuestCheckout();
-        var checkoutInformation = CheckoutInformationFactory.build(HtcTouch(), IPodShuffleProduct());
-
-        webSite.checkoutPage.navigate();
-        webSite.mainHeader.addProductToCard(IPodShuffleProduct());
         webSite.mainHeader.addProductToCard(HtcTouch());
         webSite.checkoutPage.navigate();
-
         webSite.checkoutPage.fillBillingNewUserDetails(personalInformation);
         webSite.checkoutPage.fillBillingAddress(billingDetails);
 
@@ -126,6 +97,35 @@ public class CheckoutPageTests extends BaseTest {
 
         webSite.checkoutPage.assertions().assertConfirmButtonDisplayed();
         webSite.checkoutPage.assertions().assertProductInformationConfirmOrder(HtcTouch());
+        //The assertion failed because there is a bug in this step. On the checkout/checkout page and checkout/confirm page, the prices are different.
+        //Expected: "$146.00"
+        //But was:  "$120.00"
+        webSite.checkoutPage.confirmOrder();
+
+        webSite.successfulOrderPage.assertions().assertSuccessfullyCheckoutOrder();
+        webSite.successfulOrderPage.assertUrlPage();
+    }
+
+    @Test
+    public void checkout_when_guestUserTypeSelected_and_2productPurchased_and_paymentConfirmed() {
+        var billingDetails = CustomerFactory.GenerateBillingAddress();
+        var personalInformation = CustomerFactory.GenerateGuestCheckout();
+        var checkoutInformation = CheckoutInformationFactory.build(iPodNano(), SamsungSyncMaster());
+
+        webSite.checkoutPage.navigate();
+        webSite.mainHeader.addProductToCard(SamsungSyncMaster());
+        webSite.mainHeader.addProductToCard(iPodNano());
+        webSite.checkoutPage.navigate();
+
+        webSite.checkoutPage.fillBillingNewUserDetails(personalInformation);
+        webSite.checkoutPage.fillBillingAddress(billingDetails);
+
+        webSite.checkoutPage.assertions().assertCheckoutInformation(checkoutInformation);
+
+        webSite.checkoutPage.proceedToCheckout();
+
+        webSite.checkoutPage.assertions().assertConfirmButtonDisplayed();
+        webSite.checkoutPage.assertions().assertProductInformationConfirmOrder(iPodNano(), SamsungSyncMaster());
         //The assertion failed because there is a bug in this step. On the checkout/checkout page and checkout/confirm page, the prices are different.
         //Expected: "$120.00
         //But was:  "$146.00
@@ -139,7 +139,7 @@ public class CheckoutPageTests extends BaseTest {
 
     //REGISTER USER
     @Test
-    public void checkout_When_RegisterUserTypeSelected_And_1ProductPurchased_And_PaymentConfirmed() {
+    public void checkout_when_registerUserTypeSelected_And_1productPurchased_and_paymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateRegisterAccount();
         var checkoutInformation = CheckoutInformationFactory.build(HtcTouch());
@@ -167,7 +167,7 @@ public class CheckoutPageTests extends BaseTest {
     }
 
     @Test
-    public void checkout_When_RegisterUserTypeSelected_And_2ProductPurchased_And_PaymentConfirmed() {
+    public void checkout_when_registerUserTypeSelected_and_2productPurchased_and_paymentConfirmed() {
         var billingDetails = CustomerFactory.GenerateBillingAddress();
         var personalInformation = CustomerFactory.GenerateRegisterAccount();
         var checkoutInformation = CheckoutInformationFactory.build(HtcTouch(), IPodShuffleProduct());

@@ -28,6 +28,7 @@ public class CustomerFactory {
 
     public static PersonalInformation GenerateRegisterAccountWithEmptyEmail() {
         return GenerateCorePersonalInformation()
+                .accountType(AccountType.REGISTER)
                 .email("")
                 .password(faker.internet().password())
                 .build();
@@ -42,7 +43,7 @@ public class CustomerFactory {
     public static PersonalInformation GenerateRegisterAccount() {
         return GenerateCorePersonalInformation()
                 .accountType(AccountType.REGISTER)
-                .password(faker.internet().password())
+                //.password(faker.internet().password())
                 .build();
     }
 

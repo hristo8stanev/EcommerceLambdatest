@@ -56,10 +56,12 @@ public class CheckoutInformation {
         if (products == null) {
             return 0.0;
         }
+        
         return products.stream().mapToDouble(ProductDetails::getTotal).sum();
     }
 
     public double getVatTax() {
+
         return Math.ceil(getSubTotal() * 0.20 + 1);
     }
 

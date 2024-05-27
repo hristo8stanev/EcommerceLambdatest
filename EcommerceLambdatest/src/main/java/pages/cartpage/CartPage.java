@@ -1,9 +1,6 @@
 package pages.cartpage;
 
 import core.basepage.WebPage;
-import pages.productpage.ProductDetails;
-
-import java.time.Duration;
 
 import static core.driver.Driver.*;
 
@@ -25,10 +22,18 @@ public class CartPage extends WebPage<CartPageMap, CartPageAssertions> {
     public void removeProductFromCart() {
         elements().scrollToVisible(elements().shoppingCartAmount());
 
-        while (Integer.parseInt(elements().shoppingCartAmount().getText()) > Integer.parseInt("1")) {
-            elements().scrollToVisible(elements().removeButton());
-            elements().removeButton().click();
-            waitForAjax();
+        while (isCartEmpty()) {
+            clickOnFirstRemoveButton();
         }
+    }
+
+    public boolean isCartEmpty() {
+        return !elements().shoppingCartAmount().getText().equals("0");
+    }
+
+    private void clickOnFirstRemoveButton() {
+        elements().scrollToVisible(elements().removeButton());
+        elements().removeButton().click();
+        waitForAjax();
     }
 }
