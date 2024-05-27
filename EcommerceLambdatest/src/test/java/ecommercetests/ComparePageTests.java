@@ -5,7 +5,7 @@ import factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static factories.ProductsFactory.*;
+import static factories.ProductDetailsFactory.*;
 
 public class ComparePageTests extends BaseTest {
 

@@ -13,6 +13,7 @@ import java.util.Arrays;
 
 import static constants.Constants.*;
 import static core.basepage.WebPage.getNumberFormat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
 
@@ -56,34 +57,56 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
         Assertions.assertEquals(String.format("$%.2f", expectedProduct.getTotal()), elementsT().productTotalPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), totalPriceMessage);
     }
 
-    public void assertProductInformationConfirmOrder(ProductDetails expectedProductInfo) {
+
+    private void assertProductName(ProductDetails expectedProductInfo) {
         String nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s",
                 ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderProductName("text-left", expectedProductInfo.getName()).getText(),
                 expectedProductInfo.getName()
         );
 
+        Assertions.assertEquals(expectedProductInfo.getName(), elementsT().confirmOrderProductName("text-left", expectedProductInfo.getName()).getText(), nameMessage);
+    }
+
+    private void assertProductModel(ProductDetails expectedProductInfo) {
         String modelMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s",
                 ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderInformation("text-left", expectedProductInfo.getModel()).getText(),
                 expectedProductInfo.getModel()
         );
 
+        Assertions.assertEquals(expectedProductInfo.getModel(), elementsT().confirmOrderInformation("text-left", expectedProductInfo.getModel()).getText(), modelMessage);
+    }
+
+    private void assertProductQuantity(ProductDetails expectedProductInfo) {
         String quantityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderQuantityElement(expectedProductInfo.getModel()).getText(), expectedProductInfo.getQuantity()
         );
 
+        Assertions.assertEquals(expectedProductInfo.getQuantity(), elementsT().confirmOrderQuantityElement(expectedProductInfo.getModel()).getText(), quantityMessage);
+    }
+
+    private void assertProductPrice(ProductDetails expectedProductInfo) {
         String priceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s",
                 ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderPriceElement(expectedProductInfo.getQuantity()).getText(),
                 expectedProductInfo.getUnitPrice()
         );
 
-        Assertions.assertEquals(expectedProductInfo.getName(), elementsT().confirmOrderProductName("text-left", expectedProductInfo.getName()).getText(), nameMessage);
-        Assertions.assertEquals(expectedProductInfo.getModel(), elementsT().confirmOrderInformation("text-left", expectedProductInfo.getModel()).getText(), modelMessage);
-        Assertions.assertEquals(expectedProductInfo.getQuantity(), elementsT().confirmOrderQuantityElement(expectedProductInfo.getModel()).getText(), quantityMessage);
         Assertions.assertEquals(expectedProductInfo.getUnitPrice(), elementsT().confirmOrderPriceElement(expectedProductInfo.getQuantity()).getText(), priceMessage);
     }
+
+    public void assertProductInformationConfirmOrder(ProductDetails... expectedProducts) {
+
+        Arrays.stream(expectedProducts).toList()
+                .forEach(expectedProduct -> assertAll(
+                        () -> assertProductName(expectedProduct),
+                        () -> assertProductModel(expectedProduct),
+                        () -> assertProductQuantity(expectedProduct),
+                        () -> assertProductPrice(expectedProduct)
+                ));
+    }
+
 
     private void assertProductSubTotalPrice(CheckoutInformation... expectedProducts) {
         waitForAjax();

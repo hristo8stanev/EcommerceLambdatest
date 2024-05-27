@@ -2,101 +2,98 @@ package ecommercetests;
 
 import core.BaseTest;
 import factories.CustomerFactory;
-import factories.ProductInformationFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static factories.ProductsFactory.*;
+import static factories.ProductDetailsFactory.*;
 
 public class CartPageTests extends BaseTest {
 
     @Test
-    public void addTwoProductToCart_When_AuthenticatedUserAddsProductsToCart_And_ProductDetailsCorrect() {
+    public void addTwoProductToCart_when_authenticatedUserAddsProductsToCart_and_productDetailsCorrect() {
         var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-        var productDetails = ProductInformationFactory.build(NikonProduct());
 
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
+        webSite.mainHeader.addProductToCard(iPodNano());
         webSite.mainHeader.addProductToCard(IPodShuffleProduct());
-        // webSite.mainHeader.addProductToCard(SamsungSyncMaster());
-        // webSite.mainHeader.addProductToCard(HtcTouch());
         webSite.cartPage.navigate();
 
         webSite.cartPage.assertUrlPage();
-        webSite.cartPage.assertions().assertProductsInformation(productDetails);
-
-        //webSite.cartPage.assertions().assertProductName(HtcTouch());
-        //webSite.cartPage.assertions().assertProductName(SamsungSyncMaster());
-        //webSite.cartPage.assertions().assertProductInformation(HtcTouch());
-        //webSite.cartPage.assertions().assertProductInformation(SamsungSyncMaster());
+        webSite.cartPage.assertions().assertProductsInformation(IPodShuffleProduct());
     }
 
-    //  @Test
-    //  public void updateTheQuantityTheProducts_When_AuthenticatedUserUpdatesProductQuantityInCart_And_QuantityIsUpdatedCorrectly() {
-    //      var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-    //      var productDetails = ProductInformationFactory.build(iPodNano());
-//
-    //      webSite.loginPage.navigate();
-    //      webSite.loginPage.loginUser(loginUser);
-    //      webSite.mainHeader.addProductToCard(iPodNano());
-    //      webSite.cartPage.navigate();
-//
-    //      webSite.cartPage.assertUrlPage();
-    //      webSite.cartPage.assertions().assertProductName(iPodNano());
-//
-    //      webSite.cartPage.updateQuantity(UPDATE_QUANTITY);
-//
-    //      webSite.cartPage.assertions().assertSuccessfullyUpdatedQuantity(UPDATE_QUANTITY);
-    //  }
-//
-    //  @Test
-    //  public void removeProductFromTheShoppingCart_When_AuthenticatedUserRemovesProductFromCart_And_ProductIsSuccessfullyRemoved() {
-    //      var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-//
-    //      webSite.loginPage.navigate();
-    //      webSite.loginPage.loginUser(loginUser);
-    //      webSite.mainHeader.addProductToCard(HtcTouch());
-    //      webSite.cartPage.navigate();
-    //      webSite.cartPage.removeProductFromCart();
-//
-    //      webSite.cartPage.assertUrlPage();
-    //      webSite.cartPage.assertions().assertProductRemoved();
-    //  }
-//
-    //  @Test
-    //  public void addProductToTheShopping_NonAuthenticatedUserAddsProductToCart_And_ProductIsAddedSuccessfully() {
-    //      webSite.cartPage.navigate();
-    //      webSite.mainHeader.addProductToCard(SamsungSyncMaster());
-    //      webSite.cartPage.navigate();
-//
-    //      webSite.cartPage.assertUrlPage();
-    //      webSite.cartPage.assertions().assertProductName(SamsungSyncMaster());
-    //      webSite.cartPage.assertions().assertProductInformation(SamsungSyncMaster());
-    //  }
-//
-    //  @Test
-    //  public void updateTheQuantityOfTheProducts_When_NonAuthenticatedUserUpdatesProductQuantityInCart_And_QuantityIsUpdatedCorrectly() {
-    //      webSite.cartPage.navigate();
-    //      webSite.mainHeader.addProductToCard(iPodNano());
-    //      webSite.cartPage.navigate();
-//
-    //      webSite.cartPage.assertUrlPage();
-//
-    //      webSite.cartPage.updateQuantity(UPDATE_QUANTITY);
-    //      webSite.cartPage.assertions().assertSuccessfullyUpdatedQuantity(UPDATE_QUANTITY);
-    //  }
-//
-    //  @Test
-    //  public void removeProductTheShoppingCart_When_NonAuthenticatedUserRemovesProductFromCart_And_ProductIsSuccessfullyRemoved() {
-    //      webSite.cartPage.navigate();
-    //      webSite.mainHeader.addProductToCard(HtcTouch());
-    //      webSite.cartPage.navigate();
-//
-    //      webSite.cartPage.assertUrlPage();
-//
-    //      webSite.cartPage.removeProductFromCart();
-//
-    //      webSite.cartPage.assertUrlPage();
-    //      webSite.cartPage.assertions().assertProductRemoved();
-    //  }
+    @Test
+    public void updateTheQuantityTheProducts_when_authenticatedUserUpdatesProductQuantityInCart_and_quantityIsUpdatedCorrectly() {
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
+
+        webSite.loginPage.navigate();
+        webSite.loginPage.loginUser(loginUser);
+        webSite.mainHeader.addProductToCard(iPodNano());
+        webSite.cartPage.navigate();
+
+        webSite.cartPage.assertUrlPage();
+        webSite.cartPage.assertions().assertProductName(iPodNano());
+
+        webSite.cartPage.updateQuantity(UPDATE_QUANTITY);
+
+        webSite.cartPage.assertions().assertSuccessfullyUpdatedQuantity(UPDATE_QUANTITY);
+    }
+
+    @Test
+    public void removeProductFromTheShoppingCart_when_authenticatedUserRemovesProductFromCart_and_productIsSuccessfullyRemoved() {
+        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
+
+        webSite.loginPage.navigate();
+        webSite.loginPage.loginUser(loginUser);
+        webSite.mainHeader.addProductToCard(HtcTouch());
+        webSite.cartPage.navigate();
+        webSite.cartPage.removeProductFromCart();
+
+        webSite.cartPage.assertUrlPage();
+        webSite.cartPage.assertions().assertProductRemoved(HtcTouch());
+    }
+
+    @Test
+    public void addProductToTheShopping_nonAuthenticatedUserAddsProductToCart_and_productIsAddedSuccessfully() {
+        webSite.cartPage.navigate();
+        webSite.mainHeader.addProductToCard(SamsungSyncMaster());
+        webSite.cartPage.navigate();
+
+        webSite.cartPage.assertUrlPage();
+        webSite.cartPage.assertions().assertProductsInformation(SamsungSyncMaster());
+    }
+
+    @Test
+    public void updateTheQuantityOfTheProducts_when_nonAuthenticatedUserUpdatesProductQuantityInCart_and_quantityIsUpdatedCorrectly() {
+        webSite.cartPage.navigate();
+        webSite.mainHeader.addProductToCard(iPodNano());
+        webSite.cartPage.navigate();
+
+        webSite.cartPage.assertUrlPage();
+
+        webSite.cartPage.updateQuantity(UPDATE_QUANTITY);
+
+        webSite.cartPage.assertions().assertSuccessfullyUpdatedQuantity(UPDATE_QUANTITY);
+
+    }
+
+    @Test
+    public void removeProductTheShoppingCart_when_nonAuthenticatedUserRemovesProductFromCart_and_productIsSuccessfullyRemoved() {
+        webSite.cartPage.navigate();
+        webSite.mainHeader.addProductToCard(HtcTouch());
+        webSite.cartPage.navigate();
+
+        webSite.cartPage.assertUrlPage();
+
+        webSite.cartPage.removeProductFromCart();
+
+        webSite.cartPage.assertions().assertProductRemoved(HtcTouch());
+    }
+
+    @AfterEach
+    public void cleanData() {
+        webSite.cartPage.removeProductFromCart();
+    }
 }

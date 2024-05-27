@@ -6,8 +6,7 @@ import factories.GiftCertificateFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static factories.ProductsFactory.IPodShuffleProduct;
-import static factories.ProductsFactory.iPodNano;
+import static factories.ProductDetailsFactory.IPodShuffleProduct;
 
 public class MyAccountPageTests extends BaseTest {
 

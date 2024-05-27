@@ -45,4 +45,8 @@ public class CartPageMap extends BaseMap {
     public WebElement removedProduct(String product) {
         return waitAndFindElement(By.xpath("//div[@id='content']//p[contains(text(), '" + product + "')]"));
     }
+
+    public WebElement shoppingCartAmount(){
+        return waitAndFindElement(By.xpath("//div[@id='main-header']//span[contains(normalize-space(@class),'badge badge-pill badge-info cart-item-total')]"));
+    }
 }

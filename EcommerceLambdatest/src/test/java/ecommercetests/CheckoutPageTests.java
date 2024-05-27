@@ -4,9 +4,10 @@ import core.BaseTest;
 import factories.CheckoutInformationFactory;
 import factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
+import pages.cartpage.CheckoutInformation;
 
 import static constants.Constants.*;
-import static factories.ProductsFactory.*;
+import static factories.ProductDetailsFactory.*;
 
 public class CheckoutPageTests extends BaseTest {
 

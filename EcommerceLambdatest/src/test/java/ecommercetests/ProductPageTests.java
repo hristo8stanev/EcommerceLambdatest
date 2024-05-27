@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import static constants.Constants.EMAIL_ADDRESS;
 import static constants.Constants.PASSWORD;
-import static factories.ProductsFactory.AppleProduct;
-import static factories.ProductsFactory.HtcTouch;
+import static factories.ProductDetailsFactory.AppleProduct;
+import static factories.ProductDetailsFactory.HtcTouch;
 
 public class ProductPageTests extends BaseTest {
 

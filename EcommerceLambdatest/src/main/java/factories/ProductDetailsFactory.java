@@ -2,7 +2,7 @@ package factories;
 
 import pages.productpage.ProductDetails;
 
-public class ProductsFactory {
+public class ProductDetailsFactory {
 
 
     public static ProductDetails NikonProduct() {

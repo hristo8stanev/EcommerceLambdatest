@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import pages.productpage.ProductDetails;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
 
 import static constants.Constants.*;
 
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class CartPageAssertions extends BaseAssertions<CartPageMap> {
 
-    private void assertProductName(ProductDetails expectedProduct) {
+    public void assertProductName(ProductDetails expectedProduct) {
         var messageName = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productNameElement(expectedProduct).getText(), expectedProduct.getName());
         Assertions.assertEquals(elementsT().productNameElement(expectedProduct).getText(), expectedProduct.getName(), messageName);
@@ -47,22 +48,23 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
         Assertions.assertEquals(elementsT().productTotalPriceElement(String.valueOf(expectedProductInfo.getTotal())).getText(), expectedTotalFormatted, totalPriceMessage);
     }
 
-    public void assertProductsInformation(ProductDetails expectedProduct) {
-        assertAll(
-                () -> assertProductName(expectedProduct),
-                () -> assertProductModel(expectedProduct),
-                () -> assertProductQuantity(expectedProduct),
-                () -> assertProductUnitPrice(expectedProduct),
-                () -> assertProductTotalPrice(expectedProduct)
-        );
+    public void assertProductsInformation(ProductDetails... expectedProducts) {
 
-        elementsT().removeButton().click();
+        Arrays.stream(expectedProducts).toList()
+                .forEach(expectedProduct -> assertAll(
+                        () -> assertProductName(expectedProduct),
+                        () -> assertProductModel(expectedProduct),
+                        () -> assertProductQuantity(expectedProduct),
+                        () -> assertProductUnitPrice(expectedProduct),
+                        () -> assertProductTotalPrice(expectedProduct)
+                ));
+
+        //removeProduct();
         waitForAjax();
     }
 
-    public void assertProductRemoved() {
-        var expectedProductInfo = new ProductDetails();
-        var errorMessageRemovedProduct = String.format("The product %s is still present in the Shopping Cart.", expectedProductInfo.getName());
+    public void assertProductRemoved(ProductDetails product) {
+        var errorMessageRemovedProduct = String.format("The product %s is still present in the Shopping Cart.", product.getName());
         var expectedMessage = "Your shopping cart is empty!";
 
         var removedProductMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", errorMessageRemovedProduct,
@@ -77,7 +79,12 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
 
         Assertions.assertEquals(elementsT().updateQuantityField().getAttribute("value"), expectedQuantity, successfullyUpdateQuantityMessage);
 
-        elementsT().removeButton().click();
+       // removeProduct();
         waitForAjax();
+    }
+
+    private void removeProduct() {
+        waitForAjax();
+        elementsT().removeButton().click();
     }
 }

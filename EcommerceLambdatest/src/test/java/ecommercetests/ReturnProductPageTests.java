@@ -5,7 +5,7 @@ import factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static factories.ProductsFactory.iPodNano;
+import static factories.ProductDetailsFactory.iPodNano;
 
 public class ReturnProductPageTests extends BaseTest {
     @Test
