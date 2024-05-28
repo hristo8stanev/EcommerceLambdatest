@@ -11,7 +11,7 @@ public class ProductDetailsFactory {
         productDetails.weight = "0.00kg";
         productDetails.id = 63;
         productDetails.availability = "In Stock";
-        productDetails.unitPrice = "$80.00";
+        productDetails.unitPrice = "$98.00";
         productDetails.model = "Product 4";
         productDetails.quantity = "4";
         var parsedQuantity = ParseQuantity(productDetails);
@@ -28,7 +28,7 @@ public class ProductDetailsFactory {
         productDetails.weight = "146.40g";
         productDetails.id = 28;
         productDetails.availability = "In Stock";
-        productDetails.unitPrice = "$120.00";
+        productDetails.unitPrice = "$146.00";
         productDetails.model = "Product 1";
         productDetails.quantity = "3";
         var parsedQuantity = ParseQuantity(productDetails);

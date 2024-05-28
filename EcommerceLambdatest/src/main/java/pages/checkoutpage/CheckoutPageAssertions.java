@@ -29,36 +29,51 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
         Assertions.assertEquals(elementsT().successfullyConfirmOrderText().getText(), expectedMessage, successfullyCheckoutOrderMessage);
     }
 
-    public void assertProductInformationCorrect(ProductDetails expectedProduct) {
-
+    private void assertProductNameCheckoutPage(ProductDetails expectedProduct) {
         String nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(),
                 expectedProduct.getName()
         );
+        Assertions.assertEquals(expectedProduct.getName(), elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), nameMessage);
+    }
 
+    private void assertProductQuantityCheckoutPage(ProductDetails expectedProduct) {
         String quantityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productQuantityElement(expectedProduct.getId(), expectedProduct.getName()).getAttribute("value"),
                 expectedProduct.getQuantity()
         );
+        Assertions.assertEquals(expectedProduct.getQuantity(), elementsT().productQuantityElement(expectedProduct.getId(), expectedProduct.getName()).getAttribute("value"), quantityMessage);
+    }
 
+    private void assertProductUnitPriceCheckoutPage(ProductDetails expectedProduct) {
         String unitPriceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productPriceElement("text-right", expectedProduct.getUnitPrice()).getText(),
                 expectedProduct.getUnitPrice()
         );
 
+        Assertions.assertEquals(expectedProduct.getUnitPrice(), elementsT().productPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), unitPriceMessage);
+    }
+
+    private void assertProductTotalPriceCheckoutPage(ProductDetails expectedProduct) {
         String totalPriceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION,
                 elementsT().productTotalPriceElement("text-right", expectedProduct.getUnitPrice()).getText(),
                 String.format("%.2f", expectedProduct.getTotal())
         );
 
-        Assertions.assertEquals(expectedProduct.getName(), elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), nameMessage);
-        Assertions.assertEquals(expectedProduct.getQuantity(), elementsT().productQuantityElement(expectedProduct.getId(), expectedProduct.getName()).getAttribute("value"), quantityMessage);
-        Assertions.assertEquals(expectedProduct.getUnitPrice(), elementsT().productPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), unitPriceMessage);
         Assertions.assertEquals(String.format("$%.2f", expectedProduct.getTotal()), elementsT().productTotalPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), totalPriceMessage);
     }
 
+    public void assertProductInformationCheckoutPage(ProductDetails... expectedProducts) {
+        Arrays.stream(expectedProducts).toList()
+                .forEach(expectedProduct -> assertAll(
+                        () -> assertProductNameCheckoutPage(expectedProduct),
+                        () -> assertProductQuantityCheckoutPage(expectedProduct),
+                        () -> assertProductUnitPriceCheckoutPage(expectedProduct),
+                        () -> assertProductTotalPriceCheckoutPage(expectedProduct)
+                ));
+    }
 
-    private void assertProductName(ProductDetails expectedProductInfo) {
+    private void assertProductNameConfirmPage(ProductDetails expectedProductInfo) {
         String nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s",
                 ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderProductName("text-left", expectedProductInfo.getName()).getText(),
@@ -68,7 +83,7 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
         Assertions.assertEquals(expectedProductInfo.getName(), elementsT().confirmOrderProductName("text-left", expectedProductInfo.getName()).getText(), nameMessage);
     }
 
-    private void assertProductModel(ProductDetails expectedProductInfo) {
+    private void assertProductModelConfirmPage(ProductDetails expectedProductInfo) {
         String modelMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s",
                 ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderInformation("text-left", expectedProductInfo.getModel()).getText(),
@@ -78,7 +93,7 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
         Assertions.assertEquals(expectedProductInfo.getModel(), elementsT().confirmOrderInformation("text-left", expectedProductInfo.getModel()).getText(), modelMessage);
     }
 
-    private void assertProductQuantity(ProductDetails expectedProductInfo) {
+    private void assertProductQuantityConfirmPage(ProductDetails expectedProductInfo) {
         String quantityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderQuantityElement(expectedProductInfo.getModel()).getText(), expectedProductInfo.getQuantity()
         );
@@ -86,7 +101,7 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
         Assertions.assertEquals(expectedProductInfo.getQuantity(), elementsT().confirmOrderQuantityElement(expectedProductInfo.getModel()).getText(), quantityMessage);
     }
 
-    private void assertProductPrice(ProductDetails expectedProductInfo) {
+    private void assertProductPriceConfirmPage(ProductDetails expectedProductInfo) {
         String priceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s",
                 ERROR_MESSAGE_PRODUCT,
                 elementsT().confirmOrderPriceElement(expectedProductInfo.getQuantity()).getText(),
@@ -97,16 +112,14 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
     }
 
     public void assertProductInformationConfirmOrder(ProductDetails... expectedProducts) {
-
         Arrays.stream(expectedProducts).toList()
                 .forEach(expectedProduct -> assertAll(
-                        () -> assertProductName(expectedProduct),
-                        () -> assertProductModel(expectedProduct),
-                        () -> assertProductQuantity(expectedProduct),
-                        () -> assertProductPrice(expectedProduct)
+                        () -> assertProductNameConfirmPage(expectedProduct),
+                        () -> assertProductModelConfirmPage(expectedProduct),
+                        () -> assertProductQuantityConfirmPage(expectedProduct),
+                        () -> assertProductPriceConfirmPage(expectedProduct)
                 ));
     }
-
 
     private void assertProductSubTotalPrice(CheckoutInformation... expectedProducts) {
         waitForAjax();
