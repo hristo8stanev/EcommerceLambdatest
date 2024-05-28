@@ -1,6 +1,7 @@
 package pages.wishlistpage;
 
 import core.basepage.WebPage;
+import pages.productpage.ProductDetails;
 
 import static core.driver.Driver.*;
 import static urls.Urls.WISHLIST_PAGE;
@@ -12,10 +13,12 @@ public class WishlistPage extends WebPage<WishlistPageMap, WishlistPageAssertion
         return WISHLIST_PAGE;
     }
 
-    public void addProductToWishList() {
-        elements().scrollToVisible(elements().wishListButton());
-        elements().wishListButton().click();
-        waitForAjax();
+    public void removeProductsById(ProductDetails... productIds) {
+        for (ProductDetails productId : productIds) {
+            elements().scrollToVisible(elements().removeFromWishList(productId));
+            elements().removeFromWishList(productId).click();
+            waitForAjax();
+        }
     }
 
     public void proceedToWishList() {

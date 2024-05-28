@@ -1,6 +1,7 @@
 package pages.comparisonpage;
 
 import core.basepage.WebPage;
+import pages.productpage.ProductDetails;
 
 import static core.driver.Driver.*;
 
@@ -13,10 +14,11 @@ public class ComparisonPage extends WebPage<ComparisonPageMap, ComparisonPageAss
         return COMPARISON_PAGE;
     }
 
-    public void compareProduct() {
-        elements().scrollToVisible(elements().compareProductButton());
-        elements().compareProductButton().click();
-        waitForAjax();
-        elements().compareButton().click();
+    public void removeProductsById(ProductDetails... productIds) {
+        for (ProductDetails productId : productIds) {
+            elements().scrollToVisible(elements().findRemoveLinkById(productId));
+            elements().findRemoveLinkById(productId).click();
+            waitForAjax();
+        }
     }
 }

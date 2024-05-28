@@ -7,16 +7,16 @@ import pages.productpage.ProductDetails;
 
 public class MainHeaderMap extends BaseMap {
 
-    public WebElement myAccount() {
-        return waitAndFindElement(By.xpath("//ul[@class='navbar-nav horizontal']//a[contains(@href, 'account/account')]"));
+    public WebElement compareButton() {
+        return waitAndFindElement(By.partialLinkText("Product Compare"));
     }
 
-    public WebElement registerButton() {
-        return waitAndFindElement(By.xpath("//div[@id='main-navigation']//a[contains(@href, 'account/register')]//following-sibling::span"));
+    public WebElement wishListButton() {
+        return waitAndFindElement(By.xpath("//div[@id='product-product']//button[contains(normalize-space(@title),'Add to Wish List')]"));
     }
 
-    public WebElement loginButton() {
-        return waitAndFindElement(By.xpath("(//div[@id='main-navigation']//a[contains(@href, 'account/login')]//following-sibling::span"));
+    public WebElement compareProductButton() {
+        return waitAndFindElement(By.xpath("//div[@id='product-product']//button[contains(normalize-space(@class), 'btn-compare')]"));
     }
 
     public WebElement searchField() {

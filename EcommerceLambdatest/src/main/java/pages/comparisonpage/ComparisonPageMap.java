@@ -3,19 +3,14 @@ package pages.comparisonpage;
 import core.basemap.BaseMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.productpage.ProductDetails;
+
+import java.util.Arrays;
 
 public class ComparisonPageMap extends BaseMap {
 
-    public WebElement compareButton() {
-        return waitAndFindElement(By.partialLinkText("Product Compare"));
-    }
-
-    public WebElement compareProductButton() {
-        return waitAndFindElement(By.xpath("//div[@id='product-product']//button[contains(normalize-space(@class), 'btn-compare')]"));
-    }
-
-    public WebElement removeFromCompareList(int id) {
-        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td//a[contains(@href, 'remove=" + id + "') and normalize-space()='Remove']"));
+    public WebElement findRemoveLinkById(ProductDetails expectedProduct) {
+        return waitAndFindElement(By.xpath("//div[@id='content']//tr//td//a[contains(@href, 'remove=" + expectedProduct.getId() + "') and normalize-space()='Remove']"));
     }
 
     public WebElement productElementInformation(String expectedElement) {

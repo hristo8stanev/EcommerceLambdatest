@@ -3,6 +3,7 @@ package pages.wishlistpage;
 import core.basemap.BaseMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.productpage.ProductDetails;
 
 public class WishlistPageMap extends BaseMap {
 
@@ -10,8 +11,9 @@ public class WishlistPageMap extends BaseMap {
         return waitAndFindElement(By.name("search"));
     }
 
-    public WebElement removeFromWishList() {
-        return waitAndFindElement(By.xpath("//div[@id='content']//td[contains(@class, 'text-right text-nowrap')]//a[contains(@href, 'account/wishlist&remove')]"));
+    public WebElement removeFromWishList(ProductDetails expectedProduct) {
+        return waitAndFindElement(By.xpath(
+                "//div[@id='content']//td[contains(@class, 'text-right text-nowrap')]//a[contains(normalize-space(@href), 'account/wishlist&remove=" + expectedProduct.getId() + "')]"));
     }
 
     public WebElement wishListSection() {
