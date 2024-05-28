@@ -1,4 +1,4 @@
-package factories;
+package websitedata.factories;
 
 import pages.cartpage.CheckoutInformation;
 import pages.productpage.ProductDetails;

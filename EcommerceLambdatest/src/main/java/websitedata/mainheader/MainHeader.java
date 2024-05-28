@@ -1,4 +1,4 @@
-package mainheader;
+package websitedata.mainheader;
 
 import core.basepage.WebPage;
 import pages.productpage.ProductDetails;

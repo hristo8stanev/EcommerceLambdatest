@@ -1,20 +1,36 @@
 package ecommercetests;
 
 import core.BaseTest;
-import factories.CustomerFactory;
-import factories.GiftCertificateFactory;
+import org.junit.jupiter.api.BeforeEach;
+import pages.cartpage.BillingInformation;
+import pages.myaccountpage.PurchaseGiftCertificate;
+import pages.registerpage.PersonalInformation;
+import websitedata.factories.CustomerFactory;
+import websitedata.factories.GiftCertificateFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static factories.ProductDetailsFactory.IPodShuffleProduct;
+import static websitedata.factories.ProductDetailsFactory.IPodShuffleProduct;
 
 public class MyAccountPageTests extends BaseTest {
 
-    @Test
-    public void editMyProfile_When_FirstNameLastNameEmailAddressAndTelephoneEdited_And_ContinueButtonClicked() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-        var myAccountInformation = CustomerFactory.GenerateRegisterAccount();
+    PersonalInformation loginUser;
+    PersonalInformation myAccountInformation;
+    PurchaseGiftCertificate giftCertificate;
+    PersonalInformation registerUser;
+    BillingInformation billingDetails;
 
+    @BeforeEach
+    public void setup() {
+        loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
+        myAccountInformation = CustomerFactory.GenerateRegisterAccount();
+        giftCertificate = GiftCertificateFactory.generateGiftCertificate();
+        registerUser = CustomerFactory.GenerateGuestCheckout();
+        billingDetails = CustomerFactory.GenerateBillingAddress();
+    }
+
+    @Test
+    public void editMyProfile_when_firstNameLastNameEmailAddressAndTelephoneEdited_and_continueButtonClicked() {
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
         webSite.myAccountPage.changeMyAccountInformation(myAccountInformation);
@@ -24,9 +40,7 @@ public class MyAccountPageTests extends BaseTest {
     }
 
     @Test
-    public void changeMyPassword_When_NewPasswordSet_And_ContinueButtonClicked() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-
+    public void changeMyPassword_when_newPasswordSet_and_continueButtonClicked() {
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
         webSite.myAccountPage.changeMyPassword();
@@ -36,67 +50,55 @@ public class MyAccountPageTests extends BaseTest {
     }
 
     @Test
-    public void purchaseGiftCertificate_When_AuthenticatedUser_VerifyGiftInShoppingCart() {
-        var gift = GiftCertificateFactory.generateGiftCertificate();
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-
+    public void purchaseGiftCertificate_when_authenticatedUser_verifyGiftInShoppingCart() {
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
         webSite.myAccountPage.proceedToMyVoucherSection();
-        webSite.myAccountPage.purchaseGiftCertificate(gift);
+        webSite.myAccountPage.purchaseGiftCertificate(giftCertificate);
 
         webSite.myAccountPage.assertions().assertSuccessfullyPurchaseGiftCertificate();
         webSite.successfulVoucherPage.assertUrlPage();
 
         webSite.cartPage.navigate();
-        webSite.myAccountPage.assertions().assertGiftCertificateAddedToShoppingCart(gift);
+        webSite.myAccountPage.assertions().assertGiftCertificateAddedToShoppingCart(giftCertificate);
     }
 
     @Test
-    public void removeGiftCertificate_When_AuthenticatedUser_And_RemovedGiftFromShoppingCart() {
-        var gift = GiftCertificateFactory.generateGiftCertificate();
-        var registerUser = CustomerFactory.GenerateGuestCheckout();
-
+    public void removeGiftCertificate_when_authenticatedUser_and_removedGiftFromShoppingCart() {
         webSite.registerPage.navigate();
         webSite.registerPage.createUser(registerUser);
         webSite.myAccountPage.proceedToMyVoucherSection();
-        webSite.myAccountPage.purchaseGiftCertificate(gift);
+        webSite.myAccountPage.purchaseGiftCertificate(giftCertificate);
 
         webSite.myAccountPage.assertions().assertSuccessfullyPurchaseGiftCertificate();
         webSite.successfulVoucherPage.assertUrlPage();
 
         webSite.cartPage.navigate();
-        webSite.myAccountPage.assertions().assertGiftCertificateAddedToShoppingCart(gift);
+        webSite.myAccountPage.assertions().assertGiftCertificateAddedToShoppingCart(giftCertificate);
         webSite.myAccountPage.removeProductFromCart();
-        webSite.myAccountPage.assertions().assertGiftCertificateRemoved(gift);
+        webSite.myAccountPage.assertions().assertGiftCertificateRemoved(giftCertificate);
     }
 
     @Test
-    public void addNewAddress_AddressAddedFromAddressBook_And_AuthenticatedUserProvidesDetails() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-        var newAddress = CustomerFactory.GenerateBillingAddress();
-
+    public void addNewAddress_addressAddedFromAddressBook_and_authenticatedUserProvidesDetails() {
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
         webSite.myAccountPage.proceedToAddressBookSection();
 
         webSite.newAddressPage.assertUrlPage();
 
-        webSite.myAccountPage.addNewAddress(newAddress);
+        webSite.myAccountPage.addNewAddress(billingDetails);
 
         webSite.myAccountPage.assertions().assertSuccessfullyAddedNewAddress();
         webSite.newAddressBookPage.assertUrlPage();
     }
 
     @Test
-    public void checkMyOrderHistory_When_AuthenticatedUserPurchasesProduct() {
-        var billingDetails = CustomerFactory.GenerateBillingAddress();
-        var personalInformation = CustomerFactory.GenerateRegisterAccount();
-
+    public void checkMyOrderHistory_when_authenticatedUserPurchasesProduct() {
         webSite.checkoutPage.navigate();
         webSite.mainHeader.addProductToCard(IPodShuffleProduct());
         webSite.checkoutPage.navigate();
-        webSite.checkoutPage.fillBillingNewUserDetails(personalInformation);
+        webSite.checkoutPage.fillBillingNewUserDetails(myAccountInformation);
         webSite.checkoutPage.fillBillingAddress(billingDetails);
         webSite.checkoutPage.proceedToCheckout();
         webSite.checkoutPage.confirmOrder();
@@ -105,7 +107,7 @@ public class MyAccountPageTests extends BaseTest {
 
         webSite.myAccountPage.proceedToOrderHistorySection();
 
-        webSite.myAccountPage.assertions().assertCustomerNameCorrect(personalInformation);
+        webSite.myAccountPage.assertions().assertCustomerNameCorrect(myAccountInformation);
         webSite.myAccountPage.assertions().assertThePurchaseDateToday();
     }
 }

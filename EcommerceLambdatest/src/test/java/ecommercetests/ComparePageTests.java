@@ -1,19 +1,28 @@
 package ecommercetests;
 
 import core.BaseTest;
-import factories.CustomerFactory;
+import org.junit.jupiter.api.BeforeEach;
+import pages.registerpage.PersonalInformation;
+import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static factories.ProductDetailsFactory.*;
+import static websitedata.factories.ProductDetailsFactory.*;
+
 
 public class ComparePageTests extends BaseTest {
+
+    PersonalInformation loginUser;
+
+    @BeforeEach
+    public void setup() {
+        loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
+        webSite.loginPage.navigate();
+    }
+
     //AUTHENTICATED USER
     @Test
     public void compare3products_when_3ProductsSelected_and_authenticatedUserProvided() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-        webSite.loginPage.navigate();
-
         webSite.loginPage.loginUser(loginUser);
         webSite.mainHeader.addProductToCompareList(IPodShuffleProduct());
         webSite.mainHeader.addProductToCompareList(SamsungSyncMaster());
@@ -29,8 +38,6 @@ public class ComparePageTests extends BaseTest {
     //NON-AUTHENTICATED USER
     @Test
     public void compare3products_when_3ProductsSelected_and_nonAuthenticatedUserProvided() {
-        webSite.comparisonPage.navigate();
-
         webSite.mainHeader.addProductToCompareList(IPodShuffleProduct());
         webSite.mainHeader.addProductToCompareList(SamsungSyncMaster());
         webSite.mainHeader.addProductToCompareList(iPodNano());

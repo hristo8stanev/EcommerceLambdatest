@@ -1,6 +1,6 @@
 package constants;
 
-import static factories.CustomerFactory.*;
+import static websitedata.factories.CustomerFactory.faker;
 
 public class Constants {
     public static final String EMAIL_ADDRESS = "qatest@gmail.com";

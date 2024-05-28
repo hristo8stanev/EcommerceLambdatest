@@ -1,21 +1,28 @@
 package ecommercetests;
 
 import core.BaseTest;
-import factories.CustomerFactory;
+import org.junit.jupiter.api.BeforeEach;
+import pages.registerpage.PersonalInformation;
+import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static factories.ProductDetailsFactory.*;
+import static websitedata.factories.ProductDetailsFactory.*;
 
 public class CartPageTests extends BaseTest {
 
+    PersonalInformation personalInformation;
+
+    @BeforeEach
+    public void setup() {
+        personalInformation = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
+        webSite.loginPage.navigate();
+    }
+
     @Test
     public void addTwoProductToCart_when_authenticatedUserAddsProductsToCart_and_productDetailsCorrect() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-
-        webSite.loginPage.navigate();
-        webSite.loginPage.loginUser(loginUser);
+        webSite.loginPage.loginUser(personalInformation);
         webSite.mainHeader.addProductToCard(iPodNano());
         webSite.mainHeader.addProductToCard(IPodShuffleProduct());
         webSite.cartPage.navigate();
@@ -26,10 +33,7 @@ public class CartPageTests extends BaseTest {
 
     @Test
     public void updateTheQuantityTheProducts_when_authenticatedUserUpdatesProductQuantityInCart_and_quantityIsUpdatedCorrectly() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-
-        webSite.loginPage.navigate();
-        webSite.loginPage.loginUser(loginUser);
+        webSite.loginPage.loginUser(personalInformation);
         webSite.mainHeader.addProductToCard(iPodNano());
         webSite.cartPage.navigate();
 
@@ -43,10 +47,7 @@ public class CartPageTests extends BaseTest {
 
     @Test
     public void removeProductFromTheShoppingCart_when_authenticatedUserRemovesProductFromCart_and_productIsSuccessfullyRemoved() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-
-        webSite.loginPage.navigate();
-        webSite.loginPage.loginUser(loginUser);
+        webSite.loginPage.loginUser(personalInformation);
         webSite.mainHeader.addProductToCard(HtcTouch());
         webSite.cartPage.navigate();
         webSite.cartPage.removeProductFromCart();
@@ -57,7 +58,6 @@ public class CartPageTests extends BaseTest {
 
     @Test
     public void addProductToTheShopping_nonAuthenticatedUserAddsProductToCart_and_productIsAddedSuccessfully() {
-        webSite.cartPage.navigate();
         webSite.mainHeader.addProductToCard(SamsungSyncMaster());
         webSite.cartPage.navigate();
 
@@ -67,7 +67,6 @@ public class CartPageTests extends BaseTest {
 
     @Test
     public void updateTheQuantityOfTheProducts_when_nonAuthenticatedUserUpdatesProductQuantityInCart_and_quantityIsUpdatedCorrectly() {
-        webSite.cartPage.navigate();
         webSite.mainHeader.addProductToCard(iPodNano());
         webSite.cartPage.navigate();
 
@@ -81,7 +80,6 @@ public class CartPageTests extends BaseTest {
 
     @Test
     public void removeProductTheShoppingCart_when_nonAuthenticatedUserRemovesProductFromCart_and_productIsSuccessfullyRemoved() {
-        webSite.cartPage.navigate();
         webSite.mainHeader.addProductToCard(HtcTouch());
         webSite.cartPage.navigate();
 

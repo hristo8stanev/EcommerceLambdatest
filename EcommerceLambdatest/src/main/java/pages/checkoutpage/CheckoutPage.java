@@ -7,7 +7,7 @@ import pages.registerpage.PersonalInformation;
 
 import static core.driver.Driver.*;
 
-import static factories.CustomerFactory.faker;
+import static websitedata.factories.CustomerFactory.faker;
 import static urls.Urls.CHECKOUT_PAGE;
 
 public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertions> {

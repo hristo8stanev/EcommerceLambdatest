@@ -1,9 +1,8 @@
-package mainheader;
+package websitedata.mainheader;
 
 import core.basemap.BaseMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import pages.productpage.ProductDetails;
 
 public class MainHeaderMap extends BaseMap {
 

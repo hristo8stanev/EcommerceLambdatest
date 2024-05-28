@@ -1,7 +1,7 @@
 package ecommercetests;
 
 import core.BaseTest;
-import factories.CustomerFactory;
+import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.EMAIL_ADDRESS;

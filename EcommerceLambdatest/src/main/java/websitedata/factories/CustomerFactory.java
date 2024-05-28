@@ -1,4 +1,4 @@
-package factories;
+package websitedata.factories;
 
 import com.github.javafaker.Faker;
 import enums.AccountType;
@@ -43,7 +43,6 @@ public class CustomerFactory {
     public static PersonalInformation GenerateRegisterAccount() {
         return GenerateCorePersonalInformation()
                 .accountType(AccountType.REGISTER)
-                //.password(faker.internet().password())
                 .build();
     }
 

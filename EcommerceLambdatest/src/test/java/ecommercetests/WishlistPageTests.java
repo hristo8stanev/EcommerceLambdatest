@@ -1,11 +1,11 @@
 package ecommercetests;
 
 import core.BaseTest;
-import factories.CustomerFactory;
+import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static factories.ProductDetailsFactory.*;
+import static websitedata.factories.ProductDetailsFactory.*;
 
 public class WishlistPageTests extends BaseTest {
 

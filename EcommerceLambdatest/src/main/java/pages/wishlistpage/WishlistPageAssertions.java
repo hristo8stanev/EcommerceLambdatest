@@ -38,6 +38,7 @@ public class WishlistPageAssertions extends BaseAssertions<WishlistPageMap> {
     }
 
     public void assertProductAddedToWishList(ProductDetails... expectedProducts) {
+
         Arrays.stream(expectedProducts).toList()
                 .forEach(expectedProduct -> assertAll(
                         () -> assertProductName(expectedProduct),

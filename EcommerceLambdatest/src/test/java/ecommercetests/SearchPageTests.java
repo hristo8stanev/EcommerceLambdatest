@@ -1,28 +1,26 @@
 package ecommercetests;
 
 import core.BaseTest;
-import factories.CustomerFactory;
+import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static factories.ProductDetailsFactory.*;
+import static websitedata.factories.ProductDetailsFactory.*;
 
 public class SearchPageTests extends BaseTest {
 
     @Test
-    public void searchExistingProductByName_When_NonAuthenticatedUserSearchesProducts()
-    {
+    public void searchExistingProductByName_When_NonAuthenticatedUserSearchesProducts() {
         webSite.searchPage.navigate();
         webSite.searchPage.assertUrlPage();
 
         webSite.mainHeader.searchProductByName(HtcTouch());
 
-        webSite.searchPage.assertions().assertTheProductNameAndPrice(HtcTouch());
+        webSite.searchPage.assertions().assertProducts(HtcTouch());
     }
 
     @Test
-    public void searchNonExistingProductByName_When_NonAuthenticatedUserSearchedProduct()
-    {
+    public void searchNonExistingProductByName_When_NonAuthenticatedUserSearchedProduct() {
         webSite.homePage.navigate();
         webSite.homePage.assertUrlPage();
 
@@ -31,8 +29,7 @@ public class SearchPageTests extends BaseTest {
     }
 
     @Test
-    public void filterProductByPrice_When_NonAuthenticatedUserFiltersProductsByPrice_And_ProductsAreFilteredCorrectly()
-    {
+    public void filterProductByPrice_When_NonAuthenticatedUserFiltersProductsByPrice_And_ProductsAreFilteredCorrectly() {
         webSite.searchPage.navigate();
         webSite.searchPage.assertUrlPage();
         webSite.searchPage.typeRangePrices(MIN_PRICE, MAX_PRICE);
@@ -41,8 +38,7 @@ public class SearchPageTests extends BaseTest {
     }
 
     @Test
-    public void filterProductByName_When_AuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly()
-    {
+    public void filterProductByName_When_AuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly() {
         var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
 
         webSite.loginPage.navigate();
@@ -53,18 +49,17 @@ public class SearchPageTests extends BaseTest {
 
         webSite.searchPage.searchProductByName(HtcTouch());
 
-        webSite.searchPage.assertions().assertTheProductNameAndPrice(HtcTouch());
+        webSite.searchPage.assertions().assertProducts(HtcTouch());
     }
 
     @Test
-    public void filterProductByName_When_NonAuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly()
-    {
-       webSite.searchPage.navigate();
+    public void filterProductByName_When_NonAuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly() {
+        webSite.searchPage.navigate();
 
-       webSite.searchPage.assertUrlPage();
+        webSite.searchPage.assertUrlPage();
 
-       webSite.searchPage.searchProductByName(HtcTouch());
+        webSite.searchPage.searchProductByName(HtcTouch());
 
-       webSite.searchPage.assertions().assertTheProductNameAndPrice(HtcTouch());
+        webSite.searchPage.assertions().assertProducts(HtcTouch());
     }
 }

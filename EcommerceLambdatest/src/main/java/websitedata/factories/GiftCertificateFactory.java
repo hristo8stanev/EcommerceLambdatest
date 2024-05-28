@@ -1,4 +1,4 @@
-package factories;
+package websitedata.factories;
 
 import com.github.javafaker.Faker;
 

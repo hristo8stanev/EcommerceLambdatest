@@ -1,6 +1,6 @@
 package core;
 
-import mainheader.MainHeader;
+import websitedata.mainheader.MainHeader;
 import org.openqa.selenium.WebDriver;
 
 import pages.cartpage.CartPage;
