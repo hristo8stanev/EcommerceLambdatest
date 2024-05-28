@@ -41,10 +41,13 @@ public abstract class BaseMap {
         element.sendKeys(text);
     }
 
-    public WebElement hover(WebElement element) {
+    public boolean isCartEmpty(WebElement element) {
+        return !element.getText().equals("0");
+    }
+
+    public void hover(WebElement element) {
         actions = new Actions(browser);
         actions.moveToElement(element).perform();
-        return element;
     }
 
     protected WebElement waitElementToBeClickable(By locator) {

@@ -1,28 +1,28 @@
 package core;
 
-import websitedata.mainheader.MainHeader;
+import website.mainheader.MainHeader;
 import org.openqa.selenium.WebDriver;
 
-import pages.cartpage.CartPage;
-import pages.checkoutpage.CheckoutPage;
-import pages.comparisonpage.ComparisonPage;
-import pages.forgotpasswordpage.ForgotPasswordPage;
-import pages.homepage.HomePage;
-import pages.loginpage.LoginPage;
-import pages.logoutpage.LogoutPage;
-import pages.myaccountpage.MyAccountPage;
-import pages.newaddressbookpage.NewAddressBookPage;
-import pages.newaddresspage.NewAddressPage;
-import pages.productpage.ProductPage;
-import pages.registerpage.RegisterPage;
-import pages.returnproductpage.ReturnProductPage;
-import pages.searchpage.SearchPage;
-import pages.searchproductpricerange.SearchProductPriceRange;
-import pages.successfulorderpage.SuccessfulOrderPage;
-import pages.successfulregisterpage.SuccessfulRegisterPage;
-import pages.successfulreturnproductpage.SuccessfulReturnProductPage;
-import pages.successfulvoucherpage.SuccessfulVoucherPage;
-import pages.wishlistpage.WishlistPage;
+import website.pages.cartpage.CartPage;
+import website.pages.checkoutpage.CheckoutPage;
+import website.pages.comparisonpage.ComparisonPage;
+import website.pages.forgotpasswordpage.ForgotPasswordPage;
+import website.pages.homepage.HomePage;
+import website.pages.loginpage.LoginPage;
+import website.pages.logoutpage.LogoutPage;
+import website.pages.myaccountpage.MyAccountPage;
+import website.pages.newaddressbookpage.NewAddressBookPage;
+import website.pages.newaddresspage.NewAddressPage;
+import website.pages.productpage.ProductPage;
+import website.pages.registerpage.RegisterPage;
+import website.pages.returnproductpage.ReturnProductPage;
+import website.pages.searchpage.SearchPage;
+import website.pages.searchproductpricerange.SearchProductPriceRange;
+import website.pages.successfulorderpage.SuccessfulOrderPage;
+import website.pages.successfulregisterpage.SuccessfulRegisterPage;
+import website.pages.successfulreturnproductpage.SuccessfulReturnProductPage;
+import website.pages.successfulvoucherpage.SuccessfulVoucherPage;
+import website.pages.wishlistpage.WishlistPage;
 
 public class WebSite {
 

@@ -1,8 +1,11 @@
 package constants;
 
+import java.util.Random;
+
 import static websitedata.factories.CustomerFactory.faker;
 
 public class Constants {
+    static Random ran = new Random();
     public static final String EMAIL_ADDRESS = "qatest@gmail.com";
     public static final String PASSWORD = "tester";
     public static final String SUCCESSFULLY_PURCHASE_MESSAGE = "Your order has been placed!";
@@ -10,9 +13,9 @@ public class Constants {
     public static final String INVALID_PASSWORD = faker.internet().password();
     public static final String MIN_PRICE = "10";
     public static final String MAX_PRICE = "1000";
-    public static final String UPDATE_QUANTITY = "5";
+    public static final String UPDATE_QUANTITY = String.valueOf(ran.nextInt(2) + 3);
     public static final String ERROR_MESSAGE_PRODUCT = "This product is not exist";
-    public static final String ERROR_MESSAGE_REVIEW = "Your review message is not correct, pleasea try again";
+    public static final String ERROR_MESSAGE_REVIEW = "Your review message is not correct, please try again";
     public static final String ERROR_MESSAGE_QUANTITY = "The expected and actual quantity of the product is not equal!";
     public static final String ERROR_MESSAGE_ORDER = "Your order hasn't been placed successfully";
     public static final String ERROR_MESSAGE_LOGOUT_BUTTON = "Logout button is not displayed";

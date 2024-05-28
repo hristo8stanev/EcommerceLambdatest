@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 
 import enums.ProductOpened;
 import org.apache.commons.lang.RandomStringUtils;
-import pages.myaccountpage.PurchaseGiftCertificate;
+import website.pages.myaccountpage.PurchaseGiftCertificate;
 
 public class GiftCertificateFactory {
 

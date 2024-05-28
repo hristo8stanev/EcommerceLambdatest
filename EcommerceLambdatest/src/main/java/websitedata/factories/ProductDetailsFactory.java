@@ -1,6 +1,6 @@
 package websitedata.factories;
 
-import pages.productpage.ProductDetails;
+import website.pages.productpage.ProductDetails;
 
 public class ProductDetailsFactory {
 

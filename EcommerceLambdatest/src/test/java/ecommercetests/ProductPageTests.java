@@ -2,7 +2,7 @@ package ecommercetests;
 
 import core.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
-import pages.registerpage.PersonalInformation;
+import website.pages.registerpage.PersonalInformation;
 import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
@@ -20,29 +20,34 @@ public class ProductPageTests extends BaseTest {
     public void setup() {
         loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
         user = CustomerFactory.userReview();
+        webSite.loginPage.navigate();
     }
 
     @Test
     public void selectDifferentSizeOfProduct_when_differentSizeOfProductsSelected() {
-        webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
-        webSite.mainHeader.addProductToCard(AppleProduct());
+        webSite.mainHeader.searchProductByName(AppleProduct());
+        webSite.searchPage.proceedToProduct(AppleProduct());
         webSite.productPage.selectMediumSizeType();
         webSite.cartPage.navigate();
 
         webSite.cartPage.assertUrlPage();
         webSite.productPage.assertions().assertSizeProductIsCorrect(AppleProduct());
+
+        webSite.cartPage.removeProductFromCart();
     }
 
     @Test
     public void selectDifferentSizeProduct_when_differentSizeProductSelectedAsNonAuthenticatedUser() {
-        webSite.loginPage.navigate();
-        webSite.mainHeader.addProductToCard(AppleProduct());
+        webSite.mainHeader.searchProductByName(AppleProduct());
+        webSite.searchPage.proceedToProduct(AppleProduct());
         webSite.productPage.selectMediumSizeType();
         webSite.cartPage.navigate();
 
         webSite.cartPage.assertUrlPage();
         webSite.productPage.assertions().assertSizeProductIsCorrect(AppleProduct());
+
+        webSite.cartPage.removeProductFromCart();
     }
 
     @Test
@@ -57,7 +62,6 @@ public class ProductPageTests extends BaseTest {
 
     @Test
     public void writeReview_when_yourNameAndYourReviewTyped_and_authenticatedUserProvided() {
-        webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
         webSite.searchPage.navigate();
         webSite.searchPage.searchProductByName(HtcTouch());

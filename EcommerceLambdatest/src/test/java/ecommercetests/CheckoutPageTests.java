@@ -2,8 +2,8 @@ package ecommercetests;
 
 import core.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
-import pages.cartpage.BillingInformation;
-import pages.registerpage.PersonalInformation;
+import website.pages.cartpage.BillingInformation;
+import website.pages.registerpage.PersonalInformation;
 import websitedata.factories.CheckoutInformationFactory;
 import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;

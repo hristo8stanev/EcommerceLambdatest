@@ -3,8 +3,8 @@ package websitedata.factories;
 import com.github.javafaker.Faker;
 import enums.AccountType;
 import org.apache.commons.lang.RandomStringUtils;
-import pages.cartpage.BillingInformation;
-import pages.registerpage.PersonalInformation;
+import website.pages.cartpage.BillingInformation;
+import website.pages.registerpage.PersonalInformation;
 
 public class CustomerFactory {
 

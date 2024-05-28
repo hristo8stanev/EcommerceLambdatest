@@ -1,7 +1,7 @@
 package websitedata.factories;
 
-import pages.cartpage.CheckoutInformation;
-import pages.productpage.ProductDetails;
+import website.pages.cartpage.CheckoutInformation;
+import website.pages.productpage.ProductDetails;
 
 import java.util.Arrays;
 
