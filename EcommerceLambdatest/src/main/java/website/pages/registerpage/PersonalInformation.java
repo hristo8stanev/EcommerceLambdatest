@@ -12,6 +12,5 @@ public class PersonalInformation {
     public String email;
     public String telephone;
     public String password;
-    public String yourReview;
     public AccountType accountType;
 }

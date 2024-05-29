@@ -78,11 +78,4 @@ public class CustomerFactory {
                 .password(password)
                 .build();
     }
-
-    public static PersonalInformation userReview() {
-        return PersonalInformation.builder()
-                .firstName(faker.name().firstName())
-                .yourReview(faker.lorem().characters())
-                .build();
-    }
 }

@@ -3,13 +3,12 @@ package website.pages.productpage;
 import core.basepage.WebPage;
 import enums.Size;
 import enums.ReviewStars;
-import website.pages.registerpage.PersonalInformation;
+
 import static core.driver.Driver.*;
 
 import static urls.Urls.SEARCH_SHOP_PRODUCTS_PAGE;
 
 public class ProductPage extends WebPage<ProductPageMap, ProductPageAssertions> {
-
 
     @Override
     protected String Url() {
@@ -38,10 +37,10 @@ public class ProductPage extends WebPage<ProductPageMap, ProductPageAssertions> 
         elements().addToCartButton().click();
     }
 
-    public void writeReview(PersonalInformation user, ReviewStars stars) {
+    public void writeReview(CommentDetails user) {
         elements().scrollToVisible(elements().addToCartButton());
-        elements().starFormCheck(stars).click();
-        elements().typeText(elements().yourNameReviewInput(), user.firstName);
+        elements().starFormCheck(user.reviewStars).click();
+        elements().typeText(elements().yourNameReviewInput(), user.userName);
         elements().typeText(elements().yourReviewInput(), user.yourReview);
         elements().writeReviewButton().click();
         elements().reviewSection().click();

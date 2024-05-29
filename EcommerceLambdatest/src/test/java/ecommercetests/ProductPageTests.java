@@ -2,26 +2,25 @@ package ecommercetests;
 
 import core.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
+import website.pages.productpage.CommentDetails;
 import website.pages.registerpage.PersonalInformation;
+import websitedata.factories.CommentFactory;
 import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
-import static constants.Constants.EMAIL_ADDRESS;
-import static constants.Constants.PASSWORD;
-import static enums.ReviewStars.FIVE_STAR;
-import static enums.ReviewStars.FOUR_STAR;
-import static websitedata.factories.ProductDetailsFactory.AppleProduct;
-import static websitedata.factories.ProductDetailsFactory.HtcTouch;
+import static constants.Constants.*;
+import static enums.ReviewStars.*;
+import static websitedata.factories.ProductDetailsFactory.*;
 
 public class ProductPageTests extends BaseTest {
 
     PersonalInformation loginUser;
-    PersonalInformation user;
+    CommentDetails user;
 
     @BeforeEach
     public void setup() {
         loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-        user = CustomerFactory.userReview();
+        user = CommentFactory.userReview(FIVE_STAR);
         webSite.loginPage.navigate();
     }
 
@@ -57,7 +56,7 @@ public class ProductPageTests extends BaseTest {
         webSite.searchPage.navigate();
         webSite.searchPage.searchProductByName(HtcTouch());
         webSite.searchPage.proceedToProduct(HtcTouch());
-        webSite.productPage.writeReview(user, FOUR_STAR);
+        webSite.productPage.writeReview(user);
 
         webSite.productPage.assertions().assertSubmittedReviewForApproval();
     }
@@ -68,7 +67,7 @@ public class ProductPageTests extends BaseTest {
         webSite.searchPage.navigate();
         webSite.searchPage.searchProductByName(HtcTouch());
         webSite.searchPage.proceedToProduct(HtcTouch());
-        webSite.productPage.writeReview(user, FIVE_STAR);
+        webSite.productPage.writeReview(user);
 
         webSite.productPage.assertions().assertSubmittedReviewForApproval();
     }
