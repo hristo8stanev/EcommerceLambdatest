@@ -1,13 +1,13 @@
 package enums;
 
-public enum GiftCertificateType {
+public enum GiftCertificate {
     BIRTHDAY(" Birthday"),
     CHRISTMAS(" Christmas"),
     GENERAL(" General");
 
     public final String giftType;
 
-    GiftCertificateType(String giftType) {
+    GiftCertificate(String giftType) {
         this.giftType = giftType;
     }
 

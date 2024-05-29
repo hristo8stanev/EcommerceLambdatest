@@ -1,7 +1,7 @@
 package website.pages.myaccountpage;
 
 import core.basepage.WebPage;
-import enums.GiftCertificateType;
+import enums.GiftCertificate;
 import website.pages.cartpage.BillingInformation;
 import website.pages.registerpage.PersonalInformation;
 
@@ -17,7 +17,7 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
         return ACCOUNT_PAGE;
     }
 
-    public void selectGiftType(GiftCertificateType giftCertificateType) {
+    public void selectGiftType(GiftCertificate giftCertificateType) {
         waitForAjax();
         elements().giftCertificateTheme(giftCertificateType).click();
     }
@@ -81,12 +81,12 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
         elements().continueButton().click();
     }
 
-    public void purchaseGiftCertificate(PurchaseGiftCertificate gift) {
+    public void purchaseGiftCertificate(PurchaseGiftCertificate gift,GiftCertificate giftCertificate) {
         elements().typeText(elements().recipientNameInput(), gift.recipientName);
         elements().typeText(elements().recipientEmailInput(), gift.recipientEmail);
         elements().typeText(elements().yourNameInput(), gift.yourName);
         elements().typeText(elements().yourEmailInput(), gift.yourEmail);
-        selectGiftType(GiftCertificateType.BIRTHDAY);
+        selectGiftType(giftCertificate);
         elements().typeText(elements().amountCertificateInput(), gift.getAmount());
         elements().agreeGiftCertificate().click();
         elements().continueButton().click();

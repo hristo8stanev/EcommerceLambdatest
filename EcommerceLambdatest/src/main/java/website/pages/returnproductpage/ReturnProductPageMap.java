@@ -1,7 +1,6 @@
 package website.pages.returnproductpage;
 
 import core.basemap.BaseMap;
-import enums.DifferentSizeType;
 import enums.ProductOpened;
 import enums.ReasonType;
 import org.openqa.selenium.By;

@@ -5,11 +5,9 @@ import enums.ProductOpened;
 import enums.ReasonType;
 import website.pages.productpage.ProductDetails;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import static core.driver.Driver.waitForAjax;
-import static urls.Urls.RETURN_PRODUCT_PAGE;
+import static Utils.LocalDateTime.LocalDate.*;
+import static core.driver.Driver.*;
+import static urls.Urls.*;
 
 public class ReturnProductPage extends WebPage<ReturnProductPageMap, ReturnProductPageAssertions> {
 
@@ -28,14 +26,15 @@ public class ReturnProductPage extends WebPage<ReturnProductPageMap, ReturnProdu
         elements().productOpenedInput(reasonId).click();
     }
 
-    public void fillReturnProductForm(ProductDetails product) {
+    public void fillReturnProductForm(ProductDetails product, ReasonType reasonType, ProductOpened productOpened) {
         elements().typeText(elements().orderIdInput(), String.valueOf(product.getId()));
-        elements().typeText(elements().orderDateInput(), LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        elements().typeText(elements().orderDateInput(), getDate());
         elements().typeText(elements().productNameInput(), product.getName());
         elements().typeText(elements().productCodeInput(), product.getModel());
         elements().typeText(elements().productQuantityInput(), product.getQuantity());
-        selectReasonType(ReasonType.DEAD_ON_ARRIVAL);
-        selectIsProductOpened(ProductOpened.YES);
+        selectReasonType(reasonType);
+        selectIsProductOpened(productOpened);
         elements().submitButton().click();
     }
+
 }

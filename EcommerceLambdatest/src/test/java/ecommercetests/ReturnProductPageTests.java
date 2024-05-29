@@ -5,6 +5,8 @@ import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
+import static enums.ProductOpened.*;
+import static enums.ReasonType.*;
 import static websitedata.factories.ProductDetailsFactory.iPodNano;
 
 public class ReturnProductPageTests extends BaseTest {
@@ -18,7 +20,7 @@ public class ReturnProductPageTests extends BaseTest {
 
         webSite.returnProductPage.assertUrlPage();
 
-        webSite.returnProductPage.fillReturnProductForm(iPodNano());
+        webSite.returnProductPage.fillReturnProductForm(iPodNano(), DEAD_ON_ARRIVAL, YES);
 
         webSite.successfulReturnProductPage.assertUrlPage();
         webSite.returnProductPage.assertions().assertProductReturnsMessage(PRODUCT_RETURNS_MESSAGE);

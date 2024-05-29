@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import website.pages.cartpage.CheckoutInformation;
 import website.pages.productpage.ProductDetails;
 
+import static Utils.Currency.Currency.*;
 import static core.driver.Driver.*;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
 
 import static constants.Constants.*;
-import static core.basepage.WebPage.getNumberFormat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
@@ -50,7 +50,6 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
                 elementsT().productPriceElement("text-right", expectedProduct.getUnitPrice()).getText(),
                 expectedProduct.getUnitPrice()
         );
-
         Assertions.assertEquals(expectedProduct.getUnitPrice(), elementsT().productPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), unitPriceMessage);
     }
 
@@ -59,7 +58,6 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
                 elementsT().productTotalPriceElement("text-right", expectedProduct.getUnitPrice()).getText(),
                 String.format("%.2f", expectedProduct.getTotal())
         );
-
         Assertions.assertEquals(String.format("$%.2f", expectedProduct.getTotal()), elementsT().productTotalPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), totalPriceMessage);
     }
 
@@ -128,7 +126,7 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
 
         double expectedSubTotal = Arrays.stream(expectedProducts).mapToDouble(CheckoutInformation::getSubTotal).sum();
 
-        NumberFormat currencyFormat = getNumberFormat();
+        NumberFormat currencyFormat = getDollarFormat();
         String expectedTotalFormatted = currencyFormat.format(expectedSubTotal);
         String actualSubTotalText = elementsT().subTotal().getText();
 
@@ -138,7 +136,7 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
 
     private void assertProductTotalPrice(CheckoutInformation... checkoutInformation) {
         waitForAjax();
-        var billingDetails = CustomerFactory.GenerateBillingAddress();
+        var billingDetails = CustomerFactory.generateBillingAddress();
 
         double expectedTotal;
         if ("United Kingdom".equals(billingDetails.getCountry())) {
@@ -150,7 +148,7 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
             expectedTotal = subTotalSum + shippingRateSum;
         }
 
-        NumberFormat currencyFormat = getNumberFormat();
+        NumberFormat currencyFormat = getDollarFormat();
         String expectedTotalFormatted = currencyFormat.format(expectedTotal);
         String actualTotalText = elementsT().total().getText();
         String totalMessage = String.format("Expected Result: %s \n Actual Result: %s", expectedTotalFormatted, actualTotalText);
@@ -159,11 +157,11 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
     }
 
     private void assertEcoTax(CheckoutInformation... checkoutInformation) {
-        var billingDetails = CustomerFactory.GenerateBillingAddress();
+        var billingDetails = CustomerFactory.generateBillingAddress();
 
         if ("United Kingdom".equals(billingDetails.getCountry())) {
             double expectedEcoTax = Arrays.stream(checkoutInformation).mapToDouble(CheckoutInformation::getEcoTax).sum();
-            NumberFormat currencyFormat = getNumberFormat();
+            NumberFormat currencyFormat = getDollarFormat();
             String expectedTotalFormatted = currencyFormat.format(expectedEcoTax);
             String actualEcoTaxText = elementsT().ecoTaxElement().getText();
             String ecoTaxMessage = String.format("Expected Result: %s \n Actual Result: %s", expectedTotalFormatted, actualEcoTaxText);

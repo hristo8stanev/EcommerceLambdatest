@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import static constants.Constants.EMAIL_ADDRESS;
 import static constants.Constants.PASSWORD;
+import static enums.ReviewStars.FIVE_STAR;
+import static enums.ReviewStars.FOUR_STAR;
 import static websitedata.factories.ProductDetailsFactory.AppleProduct;
 import static websitedata.factories.ProductDetailsFactory.HtcTouch;
 
@@ -55,7 +57,7 @@ public class ProductPageTests extends BaseTest {
         webSite.searchPage.navigate();
         webSite.searchPage.searchProductByName(HtcTouch());
         webSite.searchPage.proceedToProduct(HtcTouch());
-        webSite.productPage.writeReview(user);
+        webSite.productPage.writeReview(user, FOUR_STAR);
 
         webSite.productPage.assertions().assertSubmittedReviewForApproval();
     }
@@ -66,7 +68,7 @@ public class ProductPageTests extends BaseTest {
         webSite.searchPage.navigate();
         webSite.searchPage.searchProductByName(HtcTouch());
         webSite.searchPage.proceedToProduct(HtcTouch());
-        webSite.productPage.writeReview(user);
+        webSite.productPage.writeReview(user, FIVE_STAR);
 
         webSite.productPage.assertions().assertSubmittedReviewForApproval();
     }

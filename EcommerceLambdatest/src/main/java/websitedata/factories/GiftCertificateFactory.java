@@ -10,13 +10,13 @@ public class GiftCertificateFactory {
 
     private static final Faker faker = new Faker();
 
-    public static PurchaseGiftCertificate generateGiftCertificate() {
+    public static PurchaseGiftCertificate generateGiftCertificate(ProductOpened productOpened) {
         return PurchaseGiftCertificate.builder()
                 .recipientName(faker.name().nameWithMiddle())
                 .recipientEmail(faker.internet().emailAddress())
                 .yourName(faker.name().firstName())
                 .yourEmail(faker.internet().emailAddress())
-                .productOpened(ProductOpened.YES)
+                .productOpened(productOpened)
                 .amount(RandomStringUtils.randomNumeric(2)).build();
     }
 }

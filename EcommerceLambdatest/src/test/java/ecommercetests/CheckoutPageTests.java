@@ -20,10 +20,10 @@ public class CheckoutPageTests extends BaseTest {
 
     @BeforeEach
     public void setup() {
-        billingDetails = CustomerFactory.GenerateBillingAddress();
-        loginUser = CustomerFactory.GenerateLoginCheckout(EMAIL_ADDRESS, PASSWORD);
-        guestUser = CustomerFactory.GenerateGuestCheckout();
-        registerUser = CustomerFactory.GenerateRegisterAccount();
+        billingDetails = CustomerFactory.generateBillingAddress();
+        loginUser = CustomerFactory.generateLoginCheckout(EMAIL_ADDRESS, PASSWORD);
+        guestUser = CustomerFactory.generateGuestCheckout();
+        registerUser = CustomerFactory.generateRegisterAccount();
         webSite.checkoutPage.navigate();
     }
 

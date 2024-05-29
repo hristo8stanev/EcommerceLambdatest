@@ -15,8 +15,8 @@ public class ForgotPasswordPage extends WebPage<ForgotPasswordPageMap, ForgotPas
         elements().forgotPasswordButton().click();
     }
 
-    public void sentEmail(String validEmail) {
-        elements().typeText(elements().emailAddress(), validEmail);
+    public void sentEmail(String email) {
+        elements().typeText(elements().emailAddress(), email);
         elements().continueButton().click();
     }
 }

@@ -10,7 +10,7 @@ public class CustomerFactory {
 
     public static final Faker faker = new Faker();
 
-    protected static PersonalInformation.PersonalInformationBuilder<?, ?> GenerateCorePersonalInformation() {
+    protected static PersonalInformation.PersonalInformationBuilder<?, ?> generateCorePersonalInformation() {
         return PersonalInformation.builder()
                 .accountType(AccountType.GUEST)
                 .firstName(faker.name().firstName())
@@ -19,49 +19,49 @@ public class CustomerFactory {
                 .lastName(faker.name().lastName());
     }
 
-    public static PersonalInformation GenerateRegisterAccountWithEmptyFirstName() {
-        return GenerateCorePersonalInformation()
+    public static PersonalInformation generateRegisterAccountWithEmptyFirstName() {
+        return generateCorePersonalInformation()
                 .firstName("")
                 .password(faker.internet().password())
                 .build();
     }
 
-    public static PersonalInformation GenerateRegisterAccountWithEmptyEmail() {
-        return GenerateCorePersonalInformation()
+    public static PersonalInformation generateRegisterAccountWithEmptyEmail() {
+        return generateCorePersonalInformation()
                 .accountType(AccountType.REGISTER)
                 .email("")
                 .password(faker.internet().password())
                 .build();
     }
 
-    public static PersonalInformation GenerateRegisterAccountWithEmptyPassword() {
-        return GenerateCorePersonalInformation()
+    public static PersonalInformation generateRegisterAccountWithEmptyPassword() {
+        return generateCorePersonalInformation()
                 .password("")
                 .build();
     }
 
-    public static PersonalInformation GenerateRegisterAccount() {
-        return GenerateCorePersonalInformation()
+    public static PersonalInformation generateRegisterAccount() {
+        return generateCorePersonalInformation()
                 .accountType(AccountType.REGISTER)
                 .build();
     }
 
-    public static PersonalInformation GenerateGuestCheckout() {
-        return GenerateCorePersonalInformation()
+    public static PersonalInformation generateGuestCheckout() {
+        return generateCorePersonalInformation()
                 .accountType(AccountType.GUEST)
                 .password(faker.internet().password())
                 .build();
     }
 
-    public static PersonalInformation GenerateLoginCheckout(String email, String password) {
-        return GenerateCorePersonalInformation()
+    public static PersonalInformation generateLoginCheckout(String email, String password) {
+        return generateCorePersonalInformation()
                 .accountType(AccountType.LOGIN)
                 .email(email)
                 .password(password)
                 .build();
     }
 
-    public static BillingInformation GenerateBillingAddress() {
+    public static BillingInformation generateBillingAddress() {
         return BillingInformation.builder().firstName(faker.name().firstName())
                 .lastName(faker.name().lastName())
                 .company(faker.company().name())

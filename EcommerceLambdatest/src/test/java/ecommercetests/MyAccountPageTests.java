@@ -5,12 +5,15 @@ import org.junit.jupiter.api.BeforeEach;
 import website.pages.cartpage.BillingInformation;
 import website.pages.myaccountpage.PurchaseGiftCertificate;
 import website.pages.registerpage.PersonalInformation;
+import websitedata.factories.CheckoutInformationFactory;
 import websitedata.factories.CustomerFactory;
 import websitedata.factories.GiftCertificateFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
-import static websitedata.factories.ProductDetailsFactory.IPodShuffleProduct;
+import static enums.GiftCertificate.*;
+import static enums.ProductOpened.*;
+import static websitedata.factories.ProductDetailsFactory.*;
 
 public class MyAccountPageTests extends BaseTest {
 
@@ -23,10 +26,10 @@ public class MyAccountPageTests extends BaseTest {
     @BeforeEach
     public void setup() {
         loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-        myAccountInformation = CustomerFactory.GenerateRegisterAccount();
-        giftCertificate = GiftCertificateFactory.generateGiftCertificate();
-        registerUser = CustomerFactory.GenerateGuestCheckout();
-        billingDetails = CustomerFactory.GenerateBillingAddress();
+        myAccountInformation = CustomerFactory.generateRegisterAccount();
+        giftCertificate = GiftCertificateFactory.generateGiftCertificate(YES);
+        registerUser = CustomerFactory.generateGuestCheckout();
+        billingDetails = CustomerFactory.generateBillingAddress();
     }
 
     @Test
@@ -54,7 +57,7 @@ public class MyAccountPageTests extends BaseTest {
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
         webSite.myAccountPage.proceedToMyVoucherSection();
-        webSite.myAccountPage.purchaseGiftCertificate(giftCertificate);
+        webSite.myAccountPage.purchaseGiftCertificate(giftCertificate, BIRTHDAY);
 
         webSite.myAccountPage.assertions().assertSuccessfullyPurchaseGiftCertificate();
         webSite.successfulVoucherPage.assertUrlPage();
@@ -68,7 +71,7 @@ public class MyAccountPageTests extends BaseTest {
         webSite.registerPage.navigate();
         webSite.registerPage.createUser(registerUser);
         webSite.myAccountPage.proceedToMyVoucherSection();
-        webSite.myAccountPage.purchaseGiftCertificate(giftCertificate);
+        webSite.myAccountPage.purchaseGiftCertificate(giftCertificate, CHRISTMAS);
 
         webSite.myAccountPage.assertions().assertSuccessfullyPurchaseGiftCertificate();
         webSite.successfulVoucherPage.assertUrlPage();
@@ -95,8 +98,9 @@ public class MyAccountPageTests extends BaseTest {
 
     @Test
     public void checkMyOrderHistory_when_authenticatedUserPurchasesProduct() {
+        var checkoutInformation = CheckoutInformationFactory.build(NikonProduct());
         webSite.checkoutPage.navigate();
-        webSite.mainHeader.addProductToCard(IPodShuffleProduct());
+        webSite.mainHeader.addProductToCard(NikonProduct());
         webSite.checkoutPage.navigate();
         webSite.checkoutPage.fillBillingNewUserDetails(myAccountInformation);
         webSite.checkoutPage.fillBillingAddress(billingDetails);
@@ -108,6 +112,6 @@ public class MyAccountPageTests extends BaseTest {
         webSite.myAccountPage.proceedToOrderHistorySection();
 
         webSite.myAccountPage.assertions().assertCustomerNameCorrect(myAccountInformation);
-        webSite.myAccountPage.assertions().assertThePurchaseDateToday();
+        webSite.myAccountPage.assertions().assertTotalPrice(checkoutInformation);
     }
 }

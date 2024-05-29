@@ -7,10 +7,10 @@ import website.pages.productpage.ProductDetails;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
+import static Utils.Currency.Currency.*;
 import static constants.Constants.*;
 
-import static core.basepage.WebPage.*;
-import static core.driver.Driver.waitForAjax;
+import static core.driver.Driver.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class CartPageAssertions extends BaseAssertions<CartPageMap> {
@@ -43,7 +43,7 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
         var totalPriceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().productTotalPriceElement(String.valueOf(expectedProductInfo.getTotal())).getText(), expectedProductInfo.getTotal());
 
-        NumberFormat currencyFormat = getNumberFormat();
+        NumberFormat currencyFormat = getDollarFormat();
         String expectedTotalFormatted = currencyFormat.format(expectedProductInfo.getTotal());
         Assertions.assertEquals(elementsT().productTotalPriceElement(String.valueOf(expectedProductInfo.getTotal())).getText(), expectedTotalFormatted, totalPriceMessage);
     }
@@ -68,14 +68,12 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
 
         var removedProductMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", errorMessageRemovedProduct,
                 elementsT().removedProduct(expectedMessage).getText(), expectedMessage);
-
         Assertions.assertTrue(elementsT().removedProduct(expectedMessage).getText().contains(expectedMessage), removedProductMessage);
     }
 
     public void assertSuccessfullyUpdatedQuantity(String expectedQuantity) {
         var successfullyUpdateQuantityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
                 elementsT().updateQuantityField().getAttribute("value"), expectedQuantity);
-
         Assertions.assertEquals(elementsT().updateQuantityField().getAttribute("value"), expectedQuantity, successfullyUpdateQuantityMessage);
 
         waitForAjax();

@@ -1,11 +1,11 @@
 package website.pages.productpage;
 
 import core.basepage.WebPage;
-import enums.DifferentSizeType;
+import enums.Size;
+import enums.ReviewStars;
 import website.pages.registerpage.PersonalInformation;
 import static core.driver.Driver.*;
 
-import static enums.ReviewStars.*;
 import static urls.Urls.SEARCH_SHOP_PRODUCTS_PAGE;
 
 public class ProductPage extends WebPage<ProductPageMap, ProductPageAssertions> {
@@ -16,31 +16,31 @@ public class ProductPage extends WebPage<ProductPageMap, ProductPageAssertions> 
         return SEARCH_SHOP_PRODUCTS_PAGE;
     }
 
-    public void selectSize(DifferentSizeType sizeType) {
+    public void selectSize(Size sizeType) {
         elements().selectSize(sizeType).click();
     }
 
     public void selectSmallSizeType() {
-        selectSize(DifferentSizeType.SMALL);
+        selectSize(Size.SMALL);
         waitForAjax();
         elements().addToCartButton().click();
     }
 
     public void selectMediumSizeType() {
-        selectSize(DifferentSizeType.MEDIUM);
+        selectSize(Size.MEDIUM);
         waitForAjax();
         elements().addToCartButton().click();
     }
 
     public void selectLargeSizeType() {
-        selectSize(DifferentSizeType.LARGE);
+        selectSize(Size.LARGE);
         waitForAjax();
         elements().addToCartButton().click();
     }
 
-    public void writeReview(PersonalInformation user) {
+    public void writeReview(PersonalInformation user, ReviewStars stars) {
         elements().scrollToVisible(elements().addToCartButton());
-        elements().starFormCheck(FIVE_STAR).click();
+        elements().starFormCheck(stars).click();
         elements().typeText(elements().yourNameReviewInput(), user.firstName);
         elements().typeText(elements().yourReviewInput(), user.yourReview);
         elements().writeReviewButton().click();

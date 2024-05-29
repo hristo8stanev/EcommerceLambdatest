@@ -1,13 +1,13 @@
 package enums;
 
-public enum DifferentSizeType {
+public enum Size {
     SMALL("Small"),
     MEDIUM("Medium"),
     LARGE("Large");
 
     private String sizeType;
 
-    DifferentSizeType(String sizeType) {
+    Size(String sizeType) {
         this.sizeType = sizeType;
     }
 

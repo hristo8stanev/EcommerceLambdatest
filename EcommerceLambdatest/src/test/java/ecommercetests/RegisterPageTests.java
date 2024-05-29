@@ -16,10 +16,10 @@ public class RegisterPageTests extends BaseTest {
     @BeforeEach
     public void setup() {
         webSite.registerPage.navigate();
-        guestUser = CustomerFactory.GenerateGuestCheckout();
-        emptyFirstNameUser = CustomerFactory.GenerateRegisterAccountWithEmptyFirstName();
-        emptyEmailUser = CustomerFactory.GenerateRegisterAccountWithEmptyEmail();
-        emptyPasswordUser = CustomerFactory.GenerateRegisterAccountWithEmptyPassword();
+        guestUser = CustomerFactory.generateGuestCheckout();
+        emptyFirstNameUser = CustomerFactory.generateRegisterAccountWithEmptyFirstName();
+        emptyEmailUser = CustomerFactory.generateRegisterAccountWithEmptyEmail();
+        emptyPasswordUser = CustomerFactory.generateRegisterAccountWithEmptyPassword();
     }
 
     @Test

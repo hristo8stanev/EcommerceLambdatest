@@ -11,18 +11,6 @@ public class CheckoutPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//input[@name='account']/following-sibling::label[contains(text(),'" + accountType.getDisplayName() + "')]"));
     }
 
-    public WebElement loginAccountType() {
-        return waitAndFindElement(By.xpath("//*[@for='input-account-login']"));
-    }
-
-    public WebElement registerAccountType() {
-        return waitAndFindElement(By.xpath("//*[@for='input-account-register']"));
-    }
-
-    public WebElement guestAccountType() {
-        return waitAndFindElement(By.xpath("//*[@for='input-account-guest']"));
-    }
-
     public WebElement emailInput() {
         return waitAndFindElement(By.id("input-login-email"));
     }

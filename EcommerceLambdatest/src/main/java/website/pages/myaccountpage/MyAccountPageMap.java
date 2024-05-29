@@ -1,13 +1,9 @@
 package website.pages.myaccountpage;
 
 import core.basemap.BaseMap;
-import enums.GiftCertificateType;
-import enums.ProductOpened;
-import enums.ReasonType;
+import enums.GiftCertificate;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import java.util.function.Supplier;
 
 public class MyAccountPageMap extends BaseMap {
 
@@ -108,7 +104,7 @@ public class MyAccountPageMap extends BaseMap {
         return waitAndFindElement(By.id("input-from-email"));
     }
 
-    public WebElement giftCertificateTheme(GiftCertificateType giftCertificateType) {
+    public WebElement giftCertificateTheme(GiftCertificate giftCertificateType) {
         return waitAndFindElement(By.xpath("//label[contains(text(), '" + giftCertificateType.getGiftType() + "')]"));
     }
 
@@ -130,6 +126,10 @@ public class MyAccountPageMap extends BaseMap {
 
     public WebElement giftPriceNameElement(String amount, String name) {
         return waitAndFindElement(By.xpath("//div[@id='content']//tr/td[@class='text-left' and contains(text(), '$" + amount + ".00 Gift Certificate for " + name + "')]"));
+    }
+
+    public WebElement totalPrice(String productTotalPrice) {
+        return waitAndFindElement(By.xpath("//div[@id='content']//tbody//td[contains(normalize-space(@class),'text-right') and contains(text(),'" + productTotalPrice + "')]"));
     }
 
     public WebElement myAccountMenuSection() {

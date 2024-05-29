@@ -30,11 +30,6 @@ public abstract class WebPage<ElementsT extends BaseMap, AssertionsT extends Bas
         return NewInstance.createByTypeParameter(getClass(), 1);
     }
 
-    public static NumberFormat getNumberFormat() {
-        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
-        return currencyFormat;
-    }
-
     public void assertUrlPage() {
         Assertions.assertEquals(Url(), Driver.getCurrentUrl(), ERROR_MESSAGE_URL);
         waitForAjax();

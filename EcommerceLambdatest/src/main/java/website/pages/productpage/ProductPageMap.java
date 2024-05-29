@@ -1,7 +1,7 @@
 package website.pages.productpage;
 
 import core.basemap.BaseMap;
-import enums.DifferentSizeType;
+import enums.Size;
 import enums.ReviewStars;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -20,7 +20,7 @@ public class ProductPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='product-product']//select[contains(normalize-space(@id),'input-option')]"));
     }
 
-    public WebElement selectSize(DifferentSizeType sizeType) {
+    public WebElement selectSize(Size sizeType) {
         return sizeField().findElement(By.xpath(".//option[contains(text(), '" + sizeType.getSizeType() + "')]"));
     }
 

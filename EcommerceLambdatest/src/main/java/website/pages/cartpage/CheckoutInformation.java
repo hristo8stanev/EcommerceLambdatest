@@ -53,11 +53,10 @@ public class CheckoutInformation {
     }
 
     public double getVatTax() {
-
         return Math.ceil(getSubTotal() * 0.20 + 1);
     }
 
     public double getTotal() {
-        return (getFlatShippingRate() + getSubTotal() + getVatTax() + getEcoTax());
+        return getFlatShippingRate() + getSubTotal() + getVatTax() + getEcoTax();
     }
 }

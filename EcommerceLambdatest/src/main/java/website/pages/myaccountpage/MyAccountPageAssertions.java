@@ -2,12 +2,12 @@ package website.pages.myaccountpage;
 
 import core.baseassertions.BaseAssertions;
 import org.junit.jupiter.api.Assertions;
+import website.pages.cartpage.CheckoutInformation;
 import website.pages.registerpage.PersonalInformation;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.NumberFormat;
 
-
+import static Utils.Currency.Currency.*;
 import static constants.Constants.*;
 
 public class MyAccountPageAssertions extends BaseAssertions<MyAccountPageMap> {
@@ -37,18 +37,17 @@ public class MyAccountPageAssertions extends BaseAssertions<MyAccountPageMap> {
     }
 
     public void assertCustomerNameCorrect(PersonalInformation user) {
-
         var expectedFullName = user.getFirstName() + " " + user.getLastName();
         var actualFullName = elementsT().customerElement(expectedFullName).getText();
         var customerNameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_ADDRESS, actualFullName, expectedFullName);
         Assertions.assertEquals(actualFullName, expectedFullName, customerNameMessage);
     }
 
-    public void assertThePurchaseDateToday() {
-        var currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        var actualDate = elementsT().dateTimeElement(currentDate).getText();
-        var dateMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_DATE, actualDate, currentDate);
-        Assertions.assertEquals(actualDate, currentDate, dateMessage);
+    public void assertTotalPrice(CheckoutInformation checkoutInformation) {
+        NumberFormat currencyFormat = getDollarFormat();
+        String expectedTotalFormatted = currencyFormat.format(checkoutInformation.getTotal());
+        String actualTotalFormatted = elementsT().totalPrice(String.valueOf(checkoutInformation.getTotal())).getText();
+        Assertions.assertEquals(expectedTotalFormatted, actualTotalFormatted, ERROR_MESSAGE_PRICE);
     }
 
     public void assertGiftCertificateAddedToShoppingCart(PurchaseGiftCertificate purchaseGiftCertificate) {
