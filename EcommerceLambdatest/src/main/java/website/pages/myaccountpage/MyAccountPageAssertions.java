@@ -7,7 +7,7 @@ import website.pages.registerpage.PersonalInformation;
 
 import java.text.NumberFormat;
 
-import static Utils.Currency.Currency.*;
+import static Utils.currency.Currency.*;
 import static constants.Constants.*;
 
 public class MyAccountPageAssertions extends BaseAssertions<MyAccountPageMap> {
