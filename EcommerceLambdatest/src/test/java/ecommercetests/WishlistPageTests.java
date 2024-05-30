@@ -1,6 +1,9 @@
 package ecommercetests;
 
 import core.BaseTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import website.pages.registerpage.PersonalInformation;
 import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +12,16 @@ import static websitedata.factories.ProductDetailsFactory.*;
 
 public class WishlistPageTests extends BaseTest {
 
+    PersonalInformation loginUser;
+
+    @BeforeEach
+    public void setup() {
+        loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
+        webSite.loginPage.navigate();
+    }
+
     @Test
     public void addProductToWishList_when_productAddedToWishlist_and_productSuccessfullyAddedToWishlist() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-
-        webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
         webSite.mainHeader.addProductToWishList(HtcTouch());
         webSite.mainHeader.addProductToWishList(SamsungSyncMaster());
@@ -21,7 +29,12 @@ public class WishlistPageTests extends BaseTest {
         webSite.wishlistPage.proceedToWishList();
 
         webSite.wishlistPage.assertUrlPage();
-        webSite.wishlistPage.assertions().assertProductAddedToWishList(HtcTouch(),iPodNano(),SamsungSyncMaster());
-        webSite.wishlistPage.removeProductsById(HtcTouch(),iPodNano(),SamsungSyncMaster());
+        webSite.wishlistPage.assertions().assertProductAddedToWishList(HtcTouch(), iPodNano(), SamsungSyncMaster());
+
+    }
+
+    @AfterEach
+    public void cleanData() {
+        webSite.wishlistPage.removeProductsById(HtcTouch(), iPodNano(), SamsungSyncMaster());
     }
 }

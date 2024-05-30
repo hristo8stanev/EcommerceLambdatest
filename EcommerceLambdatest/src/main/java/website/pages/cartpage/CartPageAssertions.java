@@ -16,32 +16,27 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class CartPageAssertions extends BaseAssertions<CartPageMap> {
 
     public void assertProductName(ProductDetails expectedProduct) {
-        var messageName = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
-                elementsT().productNameElement(expectedProduct).getText(), expectedProduct.getName());
+        var messageName = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().productNameElement(expectedProduct).getText(), expectedProduct.getName());
         Assertions.assertEquals(elementsT().productNameElement(expectedProduct).getText(), expectedProduct.getName(), messageName);
     }
 
     private void assertProductModel(ProductDetails expectedProductInfo) {
-        var messageModel = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
-                elementsT().productModel(expectedProductInfo).getText(), expectedProductInfo.getModel());
+        var messageModel = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().productModel(expectedProductInfo).getText(), expectedProductInfo.getModel());
         Assertions.assertEquals(elementsT().productModel(expectedProductInfo).getText(), expectedProductInfo.getModel(), messageModel);
     }
 
     private void assertProductQuantity(ProductDetails expectedProductInfo) {
-        var messageQuantity = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
-                elementsT().productQuantity(expectedProductInfo).getAttribute("value"), expectedProductInfo.getQuantity());
+        var messageQuantity = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().productQuantity(expectedProductInfo).getAttribute("value"), expectedProductInfo.getQuantity());
         Assertions.assertEquals(elementsT().productQuantity(expectedProductInfo).getAttribute("value"), expectedProductInfo.getQuantity(), messageQuantity);
     }
 
     private void assertProductUnitPrice(ProductDetails expectedProductInfo) {
-        var messagePrice = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
-                elementsT().productPriceElement(expectedProductInfo.getUnitPrice()).getText(), expectedProductInfo.getUnitPrice());
+        var messagePrice = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().productPriceElement(expectedProductInfo.getUnitPrice()).getText(), expectedProductInfo.getUnitPrice());
         Assertions.assertEquals(elementsT().productPriceElement(expectedProductInfo.getUnitPrice()).getText(), expectedProductInfo.getUnitPrice(), messagePrice);
     }
 
     private void assertProductTotalPrice(ProductDetails expectedProductInfo) {
-        var totalPriceMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
-                elementsT().productTotalPriceElement(String.valueOf(expectedProductInfo.getTotal())).getText(), expectedProductInfo.getTotal());
+        var totalPriceMessage = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().productTotalPriceElement(String.valueOf(expectedProductInfo.getTotal())).getText(), String.valueOf(expectedProductInfo.getTotal()));
 
         NumberFormat currencyFormat = getDollarFormat();
         String expectedTotalFormatted = currencyFormat.format(expectedProductInfo.getTotal());
@@ -58,24 +53,19 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
                         () -> assertProductUnitPrice(expectedProduct),
                         () -> assertProductTotalPrice(expectedProduct)
                 ));
-
         waitForAjax();
     }
 
     public void assertProductRemoved(ProductDetails product) {
         var errorMessageRemovedProduct = String.format("The product %s is still present in the Shopping Cart.", product.getName());
         var expectedMessage = "Your shopping cart is empty!";
-
-        var removedProductMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", errorMessageRemovedProduct,
-                elementsT().removedProduct(expectedMessage).getText(), expectedMessage);
+        var removedProductMessage = formatMessage(errorMessageRemovedProduct, elementsT().removedProduct(expectedMessage).getText(), expectedMessage);
         Assertions.assertTrue(elementsT().removedProduct(expectedMessage).getText().contains(expectedMessage), removedProductMessage);
     }
 
     public void assertSuccessfullyUpdatedQuantity(String expectedQuantity) {
-        var successfullyUpdateQuantityMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT,
-                elementsT().updateQuantityField().getAttribute("value"), expectedQuantity);
+        var successfullyUpdateQuantityMessage = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().updateQuantityField().getAttribute("value"), expectedQuantity);
         Assertions.assertEquals(elementsT().updateQuantityField().getAttribute("value"), expectedQuantity, successfullyUpdateQuantityMessage);
-
         waitForAjax();
     }
 }

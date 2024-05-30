@@ -1,6 +1,7 @@
 package ecommercetests;
 
 import core.BaseTest;
+import org.junit.jupiter.api.AfterEach;
 import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,8 @@ public class LoginPageTests extends BaseTest {
 
         webSite.myAccountPage.assertUrlPage();
         webSite.logoutPage.assertions().assertLogoutButtonDisplayed();
+
+        webSite.logoutPage.logoutUser();
     }
 
     @Test

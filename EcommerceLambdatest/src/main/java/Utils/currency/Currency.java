@@ -8,4 +8,13 @@ public class Currency {
     public static NumberFormat getDollarFormat() {
         return NumberFormat.getCurrencyInstance(Locale.US);
     }
+
+    public static NumberFormat getEuroFormat(){
+        return NumberFormat.getCurrencyInstance(Locale.ENGLISH);
+    }
+
+    public static NumberFormat getPoundFormat(){
+        return NumberFormat.getCurrencyInstance(Locale.UK);
+    }
+
 }

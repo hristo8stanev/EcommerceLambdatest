@@ -14,4 +14,8 @@ public abstract class BaseAssertions<ElementsT extends BaseMap> {
             return null;
         }
     }
+
+    protected String formatMessage(String errorMessage, String actualResult, String expectedResult) {
+        return String.format("%s \n Actual Result: %s \n Expected Result: %s", errorMessage, actualResult, expectedResult);
+    }
 }

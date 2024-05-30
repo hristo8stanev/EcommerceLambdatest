@@ -25,7 +25,7 @@ public class ProductPageTests extends BaseTest {
     }
 
     @Test
-    public void selectDifferentSizeOfProduct_when_differentSizeOfProductsSelected() {
+    public void selectDifferentSizeOfProduct_when_differentSizeOfProductsSelected_as_authenticatedUser() {
         webSite.loginPage.loginUser(loginUser);
         webSite.mainHeader.searchProductByName(AppleProduct());
         webSite.searchPage.proceedToProduct(AppleProduct());
@@ -39,7 +39,7 @@ public class ProductPageTests extends BaseTest {
     }
 
     @Test
-    public void selectDifferentSizeProduct_when_differentSizeProductSelectedAsNonAuthenticatedUser() {
+    public void selectDifferentSizeProduct_when_differentSizeProductSelected_as_nonAuthenticatedUser() {
         webSite.mainHeader.searchProductByName(AppleProduct());
         webSite.searchPage.proceedToProduct(AppleProduct());
         webSite.productPage.selectMediumSizeType();

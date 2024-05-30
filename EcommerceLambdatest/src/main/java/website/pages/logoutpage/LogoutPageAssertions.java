@@ -10,13 +10,14 @@ import static constants.Constants.ERROR_MESSAGE_LOGOUT_BUTTON;
 public class LogoutPageAssertions extends BaseAssertions<LogoutPageMap> {
 
     public void assertLogoutButtonDisplayed() {
-        Assertions.assertTrue(elementsT().logoutButton().isDisplayed(), ERROR_MESSAGE_LOGOUT_BUTTON);
-        elementsT().logoutButton();
+        boolean isLogoutButtonDisplayed = elementsT().logoutButton().isDisplayed();
+        var successfullyLogoutMessage = formatMessage(ERROR_MESSAGE_LOGOUT_BUTTON, String.valueOf(isLogoutButtonDisplayed), String.valueOf(true));
+        Assertions.assertTrue(isLogoutButtonDisplayed, successfullyLogoutMessage);
     }
 
     public void assertAccountSuccessfullyLogout() {
         boolean isLogoutButtonDisplayed = elementsT().accountLogout().isDisplayed();
-        var successfullyLogoutMessage = String.format("%s \n Actual Result: %b \n Expected Result: %b", ERROR_MESSAGE_CONFIRMATION_EMAIL, isLogoutButtonDisplayed, true);
+        var successfullyLogoutMessage = formatMessage(ERROR_MESSAGE_CONFIRMATION_EMAIL, String.valueOf(isLogoutButtonDisplayed), String.valueOf(true));
         Assertions.assertTrue(isLogoutButtonDisplayed, successfullyLogoutMessage);
     }
 }

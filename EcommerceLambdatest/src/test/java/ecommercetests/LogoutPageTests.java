@@ -20,6 +20,7 @@ public class LogoutPageTests extends BaseTest {
         webSite.myAccountPage.assertUrlPage();
 
         webSite.logoutPage.logoutUser();
+
         webSite.logoutPage.assertUrlPage();
         webSite.logoutPage.assertions().assertAccountSuccessfullyLogout();
     }
