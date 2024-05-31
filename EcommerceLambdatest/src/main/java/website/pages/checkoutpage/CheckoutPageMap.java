@@ -161,6 +161,14 @@ public class CheckoutPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(normalize-space(@class), '" + cell + "') and contains(normalize-space(text()), '" + price + "')]//following-sibling::td"));
     }
 
+    public WebElement errorMessageAgreeTerms() {
+        return waitAndFindElement(By.xpath("//div[@id='content']//div[contains(normalize-space(@class),'alert alert-warning alert-dismissible')]"));
+    }
+
+    public WebElement removeButton() {
+        return waitAndFindElement(By.xpath("//div[@id='checkout-cart']//button[contains(normalize-space(@class),'btn btn-danger')]"));
+    }
+
     public WebElement shoppingCartAmount() {
         return waitAndFindElement(By.xpath("//div[@id='main-header']//span[contains(normalize-space(@class),'badge badge-pill badge-info cart-item-total')]"));
     }

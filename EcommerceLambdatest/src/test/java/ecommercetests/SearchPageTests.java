@@ -1,17 +1,28 @@
 package ecommercetests;
 
 import core.BaseTest;
+import org.junit.jupiter.api.BeforeEach;
+import website.pages.registerpage.PersonalInformation;
 import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
+import static enums.Manufacturer.*;
 import static websitedata.factories.ProductDetailsFactory.*;
 
 public class SearchPageTests extends BaseTest {
 
+    PersonalInformation loginUser;
+
+    @BeforeEach
+    public void setup() {
+        loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
+    }
+
     @Test
-    public void searchExistingProductByName_When_NonAuthenticatedUserSearchesProducts() {
+    public void searchExistingProductByFullName_when_nonAuthenticatedUserSearchesProducts() {
         webSite.searchPage.navigate();
+
         webSite.searchPage.assertUrlPage();
 
         webSite.mainHeader.searchProductByName(HtcTouch());
@@ -20,8 +31,9 @@ public class SearchPageTests extends BaseTest {
     }
 
     @Test
-    public void searchNonExistingProductByName_When_NonAuthenticatedUserSearchedProduct() {
+    public void searchNonExistingProductByFullName_When_NonAuthenticatedUserSearchedProduct() {
         webSite.homePage.navigate();
+
         webSite.homePage.assertUrlPage();
 
         webSite.mainHeader.searchProductByName(BoschProduct());
@@ -29,37 +41,119 @@ public class SearchPageTests extends BaseTest {
     }
 
     @Test
-    public void filterProductByPrice_When_NonAuthenticatedUserFiltersProductsByPrice_And_ProductsAreFilteredCorrectly() {
+    public void filterProductByPrice_when_nonAuthenticatedUserFiltersProductsByPrice_and_productsAreFilteredCorrectly() {
         webSite.searchPage.navigate();
+
         webSite.searchPage.assertUrlPage();
+
         webSite.searchPage.typeRangePrices(MIN_PRICE, MAX_PRICE);
 
         webSite.searchProductPriceRange.assertUrlPage();
     }
 
     @Test
-    public void filterProductByName_When_AuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly() {
-        var loginUser = CustomerFactory.loginUser(EMAIL_ADDRESS, PASSWORD);
-
+    public void filterProductByFullName_when_authenticatedUserFiltersProductsByName_and_productsAreSortedCorrectly() {
         webSite.loginPage.navigate();
         webSite.loginPage.loginUser(loginUser);
         webSite.searchPage.navigate();
 
         webSite.searchPage.assertUrlPage();
 
-        webSite.searchPage.searchProductByName(HtcTouch());
+        webSite.searchPage.searchProductByFullName(HtcTouch());
 
         webSite.searchPage.assertions().assertProducts(HtcTouch());
     }
 
     @Test
-    public void filterProductByName_When_NonAuthenticatedUserFiltersProductsByName_And_ProductsAreSortedCorrectly() {
+    public void productWasFound_when_searchingByPartialName_and_nonAuthenticatedUserProvided() {
+        webSite.searchPage.navigate();
+        webSite.searchPage.assertUrlPage();
+
+        webSite.searchPage.searchProductByPartialName(IPodShuffleProduct());
+
+        webSite.searchPage.assertions().assertProducts(IPodShuffleProduct());
+
+    }
+
+    @Test
+    public void productWasFound_when_searchingByPartialName_and_authenticatedUserProvided() {
+        webSite.loginPage.navigate();
+        webSite.loginPage.loginUser(loginUser);
         webSite.searchPage.navigate();
 
         webSite.searchPage.assertUrlPage();
 
-        webSite.searchPage.searchProductByName(HtcTouch());
+        webSite.searchPage.searchProductByPartialName(SamsungSyncMaster());
 
-        webSite.searchPage.assertions().assertProducts(HtcTouch());
+        webSite.searchPage.assertions().assertProducts(SamsungSyncMaster());
+    }
+
+    @Test
+    public void productWasFound_when_searchingByLowerCaseOnly_and_authenticatedUserProvided() {
+        webSite.loginPage.navigate();
+        webSite.loginPage.loginUser(loginUser);
+        webSite.searchPage.navigate();
+
+        webSite.searchPage.assertUrlPage();
+
+        webSite.searchPage.searchProductByLowerCaseOnlyName(SamsungSyncMaster());
+
+        webSite.searchPage.assertions().assertProducts(SamsungSyncMaster());
+    }
+
+    @Test
+    public void productWasFound_when_searchingByLowerCaseOnly_and_nonAuthenticatedUserProvided() {
+        webSite.searchPage.navigate();
+
+        webSite.searchPage.assertUrlPage();
+
+        webSite.searchPage.searchProductByLowerCaseOnlyName(SamsungSyncMaster());
+
+        webSite.searchPage.assertions().assertProducts(SamsungSyncMaster());
+    }
+
+    @Test
+    public void productWasFound_when_searchingByUpperCaseOnly_and_authenticatedUserProvided() {
+        webSite.loginPage.navigate();
+        webSite.loginPage.loginUser(loginUser);
+        webSite.searchPage.navigate();
+
+        webSite.searchPage.assertUrlPage();
+
+        webSite.searchPage.searchProductByUpperCaseOnlyName(SamsungSyncMaster());
+
+        webSite.searchPage.assertions().assertProducts(SamsungSyncMaster());
+    }
+
+    @Test
+    public void productWasFound_when_searchingByUpperCaseOnly_and_nonAuthenticatedUserProvided() {
+        webSite.searchPage.navigate();
+
+        webSite.searchPage.assertUrlPage();
+
+        webSite.searchPage.searchProductByUpperCaseOnlyName(SamsungSyncMaster());
+
+        webSite.searchPage.assertions().assertProducts(SamsungSyncMaster());
+    }
+
+    @Test
+    public void filterProductByManufacturer_when_authenticatedUserFiltersProductsByManufacturer_and_productsAreSortedCorrectly() {
+        webSite.loginPage.navigate();
+        webSite.loginPage.loginUser(loginUser);
+
+        webSite.searchPage.navigate();
+        webSite.searchPage.assertUrlPage();
+
+        webSite.searchPage.sortedByManufacturer(CANON);
+        //ADD ASSERT BY MANUFACTURE
+    }
+
+    @Test
+    public void filterProductByManufacturer_when_nonAuthenticatedUserFiltersProductsByManufacturer_and_productsAreSortedCorrectly() {
+        webSite.searchPage.navigate();
+        webSite.searchPage.assertUrlPage();
+
+        webSite.searchPage.sortedByManufacturer(APPLE);
+        //ADD ASSERT BY MANUFACTURE
     }
 }

@@ -17,6 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
 
+    public void assertErrorMessageWithoutAgreeterms() {
+        var expectedResult = ERROR_MESSAGE_AGREE_TERMS;
+        var actualResult = elementsT().errorMessageAgreeTerms().getText();
+        var errorMessageAgreeTerms = formatMessage(ERROR_MESSAGE_PRODUCT, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, errorMessageAgreeTerms);
+    }
+
     public void assertConfirmButtonDisplayed() {
         boolean isConfirmButtonDisplayed = elementsT().confirmOrderButton().isDisplayed();
         var expectedResult = String.valueOf(true);

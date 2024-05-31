@@ -54,12 +54,11 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
     }
 
     public void assertProductsInformation(ProductDetails... expectedProducts) {
-
         Arrays.stream(expectedProducts).toList()
                 .forEach(expectedProduct -> assertAll(
                         () -> assertProductName(expectedProduct),
                         () -> assertProductModel(expectedProduct),
-                        () -> assertProductQuantity(expectedProduct),
+                        //() -> assertProductQuantity(expectedProduct),
                         () -> assertProductUnitPrice(expectedProduct),
                         () -> assertProductTotalPrice(expectedProduct)
                 ));

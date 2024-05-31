@@ -201,4 +201,20 @@ public class CheckoutPageTests extends BaseTest {
         webSite.successfulOrderPage.assertions().assertSuccessfullyCheckoutOrder();
         webSite.successfulOrderPage.assertUrlPage();
     }
+
+    @Test
+    public void errorMessageIsDisplayed_when_tryingToCheckoutWithoutAgreeingToTerms() {
+        webSite.mainHeader.addProductToCard(NikonProduct());
+        webSite.checkoutPage.navigate();
+        webSite.checkoutPage.loginUser(loginUser);
+
+        webSite.checkoutPage.assertUrlPage();
+        webSite.checkoutPage.assertions().assertProductInformationCheckoutPage(NikonProduct());
+        webSite.checkoutPage.fillUserDetails(billingDetails);
+        webSite.checkoutPage.continueOrderWithoutAgreeTerms();
+
+        webSite.checkoutPage.assertions().assertErrorMessageWithoutAgreeterms();
+
+        webSite.checkoutPage.removeProduct();
+    }
 }

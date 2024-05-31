@@ -99,7 +99,7 @@ public class ProductDetailsFactory {
         productDetails.availability = "In Stock";
         productDetails.unitPrice = "$182.00";
         productDetails.model = "Product 7";
-        productDetails.quantity = "5";
+        productDetails.quantity = "1";
         var parsedQuantity = ParseQuantity(productDetails);
         var parsedUnitPrice = ParseUnitPrice(productDetails);
         productDetails.total = parsedQuantity * parsedUnitPrice;

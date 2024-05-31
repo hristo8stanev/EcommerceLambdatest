@@ -82,6 +82,12 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
         elements().continueButton().click();
     }
 
+    public void continueOrderWithoutAgreeTerms() {
+        waitForAjax();
+        elements().continueButton().click();
+        elements().scrollToVisible(elements().errorMessageAgreeTerms());
+    }
+
     public void confirmOrder() {
         elements().confirmOrderButton().click();
     }
@@ -92,9 +98,17 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
         elements().privacyPolicy().click();
     }
 
-    public void updateProducts() {
-        elements().scrollToVisible(elements().updateButton());
-        elements().updateButton().click();
+    public void removeProduct() {
+        elements().scrollToVisible(elements().shoppingCartAmount());
+
+        while (elements().isCartEmpty(elements().shoppingCartAmount())) {
+            clickOnFirstRemoveButton();
+        }
+    }
+
+    private void clickOnFirstRemoveButton() {
+        elements().scrollToVisible(elements().removeButton());
+        elements().removeButton().click();
         waitForAjax();
     }
 }

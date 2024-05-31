@@ -1,6 +1,7 @@
 package website.pages.searchpage;
 
 import core.basemap.BaseMap;
+import enums.Manufacturer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import website.pages.productpage.ProductDetails;
@@ -29,6 +30,18 @@ public class SearchPageMap extends BaseMap {
 
     public WebElement quickViewButton(ProductDetails productDetails) {
         return waitAndFindElement(By.xpath("//button[contains(normalize-space(@class),'btn btn-quick-view quick-view-" + productDetails.getId() + "') and @title='Quick view']"));
+    }
+
+    public WebElement addToCart(ProductDetails productDetails) {
+        return waitAndFindElement(By.xpath("//button[contains(normalize-space(@class),'btn btn-cart cart-" + productDetails.getId() + "') and @title ='Add to Cart']"));
+    }
+
+    public WebElement addToWishlist(ProductDetails productDetails) {
+        return waitAndFindElement(By.xpath("//button[contains(normalize-space(@class),'btn btn-wishlist wishlist-" + productDetails.getId() + "') and @title ='Add to Wish List']"));
+    }
+
+    public WebElement compareButton(ProductDetails productDetails) {
+        return waitAndFindElement(By.xpath("//button[contains(normalize-space(@class),'btn btn-compare compare-" + productDetails.getId() + "') and @title ='Compare this Product']"));
     }
 
     public WebElement quickViewProductName() {
@@ -61,5 +74,9 @@ public class SearchPageMap extends BaseMap {
 
     public WebElement quickViewAvailability() {
         return waitAndFindElement(By.xpath("//div[@id='product-quick-view']//span[contains(normalize-space(@class),'badge badge-success')]"));
+    }
+
+    public WebElement manufacturerPanel(Manufacturer manufacturer) {
+        return waitAndFindElement(By.xpath("//div[@id='mz-filter-0']//img[contains(normalize-space(@alt),'" + manufacturer.getManufacturerName() + "')]"));
     }
 }

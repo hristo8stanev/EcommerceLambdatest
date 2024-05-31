@@ -10,7 +10,7 @@ public class Currency {
     }
 
     public static NumberFormat getEuroFormat(){
-        return NumberFormat.getCurrencyInstance(Locale.ENGLISH);
+        return NumberFormat.getCurrencyInstance(Locale.FRENCH);
     }
 
     public static NumberFormat getPoundFormat(){

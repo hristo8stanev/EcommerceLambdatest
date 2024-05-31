@@ -54,7 +54,7 @@ public class ProductPageTests extends BaseTest {
     @Test
     public void writeReview_when_yourNameAndYourReviewTyped_and_nonAuthenticatedUserProvided() {
         webSite.searchPage.navigate();
-        webSite.searchPage.searchProductByName(HtcTouch());
+        webSite.searchPage.searchProductByFullName(HtcTouch());
         webSite.searchPage.proceedToProduct(HtcTouch());
         webSite.productPage.writeReview(user);
 
@@ -65,7 +65,7 @@ public class ProductPageTests extends BaseTest {
     public void writeReview_when_yourNameAndYourReviewTyped_and_authenticatedUserProvided() {
         webSite.loginPage.loginUser(loginUser);
         webSite.searchPage.navigate();
-        webSite.searchPage.searchProductByName(HtcTouch());
+        webSite.searchPage.searchProductByFullName(HtcTouch());
         webSite.searchPage.proceedToProduct(HtcTouch());
         webSite.productPage.writeReview(user);
 
@@ -75,7 +75,7 @@ public class ProductPageTests extends BaseTest {
     @Test
     public void quickViewProductInformation_when_clickOnQuickViewButton_and_allInformationIsDisplayed_as_nonAuthenticatedUser() {
         webSite.searchPage.navigate();
-        webSite.searchPage.searchProductByName(IPodShuffleProduct());
+        webSite.searchPage.searchProductByFullName(IPodShuffleProduct());
         webSite.searchPage.proceedToQuickView(IPodShuffleProduct());
 
         webSite.searchPage.assertions().assertProductInformation(IPodShuffleProduct());
@@ -84,18 +84,34 @@ public class ProductPageTests extends BaseTest {
     @Test
     public void addProductToCart_when_clickOnAddOnCartButton_when_productActionDisplayed_and_productIsAddedToShoppingCart_as_nonAuthenticatedUser() {
         webSite.searchPage.navigate();
-        webSite.searchPage.searchProductByName(IPodShuffleProduct());
+        webSite.searchPage.searchProductByFullName(IPodShuffleProduct());
+        webSite.searchPage.addToCart(IPodShuffleProduct());
+        webSite.cartPage.navigate();
+
+        webSite.cartPage.assertions().assertProductsInformation(IPodShuffleProduct());
     }
 
     @Test
-    public void addProductToWishlist_when_clickOnAddToWishlistButton_when_productActionDisplayed_and_productIsAddedToWishlist_as_nonAuthenticatedUser() {
+    public void addProductToWishlist_when_clickOnAddToWishlistButton_when_productActionDisplayed_and_productIsAddedToWishlist_as_authenticatedUser() {
+        webSite.loginPage.loginUser(loginUser);
+
         webSite.searchPage.navigate();
-        webSite.searchPage.searchProductByName(IPodShuffleProduct());
+        webSite.searchPage.searchProductByFullName(IPodShuffleProduct());
+        webSite.searchPage.addToWishlist(IPodShuffleProduct());
+        webSite.wishlistPage.navigate();
+
+        webSite.wishlistPage.assertions().assertProductAddedToWishList(IPodShuffleProduct());
     }
 
     @Test
-    public void compareProduct_when_clickOnCompareProductButton_when_productActionDisplayed_and_productIsAddedToProductComparison_as_nonAuthenticatedUser() {
+    public void compareTwoProduct_when_clickOnCompareProductButton_when_productActionDisplayed_and_productIsAddedToProductComparison_as_nonAuthenticatedUser() {
         webSite.searchPage.navigate();
-        webSite.searchPage.searchProductByName(IPodShuffleProduct());
+        webSite.searchPage.searchProductByFullName(IPodShuffleProduct());
+        webSite.searchPage.compareProducts(IPodShuffleProduct());
+        webSite.searchPage.searchProductByFullName(iPodNano());
+        webSite.searchPage.compareProducts(iPodNano());
+        webSite.comparisonPage.navigate();
+
+        webSite.comparisonPage.assertions().assertTheProductAddedToComparePage(IPodShuffleProduct(),iPodNano());
     }
 }
