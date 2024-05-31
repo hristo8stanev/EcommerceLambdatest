@@ -72,7 +72,7 @@ public class ProductDetailsFactory {
         return productDetails;
     }
 
-    public static ProductDetails AppleProduct() {
+    public static ProductDetails AppleCinema() {
         var productDetails = new ProductDetails();
         productDetails.name = "Apple Cinema 30";
         productDetails.brand = "Apple";

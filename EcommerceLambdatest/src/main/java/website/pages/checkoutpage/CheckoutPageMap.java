@@ -95,6 +95,10 @@ public class CheckoutPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//table[@class='table']//tbody//button[contains(normalize-space(@class),'btn-primary')]"));
     }
 
+    public WebElement quantityField() {
+        return waitAndFindElement(By.xpath("//div[@id='content']//tbody//td[contains(normalize-space(@class),'text-left')]//input[contains(normalize-space(@type),'text')]"));
+    }
+
     public WebElement subTotal() {
         return waitAndFindElement(By.xpath("//table[@id='checkout-total']//tbody//td[contains(text(),'Sub-Total:')]//following-sibling::td"));
     }
@@ -155,5 +159,9 @@ public class CheckoutPageMap extends BaseMap {
 
     public WebElement productTotalPriceElement(String cell, String price) {
         return waitAndFindElement(By.xpath("//div[@id='content']//tr//td[contains(normalize-space(@class), '" + cell + "') and contains(normalize-space(text()), '" + price + "')]//following-sibling::td"));
+    }
+
+    public WebElement shoppingCartAmount() {
+        return waitAndFindElement(By.xpath("//div[@id='main-header']//span[contains(normalize-space(@class),'badge badge-pill badge-info cart-item-total')]"));
     }
 }

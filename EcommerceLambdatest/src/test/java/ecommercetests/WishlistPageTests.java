@@ -20,6 +20,11 @@ public class WishlistPageTests extends BaseTest {
         webSite.loginPage.navigate();
     }
 
+    @AfterEach
+    public void cleanData() {
+        webSite.wishlistPage.removeProductsById(HtcTouch(), iPodNano(), SamsungSyncMaster());
+    }
+
     @Test
     public void addProductToWishList_when_productAddedToWishlist_and_productSuccessfullyAddedToWishlist() {
         webSite.loginPage.loginUser(loginUser);
@@ -30,11 +35,5 @@ public class WishlistPageTests extends BaseTest {
 
         webSite.wishlistPage.assertUrlPage();
         webSite.wishlistPage.assertions().assertProductAddedToWishList(HtcTouch(), iPodNano(), SamsungSyncMaster());
-
-    }
-
-    @AfterEach
-    public void cleanData() {
-        webSite.wishlistPage.removeProductsById(HtcTouch(), iPodNano(), SamsungSyncMaster());
     }
 }

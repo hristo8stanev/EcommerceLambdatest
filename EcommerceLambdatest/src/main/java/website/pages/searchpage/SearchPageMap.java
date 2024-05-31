@@ -3,6 +3,7 @@ package website.pages.searchpage;
 import core.basemap.BaseMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import website.pages.productpage.ProductDetails;
 
 public class SearchPageMap extends BaseMap {
 
@@ -26,6 +27,22 @@ public class SearchPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='product-search']//a[contains(@href, 'product_id=" + id + "')]"));
     }
 
+    public WebElement quickViewButton(ProductDetails productDetails) {
+        return waitAndFindElement(By.xpath("//button[contains(normalize-space(@class),'btn btn-quick-view quick-view-" + productDetails.getId() + "') and @title='Quick view']"));
+    }
+
+    public WebElement quickViewProductName() {
+        return waitAndFindElement(By.xpath("//div[@id='product-quick-view']//h1[contains(normalize-space(@class),'h4')]"));
+    }
+
+    public WebElement quickViewPrice() {
+        return waitAndFindElement(By.xpath("//div[contains(normalize-space(@class),'price')]//h3[contains(normalize-space(@data-update),'price')]"));
+    }
+
+    public WebElement quickViewBrand() {
+        return waitAndFindElement(By.xpath("//div[@id='product-quick-view']//span[contains(normalize-space(@class),'ls-label')]//following-sibling::a"));
+    }
+
     public WebElement errorMessageNonExistingProduct(String message) {
         return waitAndFindElement(By.xpath("//p[contains(text(), '" + message + "')]"));
     }
@@ -36,5 +53,13 @@ public class SearchPageMap extends BaseMap {
 
     public WebElement maxPriceField() {
         return waitAndFindElement(By.xpath("//div[@class='content']//input[contains(normalize-space(@placeholder), 'Maximum Price')]"));
+    }
+
+    public WebElement quickViewModel() {
+        return waitAndFindElement(By.xpath("//div[@id='product-quick-view']//span[contains(normalize-space(@class),'ls-label')]//following-sibling::span"));
+    }
+
+    public WebElement quickViewAvailability() {
+        return waitAndFindElement(By.xpath("//div[@id='product-quick-view']//span[contains(normalize-space(@class),'badge badge-success')]"));
     }
 }

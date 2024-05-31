@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static constants.Constants.*;
+
 public class Driver {
 
     private static final int WAIT_FOR_TIMEOUT = 25;
@@ -21,7 +23,7 @@ public class Driver {
 
     public static WebDriver getBrowser() {
         if (browser == null) {
-            throw new NullPointerException("The WebDriver browser instance was not initialized. You should first call the start() method.");
+            throw new NullPointerException(THE_WEB_DRIVER_BROWSER_INSTANCE_WAS_NOT_INITIALIZED_YOU_SHOULD_FIRST_CALL_THE_START_METHOD);
         }
 
         return browser;
@@ -33,7 +35,7 @@ public class Driver {
 
     public static String getCurrentUrl() {
         if (browser == null) {
-            throw new NullPointerException("The WebDriver browser instance was not initialized. You should first call the startBrowser() method.");
+            throw new NullPointerException(THE_WEB_DRIVER_BROWSER_INSTANCE_WAS_NOT_INITIALIZED_YOU_SHOULD_FIRST_CALL_THE_START_METHOD);
         }
 
         return browser.getCurrentUrl();
@@ -46,7 +48,7 @@ public class Driver {
 
     public static WebDriverWait getBrowserWait() {
         if (browserWait == null || browser == null) {
-            throw new NullPointerException("The WebDriver browser wait instance was not initialized. You should first call the start() method.");
+            throw new NullPointerException(THE_WEB_DRIVER_BROWSER_INSTANCE_WAS_NOT_INITIALIZED_YOU_SHOULD_FIRST_CALL_THE_START_METHOD);
         }
 
         return browserWait;
@@ -82,7 +84,7 @@ public class Driver {
                 browser = new EdgeDriver(edgeOptions);
                 break;
             default:
-                throw new IllegalArgumentException("Unsupported browser type: " + browserType);
+                throw new IllegalArgumentException(UNSUPPORTED_BROWSER_TYPE + browserType);
         }
         browser.manage().window().maximize();
         browserWait = new WebDriverWait(browser, Duration.ofSeconds(WAIT_FOR_TIMEOUT));

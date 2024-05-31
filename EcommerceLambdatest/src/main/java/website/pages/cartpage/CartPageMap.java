@@ -46,4 +46,8 @@ public class CartPageMap extends BaseMap {
     public WebElement shoppingCartAmount() {
         return waitAndFindElement(By.xpath("//div[@id='main-header']//span[contains(normalize-space(@class),'badge badge-pill badge-info cart-item-total')]"));
     }
+
+    public WebElement errorMessageMinimumAmount(){
+        return waitAndFindElement(By.xpath("//div[@id='checkout-cart']//div[contains(normalize-space(@class),'alert alert-danger')]"));
+    }
 }

@@ -81,7 +81,7 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
         elements().continueButton().click();
     }
 
-    public void purchaseGiftCertificate(PurchaseGiftCertificate gift,GiftCertificate giftCertificate) {
+    public void purchaseGiftCertificate(PurchaseGiftCertificate gift, GiftCertificate giftCertificate) {
         elements().typeText(elements().recipientNameInput(), gift.recipientName);
         elements().typeText(elements().recipientEmailInput(), gift.recipientEmail);
         elements().typeText(elements().yourNameInput(), gift.yourName);

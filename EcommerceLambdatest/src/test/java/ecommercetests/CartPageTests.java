@@ -20,6 +20,11 @@ public class CartPageTests extends BaseTest {
         webSite.loginPage.navigate();
     }
 
+    @AfterEach
+    public void cleanData() {
+        webSite.cartPage.removeProductFromCart();
+    }
+
     @Test
     public void addTwoProductToCart_when_authenticatedUserAddsProductsToCart_and_productDetailsCorrect() {
         webSite.loginPage.loginUser(personalInformation);
@@ -46,7 +51,18 @@ public class CartPageTests extends BaseTest {
     }
 
     @Test
-    public void removeProductFromTheShoppingCart_when_authenticatedUserRemovesProductFromCart_and_productIsSuccessfullyRemoved() {
+    public void errorMessageDisplayed_when_settingQuantityOfAppleProductToLessThanMinimum() {
+        webSite.loginPage.loginUser(personalInformation);
+        webSite.mainHeader.searchProductByName(AppleCinema());
+        webSite.searchPage.proceedToProduct(AppleCinema());
+        webSite.productPage.selectMediumSizeType();
+        webSite.cartPage.navigate();
+        webSite.cartPage.updateQuantity(UNDER_THE_MINIMUM);
+        webSite.cartPage.assertions().assertErrorMessageMinimumOrderAmount();
+    }
+
+    @Test
+    public void removeProductFromTheShoppingCart_when_authenticatedUserRemovesProductFromCart_and_cartWasEmpty() {
         webSite.loginPage.loginUser(personalInformation);
         webSite.mainHeader.addProductToCard(HtcTouch());
         webSite.cartPage.navigate();
@@ -75,11 +91,10 @@ public class CartPageTests extends BaseTest {
         webSite.cartPage.updateQuantity(UPDATE_QUANTITY);
 
         webSite.cartPage.assertions().assertSuccessfullyUpdatedQuantity(UPDATE_QUANTITY);
-
     }
 
     @Test
-    public void removeProductTheShoppingCart_when_nonAuthenticatedUserRemovesProductFromCart_and_productIsSuccessfullyRemoved() {
+    public void removeProductTheShoppingCart_when_nonAuthenticatedUserRemovesProductFromCart_and_cartWasEmpty() {
         webSite.mainHeader.addProductToCard(HtcTouch());
         webSite.cartPage.navigate();
 
@@ -88,10 +103,5 @@ public class CartPageTests extends BaseTest {
         webSite.cartPage.removeProductFromCart();
 
         webSite.cartPage.assertions().assertProductRemoved(HtcTouch());
-    }
-
-    @AfterEach
-    public void cleanData() {
-        webSite.cartPage.removeProductFromCart();
     }
 }

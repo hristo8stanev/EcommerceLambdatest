@@ -19,34 +19,44 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
 
     public void assertConfirmButtonDisplayed() {
         boolean isConfirmButtonDisplayed = elementsT().confirmOrderButton().isDisplayed();
-        var confirmButtonMessage = formatMessage(ERROR_MESSAGE_LOGOUT_BUTTON, String.valueOf(isConfirmButtonDisplayed), String.valueOf(true));
+        var expectedResult = String.valueOf(true);
+        var confirmButtonMessage = formatMessage(ERROR_MESSAGE_LOGOUT_BUTTON, String.valueOf(isConfirmButtonDisplayed), expectedResult);
         Assertions.assertTrue(isConfirmButtonDisplayed, ERROR_MESSAGE_LOGOUT_BUTTON);
     }
 
     public void assertSuccessfullyCheckoutOrder() {
         var expectedMessage = SUCCESSFULLY_PURCHASE_MESSAGE;
-        var successfullyCheckoutOrderMessage = formatMessage(ERROR_MESSAGE_LOGOUT_BUTTON, elementsT().successfullyConfirmOrderText().getText(), expectedMessage);
-        Assertions.assertEquals(elementsT().successfullyConfirmOrderText().getText(), expectedMessage, successfullyCheckoutOrderMessage);
+        var actualResult = elementsT().successfullyConfirmOrderText().getText();
+        var successfullyCheckoutOrderMessage = formatMessage(ERROR_MESSAGE_LOGOUT_BUTTON, actualResult, expectedMessage);
+        Assertions.assertEquals(actualResult, expectedMessage, successfullyCheckoutOrderMessage);
     }
 
     private void assertProductNameCheckoutPage(ProductDetails expectedProduct) {
-        String nameMessage = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), expectedProduct.getName());
-        Assertions.assertEquals(expectedProduct.getName(), elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), nameMessage);
+        var expectedResult = elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText();
+        var actualResult = expectedProduct.getName();
+        var nameMessage = formatMessage(ERROR_MESSAGE_PRODUCT, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, nameMessage);
     }
 
     private void assertProductQuantityCheckoutPage(ProductDetails expectedProduct) {
-        String quantityMessage = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().productQuantityElement(expectedProduct.getId(), expectedProduct.getName()).getAttribute("value"), expectedProduct.getQuantity());
-        Assertions.assertEquals(expectedProduct.getQuantity(), elementsT().productQuantityElement(expectedProduct.getId(), expectedProduct.getName()).getAttribute("value"), quantityMessage);
+        var expectedResult = elementsT().productQuantityElement(expectedProduct.getId(), expectedProduct.getName()).getAttribute("value");
+        var actualResult = expectedProduct.getQuantity();
+        var quantityMessage = formatMessage(ERROR_MESSAGE_PRODUCT, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, quantityMessage);
     }
 
     private void assertProductUnitPriceCheckoutPage(ProductDetails expectedProduct) {
-        String unitPriceMessage = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().productPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), expectedProduct.getUnitPrice());
-        Assertions.assertEquals(expectedProduct.getUnitPrice(), elementsT().productPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), unitPriceMessage);
+        var expectedResult = elementsT().productPriceElement("text-right", expectedProduct.getUnitPrice()).getText();
+        var actualResult = expectedProduct.getUnitPrice();
+        var unitPriceMessage = formatMessage(ERROR_MESSAGE_PRODUCT, actualResult, expectedResult);
+        Assertions.assertEquals(expectedResult, actualResult, unitPriceMessage);
     }
 
     private void assertProductTotalPriceCheckoutPage(ProductDetails expectedProduct) {
-        String totalPriceMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, elementsT().productTotalPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), String.format("%.2f", expectedProduct.getTotal()));
-        Assertions.assertEquals(String.format("$%.2f", expectedProduct.getTotal()), elementsT().productTotalPriceElement("text-right", expectedProduct.getUnitPrice()).getText(), totalPriceMessage);
+        var expectedResult = elementsT().productTotalPriceElement("text-right", expectedProduct.getUnitPrice()).getText();
+        var actualResult = expectedProduct.getTotal();
+        var totalPriceMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, String.format("%.2f", actualResult));
+        Assertions.assertEquals(String.format("$%.2f", actualResult), expectedResult, totalPriceMessage);
     }
 
     public void assertProductInformationCheckoutPage(ProductDetails... expectedProducts) {
@@ -60,23 +70,31 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
     }
 
     private void assertProductNameConfirmPage(ProductDetails expectedProductInfo) {
-        String nameMessage = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().confirmOrderProductName("text-left", expectedProductInfo.getName()).getText(), expectedProductInfo.getName());
-        Assertions.assertEquals(expectedProductInfo.getName(), elementsT().confirmOrderProductName("text-left", expectedProductInfo.getName()).getText(), nameMessage);
+        var expectedResult = elementsT().confirmOrderProductName("text-left", expectedProductInfo.getName()).getText();
+        var actualResult = expectedProductInfo.getName();
+        var nameMessage = formatMessage(ERROR_MESSAGE_PRODUCT, expectedResult, actualResult);
+        Assertions.assertEquals(actualResult, expectedResult, nameMessage);
     }
 
     private void assertProductModelConfirmPage(ProductDetails expectedProductInfo) {
-        String modelMessage = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().confirmOrderInformation("text-left", expectedProductInfo.getModel()).getText(), expectedProductInfo.getModel());
-        Assertions.assertEquals(expectedProductInfo.getModel(), elementsT().confirmOrderInformation("text-left", expectedProductInfo.getModel()).getText(), modelMessage);
+        var expectedResult = elementsT().confirmOrderInformation("text-left", expectedProductInfo.getModel()).getText();
+        var actualResult = expectedProductInfo.getModel();
+        var modelMessage = formatMessage(ERROR_MESSAGE_PRODUCT, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, modelMessage);
     }
 
     private void assertProductQuantityConfirmPage(ProductDetails expectedProductInfo) {
-        String quantityMessage = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().confirmOrderQuantityElement(expectedProductInfo.getModel()).getText(), expectedProductInfo.getQuantity());
-        Assertions.assertEquals(expectedProductInfo.getQuantity(), elementsT().confirmOrderQuantityElement(expectedProductInfo.getModel()).getText(), quantityMessage);
+        var expectedResult = elementsT().confirmOrderQuantityElement(expectedProductInfo.getModel()).getText();
+        var actualResult = expectedProductInfo.getQuantity();
+        var quantityMessage = formatMessage(ERROR_MESSAGE_PRODUCT, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, quantityMessage);
     }
 
     private void assertProductPriceConfirmPage(ProductDetails expectedProductInfo) {
-        String priceMessage = formatMessage(ERROR_MESSAGE_PRODUCT, elementsT().confirmOrderPriceElement(expectedProductInfo.getQuantity()).getText(), expectedProductInfo.getUnitPrice());
-        Assertions.assertEquals(expectedProductInfo.getUnitPrice(), elementsT().confirmOrderPriceElement(expectedProductInfo.getQuantity()).getText(), priceMessage);
+        var expectedResult = elementsT().confirmOrderPriceElement(expectedProductInfo.getQuantity()).getText();
+        var actualResult = expectedProductInfo.getUnitPrice();
+        String priceMessage = formatMessage(ERROR_MESSAGE_PRODUCT, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, priceMessage);
     }
 
     public void assertProductInformationConfirmOrder(ProductDetails... expectedProducts) {
@@ -89,11 +107,14 @@ public class CheckoutPageAssertions extends BaseAssertions<CheckoutPageMap> {
                 ));
     }
 
-    private void assertProductSubTotalPrice(CheckoutInformation... expectedProducts) {
+    private void updateProduct() {
         waitForAjax();
         elementsT().scrollToVisible(elementsT().searchButton());
         elementsT().updateButton().click();
+    }
 
+    private void assertProductSubTotalPrice(CheckoutInformation... expectedProducts) {
+        updateProduct();
         double expectedSubTotal = Arrays.stream(expectedProducts).mapToDouble(CheckoutInformation::getSubTotal).sum();
 
         NumberFormat currencyFormat = getDollarFormat();

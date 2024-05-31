@@ -2,8 +2,7 @@ package website.pages.cartpage;
 
 import core.basepage.WebPage;
 
-import static core.driver.Driver.*;
-
+import static core.driver.Driver.waitForAjax;
 import static urls.Urls.CART_PAGE;
 
 public class CartPage extends WebPage<CartPageMap, CartPageAssertions> {

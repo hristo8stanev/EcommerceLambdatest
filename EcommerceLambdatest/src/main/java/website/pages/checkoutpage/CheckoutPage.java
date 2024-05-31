@@ -91,4 +91,10 @@ public class CheckoutPage extends WebPage<CheckoutPageMap, CheckoutPageAssertion
         elements().scrollToVisible(elements().privacyPolicy());
         elements().privacyPolicy().click();
     }
+
+    public void updateProducts() {
+        elements().scrollToVisible(elements().updateButton());
+        elements().updateButton().click();
+        waitForAjax();
+    }
 }

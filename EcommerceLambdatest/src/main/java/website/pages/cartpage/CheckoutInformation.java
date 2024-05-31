@@ -20,6 +20,8 @@ public class CheckoutInformation {
 
     public double getEcoTax() {
         int totalQuantity = 0;
+
+
         for (ProductDetails product : products) {
             int quantity = 0;
             try {

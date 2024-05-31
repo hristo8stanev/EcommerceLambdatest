@@ -6,35 +6,38 @@ import website.pages.productpage.ProductDetails;
 
 import java.util.Arrays;
 
-import static constants.Constants.ERROR_MESSAGE_PRODUCT_INFORMATION;
+import static constants.Constants.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class WishlistPageAssertions extends BaseAssertions<WishlistPageMap> {
 
 
     private void assertProductName(ProductDetails expectedProduct) {
-        var nameMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getName(),
-                elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText());
-        Assertions.assertEquals(expectedProduct.getName(), elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), nameMessage);
+        var expectedResult = expectedProduct.getName();
+        var actualResult = elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText();
+        var nameMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, nameMessage);
     }
 
     private void assertProductModel(ProductDetails expectedProduct) {
-        var modelMessage = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getModel(),
-                elementsT().productElementInformation(expectedProduct.getModel()).getText());
-
-        Assertions.assertEquals(expectedProduct.getModel(), elementsT().productElementInformation(expectedProduct.getModel()).getText(), modelMessage);
+        var expectedResult = expectedProduct.getModel();
+        var actualResult = elementsT().productElementInformation(expectedProduct.getModel()).getText();
+        var modelMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, modelMessage);
     }
 
     private void assertProductAvailability(ProductDetails expectedProduct) {
-        var messageAvailability = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION,
-                elementsT().productElementInformation(expectedProduct.getAvailability()).getText(), expectedProduct.getAvailability());
-        Assertions.assertEquals(expectedProduct.getAvailability(), elementsT().productElementInformation(expectedProduct.getAvailability()).getText(), messageAvailability);
+        var expectedResult = expectedProduct.getAvailability();
+        var actualResult = elementsT().productElementInformation(expectedProduct.getAvailability()).getText();
+        var messageAvailability = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, messageAvailability);
     }
 
     private void assertProductPrice(ProductDetails expectedProduct) {
-        var messagePrice = String.format("%s \n Actual Result: %s \n Expected Result: %s", ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getUnitPrice(),
-                elementsT().productPriceWishListElement(expectedProduct.getUnitPrice()).getText());
-        Assertions.assertEquals(expectedProduct.getUnitPrice(), elementsT().productPriceWishListElement(expectedProduct.getUnitPrice()).getText(), messagePrice);
+        var expectedResult = expectedProduct.getUnitPrice();
+        var actualResult = elementsT().productPriceWishListElement(expectedProduct.getUnitPrice()).getText();
+        var messagePrice = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, messagePrice);
     }
 
     public void assertProductAddedToWishList(ProductDetails... expectedProducts) {
@@ -48,5 +51,4 @@ public class WishlistPageAssertions extends BaseAssertions<WishlistPageMap> {
                         //() -> assertProductPrice(expectedProduct)
                 ));
     }
-
 }

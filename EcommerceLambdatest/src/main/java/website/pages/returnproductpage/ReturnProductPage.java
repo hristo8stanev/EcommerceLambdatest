@@ -28,7 +28,7 @@ public class ReturnProductPage extends WebPage<ReturnProductPageMap, ReturnProdu
 
     public void fillReturnProductForm(ProductDetails product, ReasonType reasonType, ProductOpened productOpened) {
         elements().typeText(elements().orderIdInput(), String.valueOf(product.getId()));
-        elements().typeText(elements().orderDateInput(), getDate());
+        elements().typeText(elements().orderDateInput(), getDateTime());
         elements().typeText(elements().productNameInput(), product.getName());
         elements().typeText(elements().productCodeInput(), product.getModel());
         elements().typeText(elements().productQuantityInput(), product.getQuantity());

@@ -12,33 +12,45 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class ComparisonPageAssertions extends BaseAssertions<ComparisonPageMap> {
 
     private void assertProductName(ProductDetails expectedProduct) {
-        var nameMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getName(), elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText());
-        Assertions.assertEquals(expectedProduct.getName(), elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText(), nameMessage);
+        var expectedResult = elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText();
+        var actualResult = expectedProduct.getName();
+        var nameMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, nameMessage);
     }
 
     private void assertProductPrice(ProductDetails expectedProduct) {
-        var messagePrice = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getUnitPrice(), elementsT().productElementInformation(expectedProduct.getUnitPrice()).getText());
-        Assertions.assertEquals(expectedProduct.getUnitPrice(), elementsT().productElementInformation(expectedProduct.getUnitPrice()).getText(), messagePrice);
+        var expectedResult = elementsT().productElementInformation(expectedProduct.getUnitPrice()).getText();
+        var actualResult = expectedProduct.getUnitPrice();
+        var messagePrice = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, messagePrice);
     }
 
     private void assertProductBrand(ProductDetails expectedProduct) {
-        var brandMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getBrand(), elementsT().productElementInformation(expectedProduct.getBrand()).getText());
-        Assertions.assertEquals(expectedProduct.getBrand(), elementsT().productElementInformation(expectedProduct.getBrand()).getText(), brandMessage);
+        var expectedResult = elementsT().productElementInformation(expectedProduct.getBrand()).getText();
+        var actualResult = expectedProduct.getBrand();
+        var brandMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, brandMessage);
     }
 
     private void assertProductAvailability(ProductDetails expectedProduct) {
-        var availabilityMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getAvailability(), elementsT().productElementInformation(expectedProduct.getAvailability()).getText());
-        Assertions.assertEquals(expectedProduct.getAvailability(), elementsT().productElementInformation(expectedProduct.getAvailability()).getText(), availabilityMessage);
+        var expectedResult = elementsT().productElementInformation(expectedProduct.getAvailability()).getText();
+        var actualResult = expectedProduct.getAvailability();
+        var availabilityMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, availabilityMessage);
     }
 
     private void assertProductModel(ProductDetails expectedProduct) {
-        var modelMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getModel(), elementsT().productElementInformation(expectedProduct.getModel()).getText());
-        Assertions.assertEquals(expectedProduct.getModel(), elementsT().productElementInformation(expectedProduct.getModel()).getText(), modelMessage);
+        var expectedResult = elementsT().productElementInformation(expectedProduct.getModel()).getText();
+        var actualResult = expectedProduct.getModel();
+        var modelMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, modelMessage);
     }
 
     private void assertProductWeight(ProductDetails expectedProduct) {
-        var weightMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedProduct.getWeight(), elementsT().productWeightElement(expectedProduct.getWeight()).getText());
-        Assertions.assertEquals(expectedProduct.getWeight(), elementsT().productWeightElement(expectedProduct.getWeight()).getText(), weightMessage);
+        var expectedResult = elementsT().productWeightElement(expectedProduct.getWeight()).getText();
+        var actualResult = expectedProduct.getWeight();
+        var weightMessage = formatMessage(ERROR_MESSAGE_PRODUCT_INFORMATION, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, weightMessage);
     }
 
     public void assertTheProductAddedToComparePage(ProductDetails... expectedProducts) {

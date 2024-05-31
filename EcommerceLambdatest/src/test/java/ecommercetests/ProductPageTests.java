@@ -27,26 +27,26 @@ public class ProductPageTests extends BaseTest {
     @Test
     public void selectDifferentSizeOfProduct_when_differentSizeOfProductsSelected_as_authenticatedUser() {
         webSite.loginPage.loginUser(loginUser);
-        webSite.mainHeader.searchProductByName(AppleProduct());
-        webSite.searchPage.proceedToProduct(AppleProduct());
+        webSite.mainHeader.searchProductByName(AppleCinema());
+        webSite.searchPage.proceedToProduct(AppleCinema());
         webSite.productPage.selectMediumSizeType();
         webSite.cartPage.navigate();
 
         webSite.cartPage.assertUrlPage();
-        webSite.productPage.assertions().assertSizeProductIsCorrect(AppleProduct());
+        webSite.productPage.assertions().assertSizeProductIsCorrect(AppleCinema());
 
         webSite.cartPage.removeProductFromCart();
     }
 
     @Test
     public void selectDifferentSizeProduct_when_differentSizeProductSelected_as_nonAuthenticatedUser() {
-        webSite.mainHeader.searchProductByName(AppleProduct());
-        webSite.searchPage.proceedToProduct(AppleProduct());
+        webSite.mainHeader.searchProductByName(AppleCinema());
+        webSite.searchPage.proceedToProduct(AppleCinema());
         webSite.productPage.selectMediumSizeType();
         webSite.cartPage.navigate();
 
         webSite.cartPage.assertUrlPage();
-        webSite.productPage.assertions().assertSizeProductIsCorrect(AppleProduct());
+        webSite.productPage.assertions().assertSizeProductIsCorrect(AppleCinema());
 
         webSite.cartPage.removeProductFromCart();
     }
@@ -70,5 +70,32 @@ public class ProductPageTests extends BaseTest {
         webSite.productPage.writeReview(user);
 
         webSite.productPage.assertions().assertSubmittedReviewForApproval();
+    }
+
+    @Test
+    public void quickViewProductInformation_when_clickOnQuickViewButton_and_allInformationIsDisplayed_as_nonAuthenticatedUser() {
+        webSite.searchPage.navigate();
+        webSite.searchPage.searchProductByName(IPodShuffleProduct());
+        webSite.searchPage.proceedToQuickView(IPodShuffleProduct());
+
+        webSite.searchPage.assertions().assertProductInformation(IPodShuffleProduct());
+    }
+
+    @Test
+    public void addProductToCart_when_clickOnAddOnCartButton_when_productActionDisplayed_and_productIsAddedToShoppingCart_as_nonAuthenticatedUser() {
+        webSite.searchPage.navigate();
+        webSite.searchPage.searchProductByName(IPodShuffleProduct());
+    }
+
+    @Test
+    public void addProductToWishlist_when_clickOnAddToWishlistButton_when_productActionDisplayed_and_productIsAddedToWishlist_as_nonAuthenticatedUser() {
+        webSite.searchPage.navigate();
+        webSite.searchPage.searchProductByName(IPodShuffleProduct());
+    }
+
+    @Test
+    public void compareProduct_when_clickOnCompareProductButton_when_productActionDisplayed_and_productIsAddedToProductComparison_as_nonAuthenticatedUser() {
+        webSite.searchPage.navigate();
+        webSite.searchPage.searchProductByName(IPodShuffleProduct());
     }
 }

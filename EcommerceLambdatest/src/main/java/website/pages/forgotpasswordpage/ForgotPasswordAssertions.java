@@ -8,14 +8,16 @@ import static constants.Constants.*;
 public class ForgotPasswordAssertions extends BaseAssertions<ForgotPasswordPageMap> {
 
     public void assertSuccessfullySentEmail() {
-        boolean isConfirmationMessageDisplayed = elementsT().confirmationMessage().isDisplayed();
-        String sentEmailMessage = formatMessage(ERROR_MESSAGE_CONFIRMATION_EMAIL, String.valueOf(isConfirmationMessageDisplayed), String.valueOf(true));
-        Assertions.assertTrue(isConfirmationMessageDisplayed, sentEmailMessage);
+        boolean expectedResult = elementsT().confirmationMessage().isDisplayed();
+        var actualResult = String.valueOf(true);
+        var sentEmailMessage = formatMessage(ERROR_MESSAGE_CONFIRMATION_EMAIL, String.valueOf(expectedResult), actualResult);
+        Assertions.assertTrue(expectedResult, sentEmailMessage);
     }
 
     public void assertWarningMessageInvalidEmail() {
-        boolean isWarningMessageDisplayed = elementsT().warningMessage().isDisplayed();
-        String invalidEmailMessage = formatMessage(ERROR_MESSAGE_CONFIRMATION_EMAIL, String.valueOf(isWarningMessageDisplayed), String.valueOf(true));
-        Assertions.assertTrue(isWarningMessageDisplayed, invalidEmailMessage);
+        boolean expectedResult = elementsT().warningMessage().isDisplayed();
+        var actualResult = String.valueOf(true);
+        var invalidEmailMessage = formatMessage(ERROR_MESSAGE_CONFIRMATION_EMAIL, String.valueOf(expectedResult), actualResult);
+        Assertions.assertTrue(expectedResult, invalidEmailMessage);
     }
 }

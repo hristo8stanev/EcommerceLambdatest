@@ -8,23 +8,28 @@ import static constants.Constants.*;
 public class RegisterPageAssertions extends BaseAssertions<RegisterPageMap> {
 
     public void assertLogoutButtonIsDisplayed() {
-        boolean isLogoutButtonDisplayed = elementsT().logoutButton().isDisplayed();
-        var logoutButtonMessage = formatMessage(ERROR_MESSAGE_LOGOUT_BUTTON, String.valueOf(!elementsT().logoutButton().isDisplayed()), String.valueOf(isLogoutButtonDisplayed));
-        Assertions.assertTrue(elementsT().logoutButton().isDisplayed(), ERROR_MESSAGE_LOGOUT_BUTTON);
+        boolean expectedResult = elementsT().logoutButton().isDisplayed();
+        Assertions.assertTrue(expectedResult, ERROR_MESSAGE_LOGOUT_BUTTON);
     }
 
     public void assertErrorMessageFirstName() {
-        var errorMessagePassword = formatMessage(SUCCESSFULLY_LOGIN, elementsT().errorMessageEmptyFirstNameField().getText(), ERROR_MESSAGE_EMPTY_FIRST_NAME);
-        Assertions.assertEquals(elementsT().errorMessageEmptyFirstNameField().getText(), ERROR_MESSAGE_EMPTY_FIRST_NAME, errorMessagePassword);
+        var expectedResult = elementsT().errorMessageEmptyFirstNameField().getText();
+        var actualResult = ERROR_MESSAGE_EMPTY_FIRST_NAME;
+        var errorMessagePassword = formatMessage(SUCCESSFULLY_LOGIN, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, errorMessagePassword);
     }
 
     public void assertErrorMessageMessageEmailAddress() {
-        var errorMessageEmailAddress = formatMessage(SUCCESSFULLY_LOGIN, elementsT().errorMessageEmptyEmailAddressField().getText(), ERROR_MESSAGE_EMPTY_EMAIL_ADDRESS);
-        Assertions.assertEquals(elementsT().errorMessageEmptyEmailAddressField().getText(), ERROR_MESSAGE_EMPTY_EMAIL_ADDRESS, errorMessageEmailAddress);
+        var expectedResult = elementsT().errorMessageEmptyEmailAddressField().getText();
+        var actualResult = ERROR_MESSAGE_EMPTY_EMAIL_ADDRESS;
+        var errorMessageEmailAddress = formatMessage(SUCCESSFULLY_LOGIN, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, errorMessageEmailAddress);
     }
 
     public void assertErrorMessagePassword() {
-        var errorMessagePassword = formatMessage(SUCCESSFULLY_LOGIN, elementsT().errorMessageEmptyPasswordField().getText(), ERROR_MESSAGE_EMPTY_PASSWORD);
-        Assertions.assertEquals(elementsT().errorMessageEmptyPasswordField().getText(), ERROR_MESSAGE_EMPTY_PASSWORD, errorMessagePassword);
+        var expectedResult = elementsT().errorMessageEmptyPasswordField().getText();
+        var actualResult = ERROR_MESSAGE_EMPTY_PASSWORD;
+        var errorMessagePassword = formatMessage(SUCCESSFULLY_LOGIN, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, errorMessagePassword);
     }
 }
