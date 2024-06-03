@@ -24,9 +24,9 @@ public abstract class BaseMap {
         return browser.findElement(locator);
     }
 
-    protected void waitUntilPageLoadsCompletely() {
+    public void waitUntilPageLoadsCompletely() {
         JavascriptExecutor js = (JavascriptExecutor) browser;
-        browserWait.until(wd -> js.executeScript("return document.readyState").toString().equals("comeplete"));
+        browserWait.until(wd -> js.executeScript("return document.readyState").toString().equals("complete"));
     }
 
     public void scrollToVisible(WebElement element) {

@@ -5,6 +5,8 @@ import website.pages.productpage.ProductDetails;
 
 import java.util.List;
 
+import static Utils.calculateTax.CalculateEcoTax.calculateEcoTax;
+
 @Data
 public class CheckoutInformation {
 
@@ -19,27 +21,7 @@ public class CheckoutInformation {
     public boolean isVatApplied;
 
     public double getEcoTax() {
-        int totalQuantity = 0;
-
-
-        for (ProductDetails product : products) {
-            int quantity = 0;
-            try {
-                quantity = Integer.parseInt(product.getQuantity());
-            } catch (NumberFormatException ignored) {
-            }
-            totalQuantity += quantity;
-        }
-
-        double ecoTax = 4.00;
-        int remainingQuantity = totalQuantity - 1;
-
-        while (remainingQuantity > 0) {
-            ecoTax += 2.00;
-            remainingQuantity--;
-        }
-
-        return ecoTax;
+        return calculateEcoTax(products);
     }
 
     public double getFlatShippingRate() {

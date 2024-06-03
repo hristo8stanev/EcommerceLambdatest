@@ -82,5 +82,7 @@ public class SearchPage extends WebPage<SearchPageMap, SearchPageAssertions> {
     public void sortedByManufacturer(Manufacturer manufacturer) {
         elements().scrollToVisible(elements().manufacturerPanel(manufacturer));
         elements().manufacturerPanel(manufacturer).click();
+        waitForAjax();
+        elements().waitUntilPageLoadsCompletely();
     }
 }

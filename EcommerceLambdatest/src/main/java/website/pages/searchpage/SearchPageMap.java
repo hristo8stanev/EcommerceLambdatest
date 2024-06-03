@@ -79,4 +79,8 @@ public class SearchPageMap extends BaseMap {
     public WebElement manufacturerPanel(Manufacturer manufacturer) {
         return waitAndFindElement(By.xpath("//div[@id='mz-filter-0']//img[contains(normalize-space(@alt),'" + manufacturer.getManufacturerName() + "')]"));
     }
+
+    public WebElement titleNameByManufacturer(){
+        return  waitAndFindElement(By.xpath("//h4[@class='title']//a[contains(normalize-space(@href),'product/product')]"));
+    }
 }

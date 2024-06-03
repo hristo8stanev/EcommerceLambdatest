@@ -146,6 +146,9 @@ public class SearchPageTests extends BaseTest {
 
         webSite.searchPage.sortedByManufacturer(CANON);
         //ADD ASSERT BY MANUFACTURE
+
+        //TO DO
+        //TRY TO INTEGRATE ALLURE REPORT FOR THE PROJECT
     }
 
     @Test
@@ -154,6 +157,7 @@ public class SearchPageTests extends BaseTest {
         webSite.searchPage.assertUrlPage();
 
         webSite.searchPage.sortedByManufacturer(APPLE);
+        webSite.searchPage.assertions().assertFilterProductByManufacturer();
         //ADD ASSERT BY MANUFACTURE
     }
 }

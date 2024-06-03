@@ -1,12 +1,14 @@
 package website.pages.searchpage;
 
 import core.baseassertions.BaseAssertions;
+import core.driver.Driver;
 import org.junit.jupiter.api.Assertions;
 import website.pages.productpage.ProductDetails;
 
 import java.util.Arrays;
 
 import static constants.Constants.*;
+import static core.driver.Driver.waitForAjax;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class SearchPageAssertions extends BaseAssertions<SearchPageMap> {
@@ -83,5 +85,10 @@ public class SearchPageAssertions extends BaseAssertions<SearchPageMap> {
                         () -> assertQuickViewProductModel(expectedProduct),
                         () -> assertQuickViewProductBrand(expectedProduct),
                         () -> assertQuickViewProductAvailability(expectedProduct)));
+    }
+
+    public void assertFilterProductByManufacturer() {
+        var element = elementsT().titleNameByManufacturer().getText();
+        Assertions.assertTrue(element.contains("iPod Touch"));
     }
 }
