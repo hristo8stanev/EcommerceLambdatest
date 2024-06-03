@@ -5,7 +5,7 @@ import enums.ProductOpened;
 import enums.ReasonType;
 import website.pages.productpage.ProductDetails;
 
-import static Utils.localdatetime.LocalDate.*;
+import static Utils.localdatetime.LocalDateTime.*;
 import static core.driver.Driver.*;
 import static urls.Urls.*;
 

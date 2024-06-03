@@ -7,6 +7,7 @@ import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
 
 import static constants.Constants.*;
+import static core.driver.Driver.waitForAjax;
 import static enums.Manufacturer.*;
 import static websitedata.factories.ProductDetailsFactory.*;
 
@@ -145,10 +146,7 @@ public class SearchPageTests extends BaseTest {
         webSite.searchPage.assertUrlPage();
 
         webSite.searchPage.sortedByManufacturer(CANON);
-        //ADD ASSERT BY MANUFACTURE
-
-        //TO DO
-        //TRY TO INTEGRATE ALLURE REPORT FOR THE PROJECT
+        webSite.searchPage.assertions().assertFilterProductByManufacturer(CANON);
     }
 
     @Test
@@ -157,7 +155,6 @@ public class SearchPageTests extends BaseTest {
         webSite.searchPage.assertUrlPage();
 
         webSite.searchPage.sortedByManufacturer(APPLE);
-        webSite.searchPage.assertions().assertFilterProductByManufacturer();
-        //ADD ASSERT BY MANUFACTURE
+        webSite.searchPage.assertions().assertFilterProductByManufacturer(APPLE);
     }
 }

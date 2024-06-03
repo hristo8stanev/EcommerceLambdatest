@@ -17,9 +17,11 @@ public class Constants {
     public static final String UPDATE_QUANTITY = String.valueOf(ran.nextInt(2) + 3);
     public static final String UNDER_THE_MINIMUM = String.valueOf(ran.nextInt(1) + 1);
     public static final String ERROR_MESSAGE_PRODUCT = "This product is not exist";
+    public static final String ERROR_MESSAGE_PAGE = "This pade doesn't exist! Try again!";
     public static final String ERROR_MESSAGE_REVIEW = "Your review message is not correct, please try again";
     public static final String ERROR_MESSAGE_PRICE = "Total price does not match the expected value.";
     public static final String ERROR_MESSAGE_AGREE_TERMS = "Warning: You must agree to the Terms & Conditions!\n×";
+    public static final String ERROR_MESSAGE_PRIVACY_POLICY = "Warning: You must agree to the Privacy Policy!";
     public static final String ERROR_MESSAGE_ORDER = "Your order hasn't been placed successfully";
     public static final String ERROR_MESSAGE_LOGOUT_BUTTON = "Logout button is not displayed";
     public static final String SUBTOTAL_PRICE_MESSAGE = "The subtotal price does not match.";

@@ -2,6 +2,7 @@ package website.pages.searchpage;
 
 import core.baseassertions.BaseAssertions;
 import core.driver.Driver;
+import enums.Manufacturer;
 import org.junit.jupiter.api.Assertions;
 import website.pages.productpage.ProductDetails;
 
@@ -87,8 +88,10 @@ public class SearchPageAssertions extends BaseAssertions<SearchPageMap> {
                         () -> assertQuickViewProductAvailability(expectedProduct)));
     }
 
-    public void assertFilterProductByManufacturer() {
-        var element = elementsT().titleNameByManufacturer().getText();
-        Assertions.assertTrue(element.contains("iPod Touch"));
+    public void assertFilterProductByManufacturer(Manufacturer manufacturer) {
+        waitForAjax();
+        elementsT().waitUntilPageLoadsCompletely();
+        var isProductDisplayed = elementsT().titleNameByManufacturer(manufacturer).isDisplayed();
+        Assertions.assertTrue(isProductDisplayed, ERROR_MESSAGE_PRODUCT);
     }
 }

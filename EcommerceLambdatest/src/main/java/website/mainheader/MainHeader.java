@@ -44,4 +44,10 @@ public class MainHeader extends WebPage<MainHeaderMap, MainHeaderAssertions> {
         waitForAjax();
         elements().searchButton().click();
     }
+
+    public void backToHomePage() {
+        elements().scrollToVisible(elements().homePageIcon());
+        elements().searchButton().click();
+        waitForAjax();
+    }
 }

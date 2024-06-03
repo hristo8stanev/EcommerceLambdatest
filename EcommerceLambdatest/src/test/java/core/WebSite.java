@@ -3,6 +3,7 @@ package core;
 import website.mainheader.MainHeader;
 import org.openqa.selenium.WebDriver;
 
+import website.pages.blogarticlepage.BlogArticlePage;
 import website.pages.cartpage.CartPage;
 import website.pages.checkoutpage.CheckoutPage;
 import website.pages.comparisonpage.ComparisonPage;
@@ -18,6 +19,7 @@ import website.pages.registerpage.RegisterPage;
 import website.pages.returnproductpage.ReturnProductPage;
 import website.pages.searchpage.SearchPage;
 import website.pages.searchproductpricerange.SearchProductPriceRange;
+import website.pages.specialproductpage.SpecialProductPage;
 import website.pages.successfulorderpage.SuccessfulOrderPage;
 import website.pages.successfulregisterpage.SuccessfulRegisterPage;
 import website.pages.successfulreturnproductpage.SuccessfulReturnProductPage;
@@ -28,6 +30,7 @@ public class WebSite {
 
     public WebDriver _driver;
     public HomePage homePage;
+    public SpecialProductPage specialProductPage;
     public LoginPage loginPage;
     public CartPage cartPage;
     public CheckoutPage checkoutPage;
@@ -48,10 +51,13 @@ public class WebSite {
     public SuccessfulVoucherPage successfulVoucherPage;
     public WishlistPage wishlistPage;
     public MainHeader mainHeader;
+    public BlogArticlePage blogArticlePage;
 
     public WebSite(WebDriver driver) {
         this._driver = driver;
+        this.blogArticlePage = new BlogArticlePage();
         this.mainHeader = new MainHeader();
+        this.specialProductPage = new SpecialProductPage();
         this.homePage = new HomePage();
         this.cartPage = new CartPage();
         this.loginPage = new LoginPage();

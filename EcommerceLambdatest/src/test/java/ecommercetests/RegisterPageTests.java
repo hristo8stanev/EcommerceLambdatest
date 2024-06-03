@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 
 public class RegisterPageTests extends BaseTest {
 
-   PersonalInformation guestUser;
-   PersonalInformation emptyFirstNameUser;
-   PersonalInformation emptyEmailUser;
-   PersonalInformation emptyPasswordUser;
+    PersonalInformation guestUser;
+    PersonalInformation emptyFirstNameUser;
+    PersonalInformation emptyEmailUser;
+    PersonalInformation emptyPasswordUser;
 
     @BeforeEach
     public void setup() {
@@ -25,6 +25,7 @@ public class RegisterPageTests extends BaseTest {
     @Test
     public void registerUser_when_validCredentialsProvided_and_continueButtonClicked() {
         webSite.registerPage.createUser(guestUser);
+        webSite.registerPage.proceedToCreatedAccount();
 
         webSite.successfulRegisterPage.assertUrlPage();
         webSite.registerPage.assertions().assertLogoutButtonIsDisplayed();
@@ -33,6 +34,7 @@ public class RegisterPageTests extends BaseTest {
     @Test
     public void registerUser_when_emptyFirstNameField_and_continueButtonIsClicked() {
         webSite.registerPage.createUser(emptyFirstNameUser);
+        webSite.registerPage.proceedToCreatedAccount();
 
         webSite.registerPage.assertUrlPage();
         webSite.registerPage.assertions().assertErrorMessageFirstName();
@@ -41,6 +43,7 @@ public class RegisterPageTests extends BaseTest {
     @Test
     public void registerUser_when_emptyEmailAddressField_and_continueButtonClicked() {
         webSite.registerPage.createUser(emptyEmailUser);
+        webSite.registerPage.proceedToCreatedAccount();
 
         webSite.registerPage.assertUrlPage();
         webSite.registerPage.assertions().assertErrorMessageMessageEmailAddress();
@@ -49,8 +52,20 @@ public class RegisterPageTests extends BaseTest {
     @Test
     public void registerUser_when_emptyPasswordField_and_continueButtonClicked() {
         webSite.registerPage.createUser(emptyPasswordUser);
+        webSite.registerPage.proceedToCreatedAccount();
 
         webSite.registerPage.assertUrlPage();
         webSite.registerPage.assertions().assertErrorMessagePassword();
+    }
+
+    @Test
+    public void registerUser_when_withoutAgrePrivacyPolicyTerms_and_shouldDisplayAnErrorMessage() {
+        webSite.registerPage.createUser(guestUser);
+        webSite.registerPage.continueButton();
+
+        webSite.registerPage.assertUrlPage();
+
+        webSite.registerPage.agreePrivacyTerms();
+        webSite.registerPage.assertions().assertErrorMessagePrivacyPolicy();
     }
 }

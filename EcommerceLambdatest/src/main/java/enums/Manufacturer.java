@@ -17,5 +17,4 @@ public enum Manufacturer {
     Manufacturer(String manufacturerName) {
         this.manufacturerName = manufacturerName;
     }
-
 }

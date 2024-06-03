@@ -80,7 +80,15 @@ public class SearchPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='mz-filter-0']//img[contains(normalize-space(@alt),'" + manufacturer.getManufacturerName() + "')]"));
     }
 
-    public WebElement titleNameByManufacturer(){
-        return  waitAndFindElement(By.xpath("//h4[@class='title']//a[contains(normalize-space(@href),'product/product')]"));
+    public WebElement titleNameByManufacturer(Manufacturer manufacturer){
+        return  waitAndFindElement(By.xpath("//div[@id='product-search']//img[contains(normalize-space(@title),'"+manufacturer.getManufacturerName()+"')]"));
+    }
+
+    public WebElement body() {
+        return waitAndFindElement(By.xpath("//body[contains(normalize-space(@class),'product-search mz-filter-loading')]"));
+    }
+
+    public WebElement bodyAfterLoad() {
+        return waitAndFindElement(By.xpath("//body[contains(normalize-space(@class),'product-search')]"));
     }
 }

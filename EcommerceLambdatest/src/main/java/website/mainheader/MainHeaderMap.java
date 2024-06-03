@@ -5,11 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class MainHeaderMap extends BaseMap {
-
-    public WebElement shoppingCartAmount() {
-        return waitAndFindElement(By.xpath("//div[@id='main-header']//span[contains(normalize-space(@class),'badge badge-pill badge-info cart-item-total')]"));
-    }
-
     public WebElement compareButton() {
         return waitAndFindElement(By.partialLinkText("Product Compare"));
     }
@@ -40,5 +35,9 @@ public class MainHeaderMap extends BaseMap {
 
     public WebElement searchButton() {
         return waitAndFindElement(By.xpath("//div[@id='search']//button[contains(normalize-space(@type),'submit')]"));
+    }
+
+    public WebElement homePageIcon() {
+        return waitAndFindElement(By.xpath("//div[@id='main-header']//a[contains(normalize-space(@href),'common/home')]"));
     }
 }

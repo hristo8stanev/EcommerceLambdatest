@@ -82,7 +82,6 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
     public void assertErrorMessageMinimumOrderAmount() {
         String actualMessage = elementsT().errorMessageMinimumAmount().getText().trim();
         String expectedMessage = ERROR_MESSAGE_MINIMUM_AMOUNT;
-
         String message = String.format("Actual Result: %s  Expected Result: %s ", actualMessage, expectedMessage);
         Assertions.assertEquals(expectedMessage, actualMessage, message);
     }

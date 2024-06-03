@@ -32,4 +32,12 @@ public class RegisterPageAssertions extends BaseAssertions<RegisterPageMap> {
         var errorMessagePassword = formatMessage(SUCCESSFULLY_LOGIN, expectedResult, actualResult);
         Assertions.assertEquals(expectedResult, actualResult, errorMessagePassword);
     }
+
+    public void assertErrorMessagePrivacyPolicy() {
+        var expectedResult = elementsT().errorMessagePrivacyTerms().getText();
+        var actualResult = ERROR_MESSAGE_PRIVACY_POLICY;
+        var errorMessagePolicy = formatMessage(SUCCESSFULLY_LOGIN, expectedResult, actualResult);
+        Assertions.assertEquals(expectedResult, actualResult, errorMessagePolicy);
+
+    }
 }

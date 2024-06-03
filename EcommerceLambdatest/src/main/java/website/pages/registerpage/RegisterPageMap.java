@@ -53,4 +53,7 @@ public class RegisterPageMap extends BaseMap {
     public WebElement errorMessageEmptyPasswordField() {
         return waitAndFindElement(By.xpath("//div[@id='content']//div[contains(normalize-space(@class),'text-danger')]"));
     }
+    public WebElement errorMessagePrivacyTerms(){
+        return waitAndFindElement(By.xpath("//div[@id='account-register']//div[contains(normalize-space(@class),'alert alert-danger alert-dismissible')]"));
+    }
 }
