@@ -3,7 +3,6 @@ package websitedata.factories;
 import com.github.javafaker.Faker;
 
 import enums.ProductOpened;
-import org.apache.commons.lang.RandomStringUtils;
 import website.pages.myaccountpage.PurchaseGiftCertificate;
 
 public class GiftCertificateFactory {

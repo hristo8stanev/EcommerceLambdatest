@@ -26,7 +26,7 @@ public class WishlistPageTests extends BaseTest {
     }
 
     @Test
-    public void addProductToWishList_when_productAddedToWishlist_and_productSuccessfullyAddedToWishlist() {
+    public void addThreeProductsToWishList_when_productAddedToWishlist_and_productSuccessfullyAddedToWishlist() {
         webSite.loginPage.loginUser(loginUser);
         webSite.mainHeader.addProductToWishList(HtcTouch());
         webSite.mainHeader.addProductToWishList(SamsungSyncMaster());

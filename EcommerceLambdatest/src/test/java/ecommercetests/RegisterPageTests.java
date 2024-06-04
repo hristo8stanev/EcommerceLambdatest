@@ -59,7 +59,7 @@ public class RegisterPageTests extends BaseTest {
     }
 
     @Test
-    public void registerUser_when_withoutAgrePrivacyPolicyTerms_and_shouldDisplayAnErrorMessage() {
+    public void registerUser_when_withoutAgreePrivacyPolicyTerms_and_shouldDisplayAnErrorMessage() {
         webSite.registerPage.createUser(guestUser);
         webSite.registerPage.continueButton();
 

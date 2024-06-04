@@ -2,7 +2,6 @@ package websitedata.factories;
 
 import com.github.javafaker.Faker;
 import enums.AccountType;
-import org.apache.commons.lang.RandomStringUtils;
 import website.pages.cartpage.BillingInformation;
 import website.pages.registerpage.PersonalInformation;
 
@@ -15,7 +14,7 @@ public class CustomerFactory {
                 .accountType(AccountType.GUEST)
                 .firstName(faker.name().firstName())
                 .email(faker.internet().emailAddress())
-                .telephone(RandomStringUtils.randomNumeric(8))
+                .telephone(faker.number().digits(8))
                 .lastName(faker.name().lastName());
     }
 
