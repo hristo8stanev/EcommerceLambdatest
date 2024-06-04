@@ -70,6 +70,7 @@ public class MyAccountPageTests extends BaseTest {
     public void removeGiftCertificate_when_authenticatedUser_and_removedGiftFromShoppingCart() {
         webSite.registerPage.navigate();
         webSite.registerPage.createUser(registerUser);
+        webSite.registerPage.proceedToCreatedAccount();
         webSite.myAccountPage.proceedToMyVoucherSection();
         webSite.myAccountPage.purchaseGiftCertificate(giftCertificate, CHRISTMAS);
 

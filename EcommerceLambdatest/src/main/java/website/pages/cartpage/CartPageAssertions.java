@@ -7,7 +7,7 @@ import website.pages.productpage.ProductDetails;
 import java.text.NumberFormat;
 import java.util.Arrays;
 
-import static Utils.currency.Currency.*;
+import static utils.currency.Currency.*;
 import static constants.Constants.*;
 
 import static core.driver.Driver.*;

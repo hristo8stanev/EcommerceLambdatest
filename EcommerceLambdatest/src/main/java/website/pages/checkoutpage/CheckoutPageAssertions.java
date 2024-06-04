@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import website.pages.cartpage.CheckoutInformation;
 import website.pages.productpage.ProductDetails;
 
-import static Utils.currency.Currency.*;
+import static utils.currency.Currency.*;
 import static core.driver.Driver.*;
 
 import java.text.NumberFormat;

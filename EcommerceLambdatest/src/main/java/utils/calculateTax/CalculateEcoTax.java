@@ -1,4 +1,4 @@
-package Utils.calculateTax;
+package utils.calculateTax;
 
 import website.pages.productpage.ProductDetails;
 

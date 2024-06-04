@@ -26,4 +26,9 @@ public class WishlistPage extends WebPage<WishlistPageMap, WishlistPageAssertion
         waitForAjax();
         elements().wishListSection().click();
     }
+
+    public void removeProduct(ProductDetails productDetails) {
+        elements().scrollToVisible(elements().removeButton(productDetails));
+        elements().removeButton(productDetails).click();
+    }
 }

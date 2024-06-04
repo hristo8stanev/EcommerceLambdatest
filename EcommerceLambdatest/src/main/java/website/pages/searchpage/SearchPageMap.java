@@ -37,7 +37,15 @@ public class SearchPageMap extends BaseMap {
     }
 
     public WebElement addToWishlist(ProductDetails productDetails) {
-        return waitAndFindElement(By.xpath("//button[contains(normalize-space(@class),'btn btn-wishlist wishlist-" + productDetails.getId() + "') and @title ='Add to Wish List']"));
+        return waitAndFindElement(By.xpath("//button[contains(normalize-space(@class),'btn btn-wishlist wishlist-" + productDetails.getId() + "') and @title ='Add to Wish List']//i"));
+    }
+
+    public WebElement wishlistPopUpButton() {
+        return waitAndFindElement(By.xpath("//div[@id='notification-box-top']//a[contains(normalize-space(@href),'account/wishlist')]"));
+    }
+
+    public WebElement addProductToCartPopUpButton() {
+        return waitAndFindElement(By.xpath("//div[@id='notification-box-top']//a[contains(normalize-space(@href),'checkout/cart')]"));
     }
 
     public WebElement compareButton(ProductDetails productDetails) {
@@ -80,8 +88,8 @@ public class SearchPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@id='mz-filter-0']//img[contains(normalize-space(@alt),'" + manufacturer.getManufacturerName() + "')]"));
     }
 
-    public WebElement titleNameByManufacturer(Manufacturer manufacturer){
-        return  waitAndFindElement(By.xpath("//div[@id='product-search']//img[contains(normalize-space(@title),'"+manufacturer.getManufacturerName()+"')]"));
+    public WebElement titleNameByManufacturer(Manufacturer manufacturer) {
+        return waitAndFindElement(By.xpath("//div[@id='product-search']//img[contains(normalize-space(@title),'" + manufacturer.getManufacturerName() + "')]"));
     }
 
     public WebElement body() {

@@ -5,7 +5,7 @@ import website.pages.productpage.ProductDetails;
 
 import java.util.List;
 
-import static Utils.calculateTax.CalculateEcoTax.calculateEcoTax;
+import static utils.calculateTax.CalculateEcoTax.calculateEcoTax;
 
 @Data
 public class CheckoutInformation {

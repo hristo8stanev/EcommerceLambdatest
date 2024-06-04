@@ -1,4 +1,4 @@
-package Utils.currency;
+package utils.currency;
 
 import java.text.NumberFormat;
 import java.util.Locale;

@@ -20,8 +20,8 @@ public class WishlistPageMap extends BaseMap {
         return waitAndFindElement(By.xpath("//div[@class='toast-body']//a[contains(normalize-space(@href),'account/wishlist')]"));
     }
 
-    public WebElement wishListButton() {
-        return waitAndFindElement(By.xpath("//div[@id='product-product']//button[contains(normalize-space(@title),'Add to Wish List')]"));
+    public WebElement removeButton(ProductDetails productDetails) {
+        return waitAndFindElement(By.xpath("//div[@id='content']//a[contains(normalize-space(@href),'remove=" + productDetails.getId() + "')]"));
     }
 
     public WebElement productPriceWishListElement(String price) {

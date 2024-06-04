@@ -101,6 +101,8 @@ public class ProductPageTests extends BaseTest {
         webSite.wishlistPage.navigate();
 
         webSite.wishlistPage.assertions().assertProductAddedToWishList(IPodShuffleProduct());
+
+        webSite.wishlistPage.removeProduct(IPodShuffleProduct());
     }
 
     @Test

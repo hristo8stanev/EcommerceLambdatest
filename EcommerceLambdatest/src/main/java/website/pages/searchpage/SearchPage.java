@@ -1,6 +1,7 @@
 package website.pages.searchpage;
 
 import core.basepage.WebPage;
+import core.driver.Driver;
 import enums.Manufacturer;
 import org.openqa.selenium.Keys;
 import website.pages.productpage.ProductDetails;
@@ -59,11 +60,13 @@ public class SearchPage extends WebPage<SearchPageMap, SearchPageAssertions> {
     public void addToCart(ProductDetails product) {
         hoverToProduct(product);
         elements().addToCart(product).click();
+        elements().addProductToCartPopUpButton().isDisplayed();
     }
 
     public void addToWishlist(ProductDetails productDetails) {
         hoverToProduct(productDetails);
         elements().addToWishlist(productDetails).click();
+        elements().wishlistPopUpButton().isDisplayed();
     }
 
     public void compareProducts(ProductDetails productDetails) {
