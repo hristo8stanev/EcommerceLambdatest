@@ -1,10 +1,8 @@
 package ecommercetests;
 
 import core.BaseTest;
-import enums.ShopCategory;
 import org.junit.jupiter.api.Test;
 
-import static enums.ShopCategory.MP3_PLAYERS;
 import static enums.ShopCategory.SOFTWARE;
 
 public class HomePageTests extends BaseTest {
@@ -44,5 +42,10 @@ public class HomePageTests extends BaseTest {
         webSite.homePage.proceedToShopByCategory(SOFTWARE);
 
         webSite.homePage.assertions().assertCorrectCategoryDisplayed(SOFTWARE);
+
+        //ToDo
+        //INTEGRATE ALLURE REPORT
+        //CHECK ALL CLASSES AND FOLDERS IF SOMEBODY IS EMPTY
+
     }
 }
