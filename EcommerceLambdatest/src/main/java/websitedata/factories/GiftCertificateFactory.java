@@ -16,6 +16,6 @@ public class GiftCertificateFactory {
                 .yourName(faker.name().firstName())
                 .yourEmail(faker.internet().emailAddress())
                 .productOpened(productOpened)
-                .amount(faker.number().digits(3)).build();
+                .amount(String.valueOf(faker.number().numberBetween(1, 900))).build();
     }
 }

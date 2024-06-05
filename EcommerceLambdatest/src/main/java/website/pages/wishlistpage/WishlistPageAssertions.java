@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class WishlistPageAssertions extends BaseAssertions<WishlistPageMap> {
 
-
     private void assertProductName(ProductDetails expectedProduct) {
         var expectedResult = expectedProduct.getName();
         var actualResult = elementsT().productNameElement(expectedProduct.getId(), expectedProduct.getName()).getText();

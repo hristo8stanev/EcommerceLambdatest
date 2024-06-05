@@ -1,6 +1,5 @@
 package constants;
 
-
 import java.util.Random;
 
 import static websitedata.factories.CustomerFactory.faker;

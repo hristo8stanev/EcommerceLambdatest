@@ -2,6 +2,7 @@ package website.pages.homepage;
 
 import core.basepage.WebPage;
 import enums.ShopCategory;
+import org.openqa.selenium.WebElement;
 
 
 import static core.driver.Driver.waitForAjax;
@@ -15,27 +16,19 @@ public class HomePage extends WebPage<HomePageMap, HomePageAssertions> {
     }
 
     public void proceedToSpecialOfferPage() {
-        elements().scrollToVisible(elements().specialOfferTitleField());
-        elements().specialOfferTitleField().click();
-        waitForAjax();
+        clickAndScroll(elements().specialOfferTitleField());
     }
 
     public void proceedToBlogArticlePage() {
-        elements().scrollToVisible(elements().blogArticleTitleField());
-        elements().blogArticleTitleField().click();
-        waitForAjax();
+        clickAndScroll(elements().blogArticleTitleField());
     }
 
     public void proceedToMyAccount() {
-        elements().scrollToVisible(elements().myAccountSection());
-        elements().myAccountSection().click();
-        waitForAjax();
+        clickAndScroll(elements().myAccountSection());
     }
 
     public void proceedToShopByCategory(ShopCategory category) {
-        elements().scrollToVisible(elements().shopByCategory());
-        elements().shopByCategory().click();
+        clickAndScroll(elements().shopByCategory());
         elements().category(category).click();
-        waitForAjax();
     }
 }

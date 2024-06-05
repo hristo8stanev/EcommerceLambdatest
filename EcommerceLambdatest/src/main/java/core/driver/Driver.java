@@ -46,6 +46,7 @@ public class Driver {
         browserWait.until(ExpectedConditions.jsReturnsValue(script));
     }
 
+
     public static WebDriverWait getBrowserWait() {
         if (browserWait == null || browser == null) {
             throw new NullPointerException(THE_WEB_DRIVER_BROWSER_INSTANCE_WAS_NOT_INITIALIZED_YOU_SHOULD_FIRST_CALL_THE_START_METHOD);
@@ -92,4 +93,3 @@ public class Driver {
         return browser;
     }
 }
-

@@ -42,10 +42,5 @@ public class HomePageTests extends BaseTest {
         webSite.homePage.proceedToShopByCategory(SOFTWARE);
 
         webSite.homePage.assertions().assertCorrectCategoryDisplayed(SOFTWARE);
-
-        //ToDo
-        //INTEGRATE ALLURE REPORT
-        //CHECK ALL CLASSES AND FOLDERS IF SOMEBODY IS EMPTY
-
     }
 }

@@ -36,5 +36,4 @@ public class ReturnProductPage extends WebPage<ReturnProductPageMap, ReturnProdu
         selectIsProductOpened(productOpened);
         elements().submitButton().click();
     }
-
 }

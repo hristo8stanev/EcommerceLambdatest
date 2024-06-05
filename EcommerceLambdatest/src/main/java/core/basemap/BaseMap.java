@@ -8,6 +8,8 @@ import core.driver.Driver;
 
 import java.time.Duration;
 
+import static core.driver.Driver.waitForAjax;
+
 public abstract class BaseMap {
     public static final int WAIT_FOR_TIMEOUT = 10;
     protected WebDriver browser;

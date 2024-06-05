@@ -3,6 +3,7 @@ package ecommercetests;
 import core.BaseTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import website.pages.registerpage.PersonalInformation;
 import websitedata.factories.CustomerFactory;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ public class WishlistPageTests extends BaseTest {
     }
 
     @Test
+    @Tag("Wish")
     public void addThreeProductsToWishList_when_productAddedToWishlist_and_productSuccessfullyAddedToWishlist() {
         webSite.loginPage.loginUser(loginUser);
         webSite.mainHeader.addProductToWishList(HtcTouch());

@@ -91,5 +91,4 @@ public class MyAccountPage extends WebPage<MyAccountPageMap, MyAccountPageAssert
         elements().agreeGiftCertificate().click();
         elements().continueButton().click();
     }
-
 }

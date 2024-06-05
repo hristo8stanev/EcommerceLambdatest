@@ -9,12 +9,11 @@ public class Currency {
         return NumberFormat.getCurrencyInstance(Locale.US);
     }
 
-    public static NumberFormat getEuroFormat(){
+    public static NumberFormat getEuroFormat() {
         return NumberFormat.getCurrencyInstance(Locale.FRENCH);
     }
 
-    public static NumberFormat getPoundFormat(){
+    public static NumberFormat getPoundFormat() {
         return NumberFormat.getCurrencyInstance(Locale.UK);
     }
-
 }

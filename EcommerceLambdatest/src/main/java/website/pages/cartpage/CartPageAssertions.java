@@ -58,7 +58,7 @@ public class CartPageAssertions extends BaseAssertions<CartPageMap> {
                 .forEach(expectedProduct -> assertAll(
                         () -> assertProductName(expectedProduct),
                         () -> assertProductModel(expectedProduct),
-                        //() -> assertProductQuantity(expectedProduct),
+                        () -> assertProductQuantity(expectedProduct),
                         () -> assertProductUnitPrice(expectedProduct),
                         () -> assertProductTotalPrice(expectedProduct)
                 ));
